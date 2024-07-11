@@ -1,77 +1,100 @@
 <script lang="ts">
-import type { Snippet } from 'svelte'
-import type { ClientResource, InitialState, Resources } from '@clerk/types'
-import { deriveState } from '$lib/utils/deriveState.js'
-import { clerkContext } from '$lib/utils/context.js'
-import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js'
-import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js'
+	import type { Snippet } from 'svelte';
+	import type { ClientResource, InitialState, Resources } from '@clerk/types';
+	import { deriveState } from '$lib/utils/deriveState.js';
+	import { clerkContext } from '$lib/utils/context.js';
+	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
+	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
 
-const { children, initialState, ...clerkInitOptions }: ClerkInitOptions & {
-  initialState?: InitialState,
-  children: Snippet
-} = $props()
+	let initialState = $state<InitialState>();
 
-let clerk = $state<Clerk | null>(null)
-let isLoaded = $state(false)
-let resources = $state<Resources>({
-	client: {} as ClientResource,
-	session: undefined,
-	user: undefined,
-	organization: undefined,
-})
+	if (!import.meta.env.SSR) {
+		// @ts-expect-error: Internal
+		initialState = window.__CLERK_SK_INITIAL_STATE__;
+	}
 
-let derivedState = $derived(deriveState(isLoaded, resources, initialState))
+	const {
+		children,
+		...clerkInitOptions
+	}: ClerkInitOptions & {
+		children: Snippet;
+	} = $props();
 
-let auth = $derived.by(() => {
-  const { sessionId, userId, orgId, actor, orgRole, orgSlug, orgPermissions } = derivedState
-  return { sessionId, userId, actor, orgId, orgRole, orgSlug, orgPermissions }
-})
-let client = $derived(resources.client)
-let session = $derived(derivedState.session)
-let user = $derived(derivedState.user)
-let organization = $derived(derivedState.organization)
+	let clerk = $state<Clerk | null>(null);
+	let isLoaded = $state(false);
+	let resources = $state<Resources>({
+		client: {} as ClientResource,
+		session: undefined,
+		user: undefined,
+		organization: undefined
+	});
 
-async function loadClerk() {
-  await loadClerkJsScript(clerkInitOptions)
-}
+	let derivedState = $derived(deriveState(isLoaded, resources, initialState));
 
-$effect(() => {
-  loadClerk()
-})
+	let auth = $derived.by(() => {
+		const { sessionId, userId, orgId, actor, orgRole, orgSlug, orgPermissions } = derivedState;
+		return { sessionId, userId, actor, orgId, orgRole, orgSlug, orgPermissions };
+	});
+	let client = $derived(resources.client);
+	let session = $derived(derivedState.session);
+	let user = $derived(derivedState.user);
+	let organization = $derived(derivedState.organization);
 
-$effect(() => {
-  // @ts-expect-error: Internal
-  clerk?.__unstable__updateProps({ appearance: clerkInitOptions.appearance });
-})
+	async function loadClerk() {
+		await loadClerkJsScript(clerkInitOptions);
 
-$effect(() => {
-  // @ts-expect-error: Internal
-  clerk?.__unstable__updateProps({ localization: clerkInitOptions.localization });
-})
+		if (!window.Clerk) {
+			throw new Error('Clerk script failed to load');
+		}
 
-clerkContext.set({
-  get clerk() {
-    return clerk
-  },
-  get isLoaded() {
-    return isLoaded
-  },
-  get auth() {
-    return auth
-  },
-  get client() {
-    return client
-  },
-  get session() {
-    return session
-  },
-  get user() {
-    return user
-  },
-  get organization() {
-    return organization
-  },
-})
+		clerk = window.Clerk;
+		await clerk.load(clerkInitOptions);
+
+		isLoaded = true;
+
+		clerk.addListener((payload) => {
+			resources = payload;
+			clerk = window.Clerk;
+		});
+	}
+
+	$effect(() => {
+		loadClerk();
+	});
+
+	$effect(() => {
+		// @ts-expect-error: Internal
+		clerk?.__unstable__updateProps({ appearance: clerkInitOptions.appearance });
+	});
+
+	$effect(() => {
+		// @ts-expect-error: Internal
+		clerk?.__unstable__updateProps({ localization: clerkInitOptions.localization });
+	});
+
+	clerkContext.set({
+		get clerk() {
+			return clerk;
+		},
+		get isLoaded() {
+			return isLoaded;
+		},
+		get auth() {
+			return auth;
+		},
+		get client() {
+			return client;
+		},
+		get session() {
+			return session;
+		},
+		get user() {
+			return user;
+		},
+		get organization() {
+			return organization;
+		}
+	});
 </script>
 
 {@render children()}

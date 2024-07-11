@@ -1,2 +1,2 @@
-export { default as ClerkProvider } from './components/ClerkProvider.svelte'
-export * from './runes/index.js'
+export * from './runes/index.js';
+export * from './components/index.js';

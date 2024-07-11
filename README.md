@@ -1,58 +1,236 @@
-# create-svelte
+# Svelte Clerk
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Community package that integrates [Clerk](https://clerk.com/) with [SvelteKit](https://kit.svelte.dev/).
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install svelte-clerk
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Set environment variables
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxx
+CLERK_SECRET_KEY=sk_test_xxxxxxx
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Add server handler
 
-## Building
+```ts
+import { withClerkHandler } from 'svelte-clerk/server';
 
-To build your library:
-
-```bash
-npm run package
+export const handle = withClerkHandler();
 ```
 
-To create a production version of your showcase app:
+## Update `app.d.ts`
 
-```bash
-npm run build
+Inside your `src/` directory, update the `.app.d.ts` file to ensure that the locals added by the Clerk handler are properly typed.
+
+```ts
+/// <reference types="svelte-clerk/env" />
+
+declare global {
+	namespace App {...}
+}
 ```
 
-You can preview the production build with `npm run preview`.
+This handler will inject the [Auth](https://clerk.com/docs/references/nextjs/auth-object) object to `event.locals`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Add `<ClerkProvider>` to your root layout
 
-## Publishing
+All Clerk runes and components must be children of the `<ClerkProvider>` component, which provides active session and user context.
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+```svelte
+<script>
+	import { ClerkProvider } from 'svelte-clerk/components';
+	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
-To publish your library to [npm](https://www.npmjs.com):
+	const { children } = $props();
+</script>
 
-```bash
-npm publish
+<!-- ... -->
+
+<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+	{@render children()}
+</ClerkProvider>
 ```
+
+## Components
+
+- `<ClerkLoaded>`
+- `<ClerkLoading>`
+- `<Protect>`
+- `<SignedIn>`
+- `<SignedOut>`
+- `<SignIn>`
+- `<SignUp>`
+- `<UserButton>`
+- `<UserProfile>`
+- `<OrganizationProfile>`
+- `<OrganizationSwitcher>`
+- `<CreateOrganization>`
+
+## Runes
+
+- `auth` - Auth state.
+- `user` - Authenticated [user](https://clerk.com/docs/references/javascript/user/user).
+- `organization` - Active [Organization](https://clerk.com/docs/references/javascript/organization/organization) of the authenticated user.
+- `session` - [Session](https://clerk.com/docs/references/javascript/session) of the authenticated user.
+- `sessionList` - [Sessions](https://clerk.com/docs/references/javascript/session) of the current Clerk client.
+- `signIn` - See [`SignIn`](https://clerk.com/docs/references/javascript/sign-in/sign-in).
+- `signUp` - See [`SignUp`](https://clerk.com/docs/references/javascript/sign-up/sign-up).
+- `clerk` - See [`Clerk`](https://clerk.com/docs/references/javascript/clerk/clerk).
+
+Example:
+
+The following example demonstrates how to use the `auth` rune to access the current auth state, like whether the user is signed in or not. It also demonstrates a basic example of how you could use the [`getToken()`](https://clerk.com/docs/pr/1259/references/javascript/session#get-token) method to retrieve a session token for fetching data from an external resource.
+
+```svelte
+<script>
+	import { auth, session } from 'svelte-clerk/runes';
+
+	const userId = $derived(auth.current.userId);
+
+	const fetchDataFromExternalResource = async () => {
+    const token = await session.current.getToken();
+    // Add logic to fetch your data
+    return data;
+  }
+</script>
+
+{#if userId === undefined}
+	<p>Loading...</p>
+{:else if userId === null}
+	<p>Sign in to view this page</p>
+{:else}
+	<div>...</div>
+{/if}
+```
+
+## Protecting routes
+
+### Client side
+
+Clerk offers Control Components that allow you to protect your pages. These components are used to control the visibility of your pages based on the user's authentication state.
+
+```svelte
+<script>
+	import { SignedIn, SignedOut, UserButton, SignOutButton } from 'svelte-clerk/components';
+</script>
+
+<div>
+	<h1>Index Route</h1>
+	<SignedIn>
+		<p>You are signed in!</p>
+		<div>
+			<p>View your profile here 👇</p>
+			<UserButton />
+		</div>
+		<div>
+			<SignOutButton />
+		</div>
+	</SignedIn>
+	<SignedOut>
+		<p>You are signed out</p>
+		<div>
+			<a href="/sign-in">Go to Sign in</a>
+		</div>
+		<div>
+			<a href="/sign-up">Go to Sign up</a>
+		</div>
+	</SignedOut>
+</div>
+```
+
+### Server side
+
+To protect your routes, you can use the load function to check for the `userId` singleton. If it doesn't exist, redirect your user back to the sign-in page.
+
+```ts
+import { json, redirect } from '@sveltejs/kit';
+import { clerkClient } from 'svelte-clerk/server';
+
+export const load = ({ locals }) => {
+	if (!locals.auth.userId) {
+		return redirect(307, '/sign-in');
+	}
+
+	const user = await clerkClient.users.getUser(userId);
+
+	return {
+		user: JSON.stringify(locals.auth)
+	};
+};
+```
+
+#### Advanced usage
+
+This example uses a custom `Security` class to handle the authorization logic. It is a good practice if you find yourself repeating the same logic across multiple routes.
+
+In a utility file create a class that can provide multiple authorization methods which will trigger an appropriate http response in the event of a failed check:
+
+```ts
+// utils/Security.ts
+import { error, redirect, type RequestEvent } from '@sveltejs/kit';
+import { withClerkHandler } from 'svelte-clerk/server';
+import type { AuthObject } from '@clerk/backend/internal';
+
+export class Security {
+	private readonly auth?: AuthObject;
+
+	constructor(private readonly event: RequestEvent) {
+		this.auth = event.locals.auth;
+	}
+
+	isAuthenticated() {
+		if (!this.auth?.userId) {
+			redirect(307, '/sign-in');
+		}
+		return this;
+	}
+
+	hasPermission(permission: string) {
+		const permitted = this.auth?.has({ permission });
+		if (!permitted) {
+			error(403, 'missing permission: ' + permission);
+		}
+		return this;
+	}
+}
+```
+
+Inject the `Security` class into the event locals so that it can be accessed in the load function:
+
+```ts
+// hooks.server.ts
+import { sequence } from '@sveltejs/kit/hooks';
+import { Security } from '$src/utils';
+
+export const handle = sequence(withClerkHandler(), ({ event, resolve }) => {
+	event.locals.security = new Security(event);
+
+	return resolve(event);
+});
+```
+
+And use it in your routes:
+
+```ts
+// src/routes/admin/+page.server.ts
+
+export const load = ({ locals: { securty, auth } }) => {
+	// Restrict route to users with specific permissions
+	security.hasPermission('org:sys_memberships:manage').hasPermission('org:sys_domains_manage');
+
+	const project = await getProject(auth.userId);
+
+	return { project };
+};
+```
+
+If you're planning to add authorization logic within a `+layout.server.ts`, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
+
+## License
+
+MIT
