@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.3
+
+### Patch Changes
+
+- 2cd8b0d: Improve Protect component in SSR
+
 ## 0.0.2
 
 ### Patch Changes
