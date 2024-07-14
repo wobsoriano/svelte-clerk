@@ -3,7 +3,7 @@
 Community package that integrates [Clerk](https://clerk.com/) with [SvelteKit](https://kit.svelte.dev/).
 
 > [!IMPORTANT]
-> This module requires Svelte 5 and was made to take advantage of [`runes`](https://svelte-5-preview.vercel.app/docs/runes) and [`snippets`](https://svelte-5-preview.vercel.app/docs/snippets). If you're using Svelte 4, please refer to [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit). A PR is currently in draft to upgrade the clerk-sveltekit package to [Core 2](https://github.com/markjaquith/clerk-sveltekit/pull/60). It will implement the same concept as this package but will continue to use stores. When clerk-sveltekit upgrades to Svelte 5, this package will be deprecated, I guess. So use this package at your own risk.
+> This module requires Svelte 5 and was made to take advantage of [`runes`](https://svelte-5-preview.vercel.app/docs/runes) and [`snippets`](https://svelte-5-preview.vercel.app/docs/snippets). If you're using Svelte 4, please refer to [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit). A PR is currently in draft to upgrade the clerk-sveltekit package to [Core 2](https://github.com/markjaquith/clerk-sveltekit/pull/60). It will implement the same concept as this package but will continue to use stores. When clerk-sveltekit upgrades to Svelte 5, this package will most likely get depreccated. So use this package at your own risk.
 
 ## Installation
 
