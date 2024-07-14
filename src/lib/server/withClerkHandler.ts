@@ -51,7 +51,7 @@ export default function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddl
 				/**
 				 * Hijack the response and inject the auth object into the page
 				 */
-				const scriptContent = `<script>window.__CLERK_SK_AUTH__ = ${JSON.stringify(authObject)}</script>`;
+				const scriptContent = `<script>window.__CLERK_SK_INITIAL_STATE__ = ${JSON.stringify(authObject)}</script>`;
 				return insertScriptBeforeHeadEnd(html, scriptContent);
 			}
 		});
