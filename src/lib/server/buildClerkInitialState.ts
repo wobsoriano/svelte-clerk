@@ -1,4 +1,8 @@
-import { makeAuthObjectSerializable, stripPrivateDataFromObject, type AuthObject } from '@clerk/backend/internal';
+import {
+	makeAuthObjectSerializable,
+	stripPrivateDataFromObject,
+	type AuthObject
+} from '@clerk/backend/internal';
 
 /**
  * To enable Clerk SSR support, include this object to the props
@@ -15,5 +19,5 @@ import { makeAuthObjectSerializable, stripPrivateDataFromObject, type AuthObject
  * };
  */
 export function buildClerkInitialState(auth: AuthObject) {
-  return makeAuthObjectSerializable(stripPrivateDataFromObject(auth))
+	return makeAuthObjectSerializable(stripPrivateDataFromObject(auth));
 }

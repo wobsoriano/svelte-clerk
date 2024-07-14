@@ -59,7 +59,7 @@ export const load = ({ locals }) => {
 ```svelte
 <script lang="ts">
 	import type { Snippet } from '@svelte';
-	import type { InitialState } from '@clerk/types';
+	import type { LayoutData } from './$types';
 	import { ClerkProvider } from 'svelte-clerk/components';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
@@ -68,7 +68,7 @@ export const load = ({ locals }) => {
 		data
 	}: {
 		children: Snippet;
-		data: { initialState: InitialState };
+		data: LayoutData;
 	} = $props();
 </script>
 

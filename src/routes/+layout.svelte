@@ -2,9 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from '$lib/components';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
-	import type { InitialState } from '@clerk/types';
+	import type { LayoutData } from './$types';
 
-	let { children, data }: { children: Snippet; data: { initialState: InitialState } } = $props();
+	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 </script>
 
 <nav>
