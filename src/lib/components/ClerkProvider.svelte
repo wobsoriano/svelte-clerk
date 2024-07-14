@@ -8,7 +8,7 @@
 
 	let initialState = $state<InitialState>();
 
-	if (!import.meta.env.SSR) {
+	if (typeof window !== 'undefined') {
 		// @ts-expect-error: Internal
 		initialState = window.__CLERK_SK_INITIAL_STATE__;
 	}
