@@ -65,7 +65,7 @@ export const load = ({ locals }) => {
 		data
 	}: {
 		children: Snippet;
-		data: InitialState;
+		data: { initialState: InitialState };
 	} = $props();
 </script>
 
