@@ -28,7 +28,7 @@ export const handle = withClerkHandler();
 
 ## Update `app.d.ts`
 
-Inside your `src/` directory, update the `.app.d.ts` file to ensure that the locals added by the Clerk handler are properly typed.
+Inside your `src/` directory, update the `app.d.ts` file to ensure that the locals added by the Clerk handler are properly typed.
 
 ```ts
 /// <reference types="svelte-clerk/env" />
@@ -44,17 +44,26 @@ This handler will inject the [Auth](https://clerk.com/docs/references/nextjs/aut
 
 All Clerk runes and components must be children of the `<ClerkProvider>` component, which provides active session and user context.
 
+```ts
+// src/+layout.server.ts
+export const load = ({ locals }) => {
+	return {
+		initialState: JSON.parse(JSON.stringify(locals.auth))
+	};
+};
+```
+
 ```svelte
 <script>
 	import { ClerkProvider } from 'svelte-clerk/components';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
-	const { children } = $props();
+	const { children, data } = $props();
 </script>
 
 <!-- ... -->
 
-<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider initialState={data.initialState} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>
 ```
