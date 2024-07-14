@@ -93,10 +93,10 @@ The following example demonstrates how to use the `auth` rune to access the curr
 	const userId = $derived(auth.current.userId);
 
 	const fetchDataFromExternalResource = async () => {
-    const token = await session.current.getToken();
-    // Add logic to fetch your data
-    return data;
-  }
+		const token = await session.current.getToken();
+		// Add logic to fetch your data
+		return data;
+	};
 </script>
 
 {#if userId === undefined}
