@@ -4,9 +4,9 @@
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 	import type { InitialState } from '@clerk/types';
 
-	let { children, data }: { children: Snippet, data: { initialState: InitialState } } = $props();
+	let { children, data }: { children: Snippet; data: { initialState: InitialState } } = $props();
 
-	console.log('data', data.initialState)
+	console.log('data', data.initialState);
 </script>
 
 <nav>

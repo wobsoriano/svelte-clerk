@@ -4,9 +4,8 @@
 		OrganizationCustomPermissionKey,
 		OrganizationCustomRoleKey
 	} from '@clerk/types';
-	import ClerkLoaded from './ClerkLoaded.svelte';
 	import type { Snippet } from 'svelte';
-	import { auth } from '$lib/runes/index.js';
+	import { auth, user, organization } from '$lib/runes/index.js';
 
 	type ProtectProps =
 		| {
@@ -40,8 +39,33 @@
 
 	const { role, condition, permission, children, fallback }: ProtectProps = $props();
 
+	const membership = $derived.by(() => {
+		return organization.current
+			? user.current?.organizationMemberships?.find(
+					(om) => om.organization.id === organization.current!.id
+				)
+			: organization.current;
+	});
+
+	const has = (params: Parameters<CheckAuthorizationWithCustomPermissions>[0]) => {
+		if (!params?.permission && !params?.role)
+			throw new Error(
+				'Missing parameters. The prop permission or role is required to be passed. Example usage: `has({permission: "org:posts:edit"})`'
+			);
+		if (
+			!organization.current?.id ||
+			!user.current?.id ||
+			!membership?.role ||
+			!membership?.permissions
+		)
+			return false;
+		if (params.permission) return membership.permissions.includes(params.permission);
+		if (params.role) return membership.role === params.role;
+		return false;
+	};
+
 	const isAuthorized = $derived.by(() => {
-		const { userId, has } = auth.current;
+		const { userId } = auth.current;
 
 		if (!userId) return false;
 
@@ -58,10 +82,8 @@
 	});
 </script>
 
-<ClerkLoaded>
-	{#if isAuthorized}
-		{@render children()}
-	{:else}
-		{@render fallback()}
-	{/if}
-</ClerkLoaded>
+{#if isAuthorized}
+	{@render children()}
+{:else}
+	{@render fallback()}
+{/if}

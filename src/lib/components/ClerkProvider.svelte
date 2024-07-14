@@ -12,7 +12,7 @@
 		...clerkInitOptions
 	}: ClerkInitOptions & {
 		children: Snippet;
-		initialState?: InitialState
+		initialState?: InitialState;
 	} = $props();
 
 	let clerk = $state<Clerk | null>(null);
