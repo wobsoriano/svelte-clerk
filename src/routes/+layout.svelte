@@ -2,8 +2,11 @@
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from '$lib/components';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
+	import type { InitialState } from '@clerk/types';
 
-	let { children }: { children: Snippet } = $props();
+	let { children, data }: { children: Snippet, data: { initialState: InitialState } } = $props();
+
+	console.log('data', data.initialState)
 </script>
 
 <nav>
@@ -13,6 +16,6 @@
 	<a href="/protected">protected</a>
 </nav>
 
-<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider initialState={data.initialState} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>

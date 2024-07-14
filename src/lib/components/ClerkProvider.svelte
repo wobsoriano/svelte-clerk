@@ -6,18 +6,13 @@
 	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
 	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
 
-	let initialState = $state<InitialState>();
-
-	if (typeof window !== 'undefined') {
-		// @ts-expect-error: Internal
-		initialState = window.__CLERK_SK_INITIAL_STATE__;
-	}
-
 	const {
 		children,
+		initialState,
 		...clerkInitOptions
 	}: ClerkInitOptions & {
 		children: Snippet;
+		initialState?: InitialState
 	} = $props();
 
 	let clerk = $state<Clerk | null>(null);

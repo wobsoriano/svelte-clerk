@@ -46,20 +46,6 @@ export default function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddl
 			event.setHeaders(Object.fromEntries(requestState.headers));
 		}
 
-		return resolve(event, {
-			transformPageChunk({ html }) {
-				/**
-				 * Hijack the response and inject the auth object into the page
-				 */
-				const scriptContent = `<script>window.__CLERK_SK_INITIAL_STATE__ = ${JSON.stringify(authObject)}</script>`;
-				return insertScriptBeforeHeadEnd(html, scriptContent);
-			}
-		});
+		return resolve(event);
 	}) satisfies Handle;
-}
-
-function insertScriptBeforeHeadEnd(htmlString: string, scriptContent: string) {
-	const headEndIndex = htmlString.toLowerCase().indexOf('</head>');
-
-	return htmlString.slice(0, headEndIndex) + scriptContent + htmlString.slice(headEndIndex);
 }
