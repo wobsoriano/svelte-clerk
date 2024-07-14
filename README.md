@@ -159,7 +159,7 @@ export const load = ({ locals }) => {
 	const user = await clerkClient.users.getUser(userId);
 
 	return {
-		user: JSON.stringify(locals.auth)
+		userId: JSON.parse(JSON.stringify(locals.auth))
 	};
 };
 ```
