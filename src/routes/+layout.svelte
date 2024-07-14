@@ -5,8 +5,6 @@
 	import type { InitialState } from '@clerk/types';
 
 	let { children, data }: { children: Snippet; data: { initialState: InitialState } } = $props();
-
-	console.log('data', data.initialState);
 </script>
 
 <nav>
