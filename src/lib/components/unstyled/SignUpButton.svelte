@@ -22,5 +22,5 @@
 </script>
 
 <button type="button" onclick={signUp}>
-	{@render children('Sign ip')}
+	{@render children('Sign up')}
 </button>
