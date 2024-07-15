@@ -24,16 +24,11 @@
 		organization: undefined
 	});
 
-	let derivedState = $derived(deriveState(isLoaded, resources, initialState));
-
-	let auth = $derived.by(() => {
-		const { sessionId, userId, orgId, actor, orgRole, orgSlug, orgPermissions } = derivedState;
-		return { sessionId, userId, actor, orgId, orgRole, orgSlug, orgPermissions };
-	});
+	let auth = $derived(deriveState(isLoaded, resources, initialState));
 	let client = $derived(resources.client);
-	let session = $derived(derivedState.session);
-	let user = $derived(derivedState.user);
-	let organization = $derived(derivedState.organization);
+	let session = $derived(auth.session);
+	let user = $derived(auth.user);
+	let organization = $derived(auth.organization);
 
 	async function loadClerk() {
 		await loadClerkJsScript(clerkInitOptions);
