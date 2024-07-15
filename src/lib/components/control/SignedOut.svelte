@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { auth } from '$lib/runes/index.js';
+	import { useClerkContext } from '$lib/context.js';
 	import type { Snippet } from 'svelte';
 
 	const { children }: { children: Snippet } = $props();
+
+	const ctx = useClerkContext();
 </script>
 
-{#if auth.current.userId === null}
+{#if ctx.auth.userId === null}
 	{@render children()}
 {/if}

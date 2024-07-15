@@ -60,7 +60,7 @@ export const load = ({ locals }) => {
 <script lang="ts">
 	import type { Snippet } from '@svelte';
 	import type { LayoutData } from './$types';
-	import { ClerkProvider } from 'svelte-clerk/components';
+	import { ClerkProvider } from 'svelte-clerk';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
 	const {
@@ -111,12 +111,13 @@ The following example demonstrates how to use the `auth` rune to access the curr
 
 ```svelte
 <script>
-	import { auth, session } from 'svelte-clerk/runes';
+	import { useClerkContext } from 'svelte-clerk';
 
-	const userId = $derived(auth.current.userId);
+	const ctx = useClerkContext();
+	const userId = $derived(ctx.auth.userId);
 
 	const fetchDataFromExternalResource = async () => {
-		const token = await session.current.getToken();
+		const token = await ctx.session.getToken();
 		// Add logic to fetch your data
 		return data;
 	};
@@ -139,7 +140,7 @@ Clerk offers Control Components that allow you to protect your pages. These comp
 
 ```svelte
 <script>
-	import { SignedIn, SignedOut, UserButton, SignOutButton } from 'svelte-clerk/components';
+	import { SignedIn, SignedOut, UserButton, SignOutButton } from 'svelte-clerk';
 </script>
 
 <div>
@@ -228,7 +229,7 @@ Inject the `Security` class into the event locals so that it can be accessed in 
 ```ts
 // hooks.server.ts
 import { sequence } from '@sveltejs/kit/hooks';
-import { Security } from '$src/utils';
+import { Security } from '$lib/utils';
 
 export const handle = sequence(withClerkHandler(), ({ event, resolve }) => {
 	event.locals.security = new Security(event);

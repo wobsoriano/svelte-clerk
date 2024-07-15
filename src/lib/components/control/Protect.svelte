@@ -5,7 +5,7 @@
 		OrganizationCustomRoleKey
 	} from '@clerk/types';
 	import type { Snippet } from 'svelte';
-	import { auth, user, organization } from '$lib/runes/index.js';
+	import { useClerkContext } from '$lib/context.js';
 
 	type ProtectProps =
 		| {
@@ -39,12 +39,12 @@
 
 	const { role, condition, permission, children, fallback }: ProtectProps = $props();
 
+	const ctx = useClerkContext();
+
 	const membership = $derived.by(() => {
-		return organization.current
-			? user.current?.organizationMemberships?.find(
-					(om) => om.organization.id === organization.current!.id
-				)
-			: organization.current;
+		return ctx.organization
+			? ctx.user?.organizationMemberships?.find((om) => om.organization.id === ctx.organization!.id)
+			: ctx.organization;
 	});
 
 	const has = (params: Parameters<CheckAuthorizationWithCustomPermissions>[0]) => {
@@ -52,12 +52,7 @@
 			throw new Error(
 				'Missing parameters. The prop permission or role is required to be passed. Example usage: `has({permission: "org:posts:edit"})`'
 			);
-		if (
-			!organization.current?.id ||
-			!user.current?.id ||
-			!membership?.role ||
-			!membership?.permissions
-		)
+		if (!ctx.organization?.id || !ctx.user?.id || !membership?.role || !membership?.permissions)
 			return false;
 		if (params.permission) return membership.permissions.includes(params.permission);
 		if (params.role) return membership.role === params.role;
@@ -65,7 +60,7 @@
 	};
 
 	const isAuthorized = $derived.by(() => {
-		const { userId } = auth.current;
+		const { userId } = ctx.auth;
 
 		if (!userId) return false;
 

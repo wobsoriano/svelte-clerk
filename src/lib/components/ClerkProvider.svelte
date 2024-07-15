@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { ClientResource, InitialState, Resources } from '@clerk/types';
+	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '$lib/utils/deriveState.js';
-	import { clerkContext } from '$lib/utils/context.js';
 	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
 	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
 
@@ -67,7 +67,7 @@
 		clerk?.__unstable__updateProps({ localization: clerkInitOptions.localization });
 	});
 
-	clerkContext.set({
+	setClerkContext({
 		get clerk() {
 			return clerk;
 		},

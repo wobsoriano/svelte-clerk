@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { user, session } from '$lib/runes';
-
-	$effect(() => {
-		console.log('user', user.current);
-		console.log('session', session.current);
-	});
+	import { SignedIn, SignedOut, SignInButton, UserButton } from '$lib/components';
 </script>
 
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div style="font-family: system-ui, sans-serif; line-height: 1.4; text-align: center;">
+	<h1>Hello Clerk!</h1>
+	<SignedIn>
+		<UserButton />
+	</SignedIn>
+	<SignedOut>
+		<SignInButton mode="modal" />
+	</SignedOut>
+</div>

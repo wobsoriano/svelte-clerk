@@ -18,10 +18,6 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./runes": {
-			"types": "./dist/runes/index.d.ts",
-			"svelte": "./dist/runes/index.js"
-		},
 		"./components": {
 			"types": "./dist/components/index.d.ts",
 			"svelte": "./dist/components/index.js"
@@ -44,9 +40,6 @@
 		">4.0": {
 			"index.d.ts": [
 				"./dist/index.d.ts"
-			],
-			"runes": [
-				"./dist/runes/index.d.ts"
 			],
 			"components": [
 				"./dist/components/index.d.ts"

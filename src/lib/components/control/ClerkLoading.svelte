@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { clerkContext } from '$lib/utils/context.js';
+	import { useClerkContext } from '$lib/context.js';
 	import type { Snippet } from 'svelte';
 
 	const { children }: { children: Snippet } = $props();
+
+	const ctx = useClerkContext();
 </script>
 
-{#if !clerkContext.get().isLoaded}
+{#if !ctx.isLoaded}
 	{@render children()}
 {/if}

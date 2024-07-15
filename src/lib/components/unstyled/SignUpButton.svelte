@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clerkContext } from '$lib/utils/context.js';
+	import { useClerkContext } from '$lib/context.js';
 	import type { SignUpProps } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
@@ -8,19 +8,24 @@
 		children,
 		...props
 	}: SignUpProps & {
-		children: Snippet<[string]>;
+		children?: Snippet;
 		mode?: 'redirect' | 'modal' | undefined;
 	} = $props();
 
+	const ctx = useClerkContext();
+
 	function signUp() {
-		const { clerk } = clerkContext.get();
 		if (mode === 'modal') {
-			return clerk?.openSignUp(props);
+			return ctx.clerk?.openSignUp(props);
 		}
-		return clerk?.redirectToSignUp(props);
+		return ctx.clerk?.redirectToSignUp(props);
 	}
 </script>
 
 <button type="button" onclick={signUp}>
-	{@render children('Sign up')}
+	{#if children}
+	    {@render children()}
+    {:else}
+        Sign up
+    {/if}
 </button>

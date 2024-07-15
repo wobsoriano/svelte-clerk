@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clerkContext } from '$lib/utils/context.js';
+	import { useClerkContext } from '$lib/context.js';
 	import type { SignOutOptions } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
@@ -8,16 +8,20 @@
 		redirectUrl = '/',
 		children
 	}: SignOutOptions & {
-		children: Snippet<[string]>;
+		children?: Snippet;
 	} = $props();
 
-	function signOut() {
-		const { clerk } = clerkContext.get();
+	const ctx = useClerkContext();
 
-		return clerk?.signOut({ sessionId, redirectUrl });
+	function signOut() {
+		return ctx.clerk?.signOut({ sessionId, redirectUrl });
 	}
 </script>
 
 <button type="button" onclick={signOut}>
-	{@render children('Sign out')}
+	{#if children}
+	    {@render children()}
+    {:else}
+        Sign out
+    {/if}
 </button>
