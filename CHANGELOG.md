@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.6
+
+### Patch Changes
+
+- 37c0415: Add more properties to derived auth
+
 ## 0.0.5
 
 ### Patch Changes
