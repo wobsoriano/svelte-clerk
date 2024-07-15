@@ -3,7 +3,7 @@
 	import type { SignOutOptions } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
-	let {
+	const {
 		sessionId,
 		redirectUrl = '/',
 		children
@@ -20,8 +20,8 @@
 
 <button type="button" onclick={signOut}>
 	{#if children}
-	    {@render children()}
-    {:else}
-        Sign out
-    {/if}
+		{@render children()}
+	{:else}
+		Sign out
+	{/if}
 </button>

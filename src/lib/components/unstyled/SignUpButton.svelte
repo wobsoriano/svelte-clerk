@@ -3,7 +3,7 @@
 	import type { SignUpProps } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
-	let {
+	const {
 		mode,
 		children,
 		...props
@@ -24,8 +24,8 @@
 
 <button type="button" onclick={signUp}>
 	{#if children}
-	    {@render children()}
-    {:else}
-        Sign up
-    {/if}
+		{@render children()}
+	{:else}
+		Sign up
+	{/if}
 </button>
