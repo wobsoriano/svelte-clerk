@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.5
+
+### Patch Changes
+
+- 1fe1a62: Clean up context
+
 ## 0.0.4
 
 ### Patch Changes
