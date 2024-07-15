@@ -171,7 +171,7 @@ Clerk offers Control Components that allow you to protect your pages. These comp
 To protect your routes, you can use the load function to check for the `userId` singleton. If it doesn't exist, redirect your user back to the sign-in page.
 
 ```ts
-import { json, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { clerkClient } from 'svelte-clerk/server';
 
 export const load = ({ locals }) => {
