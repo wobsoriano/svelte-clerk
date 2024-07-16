@@ -14,11 +14,11 @@ export { default as Protect } from './control/Protect.svelte';
 export { default as SignedIn } from './control/SignedIn.svelte';
 export { default as SignedOut } from './control/SignedOut.svelte';
 export { default as AuthenticateWithRedirectCallback } from './control/AuthenticateWithRedirectCallback.svelte';
-export { default as RedirectToSignIn } from './interactive/RedirectToSignIn.svelte';
-export { default as RedirectToSignUp } from './interactive/RedirectToSignUp.svelte';
-export { default as RedirectToUserProfile } from './interactive/RedirectToUserProfile.svelte';
-export { default as RedirectToOrganizationProfile } from './interactive/RedirectToOrganizationProfile.svelte';
-export { default as RedirectToCreateOrganization } from './interactive/RedirectToCreateOrganization.svelte';
+export { default as RedirectToSignIn } from './control/RedirectToSignIn.svelte';
+export { default as RedirectToSignUp } from './control/RedirectToSignUp.svelte';
+export { default as RedirectToUserProfile } from './control/RedirectToUserProfile.svelte';
+export { default as RedirectToOrganizationProfile } from './control/RedirectToOrganizationProfile.svelte';
+export { default as RedirectToCreateOrganization } from './control/RedirectToCreateOrganization.svelte';
 
 // Unstyled components
 export { default as SignInButton } from './unstyled/SignInButton.svelte';
