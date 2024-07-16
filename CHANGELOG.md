@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.8
+
+### Patch Changes
+
+- b05f2eb: UI navigation without full page reload
+
 ## 0.0.7
 
 ### Patch Changes
