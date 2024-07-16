@@ -8,7 +8,11 @@
 <div>
 	<h1>Profile</h1>
 	<SignedIn>
-		<pre>{JSON.stringify(ctx.user, null, 2)}</pre>
+		{#if !ctx.user}
+			<div>Loading...</div>
+		{:else}
+			<pre>{JSON.stringify(ctx.user, null, 2)}</pre>
+		{/if}
 	</SignedIn>
 	<SignedOut>Signed out baby</SignedOut>
 </div>
