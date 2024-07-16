@@ -257,9 +257,9 @@ If you're planning to add authorization logic within a `+layout.server.ts`, I re
 
 ## TODO
 
-[ ] Custom pages
-[ ] Redirect with [`redirectToSignIn`](https://clerk.com/docs/references/nextjs/auth#redirect-to-sign-in) (add to `auth` local)
-[ ] E2E tests with basic flows
+- [ ] Custom pages
+- [ ] Redirect with [`redirectToSignIn`](https://clerk.com/docs/references/nextjs/auth#redirect-to-sign-in) (add to `auth` local)
+- [ ] E2E tests with basic flows
 
 ## License
 
