@@ -5,6 +5,7 @@
 	import { deriveState } from '$lib/utils/deriveState.js';
 	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
 	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
+	import { goto } from '$app/navigation';
 
 	const {
 		children,
@@ -31,14 +32,20 @@
 	let organization = $derived(auth.organization);
 
 	async function loadClerk() {
-		await loadClerkJsScript(clerkInitOptions);
+		const opts: ClerkInitOptions = {
+			...clerkInitOptions,
+			routerPush: (to: string) => goto(to),
+			routerReplace: (to: string) => goto(to, { replaceState: true })
+		};
+
+		await loadClerkJsScript(opts);
 
 		if (!window.Clerk) {
 			throw new Error('Clerk script failed to load');
 		}
 
 		clerk = window.Clerk;
-		await clerk.load(clerkInitOptions);
+		await clerk.load(opts);
 
 		isLoaded = true;
 
