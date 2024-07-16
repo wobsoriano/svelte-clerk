@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.9
+
+### Patch Changes
+
+- e20d485: Fix control components paths
+
 ## 0.0.8
 
 ### Patch Changes
