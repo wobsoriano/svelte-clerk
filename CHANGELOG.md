@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.0.7
+
+### Patch Changes
+
+- ba33685: Add more control components
+- fe109b1: Export control components
+
 ## 0.0.6
 
 ### Patch Changes
