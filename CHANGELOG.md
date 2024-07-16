@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.0.11
+
+### Patch Changes
+
+- 4237c0b: Update JSDOC for initial state builder
+- 64bef36: Rename initial state function builder
+
 ## 0.0.10
 
 ### Patch Changes
