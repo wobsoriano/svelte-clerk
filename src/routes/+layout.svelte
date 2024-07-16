@@ -20,7 +20,7 @@
 </nav> -->
 
 <ClerkProvider
-	initialState={data.initialState}
+    {...data}
 	signInUrl={PUBLIC_CLERK_SIGN_IN_URL}
 	signUpUrl={PUBLIC_CLERK_SIGN_UP_URL}
 	publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}

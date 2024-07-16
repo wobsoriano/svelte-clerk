@@ -74,7 +74,7 @@ export const load = ({ locals }) => {
 
 <!-- ... -->
 
-<ClerkProvider initialState={data.initialState} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider {...data} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>
 ```
