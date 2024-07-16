@@ -17,7 +17,7 @@ export default function withClerkHandler(
 
 		const clerkWebRequest = createClerkRequest(event.request);
 		if (debug) {
-			console.log('[Clerk SvelteKit] ' + JSON.stringify(clerkWebRequest.toJSON()));
+			console.log('[svelte-clerk] ' + JSON.stringify(clerkWebRequest.toJSON()));
 		}
 
 		const requestState = await clerkClient.authenticateRequest(clerkWebRequest, {
@@ -29,19 +29,19 @@ export default function withClerkHandler(
 		const locationHeader = requestState.headers.get(constants.Headers.Location);
 		if (locationHeader) {
 			if (debug) {
-				console.log('[Clerk SvelteKit] Handshake redirect triggered');
+				console.log('[svelte-clerk] Handshake redirect triggered');
 			}
 			return new Response(null, { status: 307, headers: requestState.headers });
 		}
 
 		if (requestState.status === AuthStatus.Handshake) {
-			throw new Error('[Clerk SvelteKit] Handshake status without redirect');
+			throw new Error('[svelte-clerk] Handshake status without redirect');
 		}
 
 		const authObject = requestState.toAuth();
 		event.locals.auth = authObject;
 		if (debug) {
-			console.log('[Clerk SvelteKit] ' + JSON.stringify(authObject));
+			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
 		}
 
 		if (requestState.headers) {
