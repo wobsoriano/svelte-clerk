@@ -46,12 +46,12 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 
 ```ts
 // src/+layout.server.ts
-import { buildClerkInitialState } from 'svelte-clerk/server';
+import { buildClerkProps } from 'svelte-clerk/server';
 
 // To enable Clerk SSR support, pass the `initialState` to the `ClerkProvider` component.
 export const load = ({ locals }) => {
 	return {
-		initialState: buildClerkInitialState(locals.auth)
+		...buildClerkProps(locals.auth)
 	};
 };
 ```

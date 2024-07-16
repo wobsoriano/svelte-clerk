@@ -3,6 +3,7 @@ import {
 	stripPrivateDataFromObject,
 	type AuthObject
 } from '@clerk/backend/internal';
+import type { InitialState } from '@clerk/types';
 
 /**
  * To enable Clerk SSR support, include this object to the props
@@ -18,6 +19,10 @@ import {
  *   };
  * };
  */
-export function buildClerkInitialState(auth: AuthObject) {
-	return makeAuthObjectSerializable(stripPrivateDataFromObject(auth));
+export function buildClerkProps(auth: AuthObject) {
+	const initialState = makeAuthObjectSerializable(stripPrivateDataFromObject(auth));
+
+	return {
+		initialState: JSON.parse(JSON.stringify(initialState)) as InitialState
+	};
 }
