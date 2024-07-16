@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from '$lib/components';
-	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
+	import {
+		PUBLIC_CLERK_PUBLISHABLE_KEY,
+		PUBLIC_CLERK_SIGN_IN_URL,
+		PUBLIC_CLERK_SIGN_UP_URL
+	} from '$env/static/public';
 	import type { LayoutData } from './$types';
 
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
@@ -15,6 +19,11 @@
 	<a href="/protected">protected</a>
 </nav> -->
 
-<ClerkProvider initialState={data.initialState} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider
+	initialState={data.initialState}
+	signInUrl={PUBLIC_CLERK_SIGN_IN_URL}
+	signUpUrl={PUBLIC_CLERK_SIGN_UP_URL}
+	publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}
+>
 	{@render children()}
 </ClerkProvider>
