@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.10
+
+### Patch Changes
+
+- ec006d7: Remove redirect components
+
 ## 0.0.9
 
 ### Patch Changes
