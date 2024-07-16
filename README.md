@@ -255,6 +255,12 @@ export const load = ({ locals: { securty, auth } }) => {
 
 If you're planning to add authorization logic within a `+layout.server.ts`, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
 
+## TODO
+
+[ ] Custom pages
+[ ] Redirect with [`redirectToSignIn`](https://clerk.com/docs/references/nextjs/auth#redirect-to-sign-in) (add to `auth` local)
+[ ] E2E tests with basic flows
+
 ## License
 
 MIT
