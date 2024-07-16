@@ -10,12 +10,12 @@ import type { InitialState } from '@clerk/types';
  * returned from `load`. This will automatically make the auth state available to
  * the Clerk components and hooks during SSR, the hydration phase and CSR.
  * @example
- * import { buildClerkInitialState } from 'svelte-clerk/server';
+ * import { buildClerkProps } from 'svelte-clerk/server';
  *
  * export const load = ({ locals }) => {
  *
  *   return {
- *     initialState: buildClerkInitialState(locals.auth),
+ *     ...buildClerkProps(locals.auth),
  *   };
  * };
  */
