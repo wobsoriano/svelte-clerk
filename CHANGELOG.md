@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.13
+
+### Patch Changes
+
+- 9f98409: Bump clerk dependencies
+
 ## 0.0.12
 
 ### Patch Changes
