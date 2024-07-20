@@ -15,8 +15,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.6.1
-        version: 4.6.1
+        specifier: ^4.8.0
+        version: 4.8.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.7
@@ -175,6 +175,10 @@ packages:
 
   '@clerk/types@4.7.0':
     resolution: {integrity: sha512-Gg4zEZLE7wgByMhgHMU69tkIEwfiFKNSbtRwdtAwrW+Pg0blpVpw7XuN0wHNAYFM2COrrKEUaGt8KWZmmdTFbg==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.8.0':
+    resolution: {integrity: sha512-UjirfALJOWeuRSz+SvTujexlvIXvMC1VzvYlcNmSF0E9wcAcPJnzboLM+SlNTG7p1JMlL4bd0dipsFyWTJsq5A==}
     engines: {node: '>=18.17.0'}
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -1898,6 +1902,10 @@ snapshots:
       csstype: 3.1.1
 
   '@clerk/types@4.7.0':
+    dependencies:
+      csstype: 3.1.1
+
+  '@clerk/types@4.8.0':
     dependencies:
       csstype: 3.1.1
 
