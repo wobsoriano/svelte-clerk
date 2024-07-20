@@ -6,7 +6,8 @@ import type {
 	UserProfileProps,
 	OrganizationProfileProps,
 	OrganizationSwitcherProps,
-	CreateOrganizationProps
+	CreateOrganizationProps,
+	GoogleOneTapProps
 } from '@clerk/types';
 import type { Action } from 'svelte/action';
 
@@ -18,6 +19,7 @@ type ComponentPropsMap = {
 	OrganizationProfile: OrganizationProfileProps;
 	OrganizationSwitcher: OrganizationSwitcherProps;
 	CreateOrganization: CreateOrganizationProps;
+	GoogleOneTap: GoogleOneTapProps;
 };
 
 type ClerkUIConfig<T extends keyof ComponentPropsMap = keyof ComponentPropsMap> = {
