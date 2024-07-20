@@ -8,7 +8,6 @@ import type {
 	OrganizationSwitcherProps,
 	CreateOrganizationProps
 } from '@clerk/types';
-import { useClerkContext } from '$lib/context.js';
 import type { Action } from 'svelte/action';
 
 type ComponentPropsMap = {
@@ -22,21 +21,22 @@ type ComponentPropsMap = {
 };
 
 type ClerkUIConfig<T extends keyof ComponentPropsMap = keyof ComponentPropsMap> = {
-	clerk?: Clerk | null;
+	clerk: Clerk;
 	component: T;
 	props?: ComponentPropsMap[T];
 };
 
-export const clerkUI: Action<HTMLDivElement, ClerkUIConfig> = (node, { component, props }) => {
-	const ctx = useClerkContext();
-
-	if (ctx.clerk) {
-		ctx.clerk[`mount${component}`](node, props as Record<string, unknown>);
+export const clerkUI: Action<HTMLDivElement, ClerkUIConfig> = (
+	node,
+	{ clerk, component, props }
+) => {
+	if (clerk) {
+		clerk[`mount${component}`](node, props as Record<string, unknown>);
 	}
 
 	return {
 		destroy: () => {
-			ctx.clerk?.[`unmount${component}`](node);
+			clerk[`unmount${component}`](node);
 		}
 	};
 };

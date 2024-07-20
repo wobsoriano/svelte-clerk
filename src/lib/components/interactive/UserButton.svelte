@@ -7,5 +7,7 @@
 </script>
 
 <ClerkLoaded>
-	<div use:clerkUI={{ component: 'UserButton', props }}></div>
+	{#snippet children(clerk)}
+		<div use:clerkUI={{ clerk, component: 'UserButton', props }}></div>
+	{/snippet}
 </ClerkLoaded>
