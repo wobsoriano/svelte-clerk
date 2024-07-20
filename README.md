@@ -108,7 +108,7 @@ export const load = ({ locals }) => {
 
 Example:
 
-The following example demonstrates how to use the `auth` rune to access the current auth state, like whether the user is signed in or not. It also demonstrates a basic example of how you could use the [`getToken()`](https://clerk.com/docs/pr/1259/references/javascript/session#get-token) method to retrieve a session token for fetching data from an external resource.
+The following example demonstrates how to use the `auth` rune to access the current auth state, like whether the user is signed in or not. It also demonstrates a basic example of how you could use the [`getToken()`](https://clerk.com/docs/references/javascript/session#get-token) method to retrieve a session token for fetching data from an external resource.
 
 ```svelte
 <script>
