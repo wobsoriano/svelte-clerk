@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.0.14
+
+### Patch Changes
+
+- 4aef70b: Add GoogleOneTap component
+- 9a3dd2a: Add GoogleOneTap component
+
 ## 0.0.13
 
 ### Patch Changes
