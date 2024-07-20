@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.0.12
+
+### Patch Changes
+
+- 30154ed: Pass Clerk instance as snippet value to ClerkLoaded
+- 71de0e8: Improve provider prop tracking
+
 ## 0.0.11
 
 ### Patch Changes
