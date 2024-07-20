@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { untrack } from 'svelte';
 	import type { ClientResource, InitialState, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '$lib/utils/deriveState.js';
@@ -56,7 +57,7 @@
 	}
 
 	$effect(() => {
-		loadClerk();
+		untrack(() => loadClerk());
 	});
 
 	$effect(() => {
