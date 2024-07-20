@@ -33,12 +33,20 @@ export const clerkUI: Action<HTMLDivElement, ClerkUIConfig> = (
 	{ clerk, component, props }
 ) => {
 	if (clerk) {
-		clerk[`mount${component}`](node, props as Record<string, unknown>);
+		if (component === 'GoogleOneTap') {
+			clerk.openGoogleOneTap(props);
+		} else {
+			clerk[`mount${component}`](node, props as Record<string, unknown>);
+		}
 	}
 
 	return {
 		destroy: () => {
-			clerk[`unmount${component}`](node);
+			if (component === 'GoogleOneTap') {
+				clerk.closeGoogleOneTap();
+			} else {
+				clerk[`unmount${component}`](node);
+			}
 		}
 	};
 };
