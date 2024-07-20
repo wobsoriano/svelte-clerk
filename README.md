@@ -114,6 +114,7 @@ The following example demonstrates how to use the `auth` rune to access the curr
 <script>
 	import { useClerkContext } from 'svelte-clerk';
 
+	// Do not destructure context or you'll lose reactivity!
 	const ctx = useClerkContext();
 	const userId = $derived(ctx.auth.userId);
 
