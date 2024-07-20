@@ -93,6 +93,7 @@ export const load = ({ locals }) => {
 - `<OrganizationProfile>`
 - `<OrganizationSwitcher>`
 - `<CreateOrganization>`
+- `<GoogleOneTap>`
 
 ## Runes
 
