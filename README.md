@@ -178,14 +178,16 @@ import { redirect } from '@sveltejs/kit';
 import { clerkClient } from 'svelte-clerk/server';
 
 export const load = ({ locals }) => {
-	if (!locals.auth.userId) {
+  const { userId } = locals.auth;
+
+	if (!userId) {
 		return redirect(307, '/sign-in');
 	}
 
 	const user = await clerkClient.users.getUser(userId);
 
 	return {
-		userId: JSON.parse(JSON.stringify(locals.auth))
+		user: JSON.parse(JSON.stringify(user))
 	};
 };
 ```

@@ -1,12 +1,2 @@
-<script lang="ts">
-	import type { PageData } from './$types';
-
-	const { data }: { data: PageData } = $props();
-</script>
-
-<div>
-	<h1>Dashboard</h1>
-	<p>
-		Welcome, {data.user.id}
-	</p>
-</div>
+<h1 class="text-2xl font-bold mb-5">Dashboard</h1>
+<p class="mb-5">Welcome to the dashboard!</p>
