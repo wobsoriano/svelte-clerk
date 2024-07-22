@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.15
+
+### Patch Changes
+
+- ac7c426: Make fallback snippet optional in Protect component
+
 ## 0.0.14
 
 ### Patch Changes
