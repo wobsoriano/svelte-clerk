@@ -3,11 +3,21 @@
 	import type { SignUpProps } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
+	type SignUpButtonProps = {
+		unsafeMetadata?: SignUpUnsafeMetadata;
+	} & Pick<
+		SignUpProps,
+		| 'fallbackRedirectUrl'
+		| 'forceRedirectUrl'
+		| 'signInForceRedirectUrl'
+		| 'signInFallbackRedirectUrl'
+	>;
+
 	const {
 		mode,
 		children,
 		...props
-	}: SignUpProps & {
+	}: SignUpButtonProps & {
 		children?: Snippet;
 		mode?: 'redirect' | 'modal' | undefined;
 	} = $props();
@@ -18,7 +28,11 @@
 		if (mode === 'modal') {
 			return ctx.clerk?.openSignUp(props);
 		}
-		return ctx.clerk?.redirectToSignUp(props);
+		return ctx.clerk?.redirectToSignUp({
+			...props,
+			signUpFallbackRedirectUrl: props.fallbackRedirectUrl,
+			signUpForceRedirectUrl: props.forceRedirectUrl
+		});
 	}
 </script>
 
