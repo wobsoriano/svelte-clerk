@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.16
+
+### Patch Changes
+
+- e0e3dea: Update unstyled button to match correct redirect urls
+
 ## 0.0.15
 
 ### Patch Changes
