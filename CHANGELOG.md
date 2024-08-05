@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.0.17
+
+### Patch Changes
+
+- 36420b3: Use properties from derived state in Protect component"
+
 ## 0.0.16
 
 ### Patch Changes
