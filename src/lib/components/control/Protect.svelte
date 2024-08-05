@@ -41,21 +41,15 @@
 
 	const ctx = useClerkContext();
 
-	const membership = $derived.by(() => {
-		return ctx.organization
-			? ctx.user?.organizationMemberships?.find((om) => om.organization.id === ctx.organization!.id)
-			: ctx.organization;
-	});
-
 	const has = (params: Parameters<CheckAuthorizationWithCustomPermissions>[0]) => {
 		if (!params?.permission && !params?.role)
 			throw new Error(
 				'Missing parameters. The prop permission or role is required to be passed. Example usage: `has({permission: "org:posts:edit"})`'
 			);
-		if (!ctx.organization?.id || !ctx.user?.id || !membership?.role || !membership?.permissions)
+		if (!ctx.auth.orgId || !ctx.auth.userId || !ctx.auth.orgRole || !ctx.auth.orgPermissions)
 			return false;
-		if (params.permission) return membership.permissions.includes(params.permission);
-		if (params.role) return membership.role === params.role;
+		if (params.permission) return ctx.auth.orgPermissions.includes(params.permission);
+		if (params.role) return ctx.auth.orgRole === params.role;
 		return false;
 	};
 
