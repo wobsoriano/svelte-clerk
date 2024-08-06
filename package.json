@@ -81,7 +81,7 @@
 	"type": "module",
 	"dependencies": {
 		"@clerk/backend": "^1.6.1",
-		"@clerk/shared": "^2.3.3",
+		"@clerk/shared": "^2.4.5",
 		"@clerk/types": "^4.8.0"
 	}
 }
