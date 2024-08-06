@@ -7,7 +7,7 @@
 	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
 	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
 	import { goto } from '$app/navigation';
-	import { isTruthy } from '@clerk/shared';
+	import { isTruthy } from '@clerk/shared/underscore';
 	import { env as publicEnv } from '$env/dynamic/public';
 
 	const {
