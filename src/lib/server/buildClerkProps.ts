@@ -1,8 +1,5 @@
-import {
-	makeAuthObjectSerializable,
-	stripPrivateDataFromObject,
-	type AuthObject
-} from '@clerk/backend/internal';
+import { makeAuthObjectSerializable, stripPrivateDataFromObject } from '@clerk/backend/internal';
+import type { AuthObject } from '@clerk/backend';
 import type { InitialState } from '@clerk/types';
 
 /**

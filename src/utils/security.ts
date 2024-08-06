@@ -1,5 +1,5 @@
 import { error, redirect, type RequestEvent } from '@sveltejs/kit';
-import type { AuthObject } from '@clerk/backend/internal';
+import type { AuthObject } from '@clerk/backend';
 
 export class Security {
 	private readonly auth?: AuthObject;
