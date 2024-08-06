@@ -1,6 +1,6 @@
 {
 	"name": "svelte-clerk",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
