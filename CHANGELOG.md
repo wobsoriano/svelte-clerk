@@ -1,5 +1,13 @@
 # svelte-clerk
 
+## 0.0.18
+
+### Patch Changes
+
+- b76b5da: Update AuthObject imports
+- e0edc44: Bump @clerk/backend, @clerk/shared, and @clerk/types"
+- 4895841: Use AuthObject from @clerk/backend
+
 ## 0.0.17
 
 ### Patch Changes
