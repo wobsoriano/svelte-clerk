@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.0
+
+### Minor Changes
+
+- 1f41a86: Add option to opt-out of telemetry
+
 ## 0.0.18
 
 ### Patch Changes
