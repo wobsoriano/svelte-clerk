@@ -82,6 +82,6 @@
 	"dependencies": {
 		"@clerk/backend": "^1.6.1",
 		"@clerk/shared": "^2.4.5",
-		"@clerk/types": "^4.12.1"
+		"@clerk/types": "^4.13.0"
 	}
 }
