@@ -1,6 +1,6 @@
 {
 	"name": "svelte-clerk",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -80,8 +80,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@clerk/backend": "^1.6.1",
-		"@clerk/shared": "^2.5.0",
-		"@clerk/types": "^4.12.1"
+		"@clerk/backend": "^1.6.2",
+		"@clerk/shared": "^2.4.5",
+		"@clerk/types": "^4.13.0"
 	}
 }

@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.1
+
+### Patch Changes
+
+- d6d1636: Update @clerk/shared imports
+
 ## 0.1.0
 
 ### Minor Changes
