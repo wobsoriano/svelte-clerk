@@ -12,8 +12,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.4.5
-        version: 2.4.5(react@18.3.1)
+        specifier: ^2.5.0
+        version: 2.5.0(react@18.3.1)
       '@clerk/types':
         specifier: ^4.12.1
         version: 4.12.1
@@ -170,8 +170,24 @@ packages:
       react-dom:
         optional: true
 
+  '@clerk/shared@2.5.0':
+    resolution: {integrity: sha512-dYRlFQJN4YIQbYJHCDKd5yLF7rcI42pw2JOQEKiOAWPiAMlmhTtiEL0YWMVoGNaGRI72fyIge6/+V7r9WWT0wg==}
+    engines: {node: '>=18.17.0'}
+    peerDependencies:
+      react: '>=18 || >=19.0.0-beta'
+      react-dom: '>=18 || >=19.0.0-beta'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   '@clerk/types@4.12.1':
     resolution: {integrity: sha512-0torlmJM3S3kYdaZuIrw1pf4K8aMvoFV+PE1xg7MGfZ0enD9UO3Vhw24pP/yBhI4hVGtNu95E63gpeOFIYysrA==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.13.0':
+    resolution: {integrity: sha512-W/iZ5ig35UgJHmZqqgO1tosHuGtdKR8e+f8FJWphpdIW6KNCK+Oxc5lOO/hJU1c9aih0x5QdlLrKsqF3S8JKdA==}
     engines: {node: '>=18.17.0'}
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -2131,7 +2147,21 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
+  '@clerk/shared@2.5.0(react@18.3.1)':
+    dependencies:
+      '@clerk/types': 4.13.0
+      glob-to-regexp: 0.4.1
+      js-cookie: 3.0.5
+      std-env: 3.7.0
+      swr: 2.2.5(react@18.3.1)
+    optionalDependencies:
+      react: 18.3.1
+
   '@clerk/types@4.12.1':
+    dependencies:
+      csstype: 3.1.1
+
+  '@clerk/types@4.13.0':
     dependencies:
       csstype: 3.1.1
 
