@@ -2,6 +2,12 @@
 	"name": "svelte-clerk",
 	"version": "0.1.3",
 	"license": "MIT",
+	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobsoriano/svelte-clerk.git"
+  },
+  "bugs": "https://github.com/wobsoriano/svelte-clerk/issues",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
