@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.3
+
+### Patch Changes
+
+- 60e4dbb: Use Clerk JS loader functions from @clerk/shared
+
 ## 0.1.2
 
 ### Patch Changes
