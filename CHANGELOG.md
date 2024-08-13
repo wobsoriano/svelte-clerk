@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.1.4
+
+### Patch Changes
+
+- b1d398a: Add repo links to package.json
+- e611c74: Add license
+
 ## 0.1.3
 
 ### Patch Changes
