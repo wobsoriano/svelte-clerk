@@ -3,9 +3,13 @@
 	import { untrack } from 'svelte';
 	import type { ClientResource, InitialState, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
-	import { deriveState } from '$lib/utils/deriveState.js';
-	import type { Clerk, ClerkInitOptions } from '$lib/utils/types.js';
-	import { loadClerkJsScript } from '$lib/utils/loadClerkJsScript.js';
+	import { deriveState } from '@clerk/shared/deriveState';
+	import type { Clerk } from '$lib/types.js';
+	import {
+		loadClerkJsScript,
+		setClerkJsLoadingErrorPackageName,
+		type LoadClerkJsScriptOptions
+	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
 	import { isTruthy } from '@clerk/shared/underscore';
 	import { env as publicEnv } from '$env/dynamic/public';
@@ -14,7 +18,7 @@
 		children,
 		initialState,
 		...clerkInitOptions
-	}: ClerkInitOptions & {
+	}: LoadClerkJsScriptOptions & {
 		children: Snippet;
 		initialState?: InitialState;
 	} = $props();
@@ -35,7 +39,9 @@
 	let organization = $derived(auth.organization);
 
 	async function loadClerk() {
-		const opts: ClerkInitOptions = {
+		setClerkJsLoadingErrorPackageName('clerk-sveltekit');
+
+		const opts: LoadClerkJsScriptOptions = {
 			...clerkInitOptions,
 			telemetry: clerkInitOptions.telemetry || {
 				disabled: isTruthy(publicEnv.PUBLIC_CLERK_TELEMETRY_DISABLED),

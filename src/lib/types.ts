@@ -1,18 +1,4 @@
-import type {
-	Clerk as ClerkMain,
-	ClerkOptions,
-	ClientResource,
-	SDKMetadata,
-	Without
-} from '@clerk/types';
-
-export type ClerkInitOptions = Without<ClerkOptions, 'isSatellite'> & {
-	publishableKey: string;
-	clerkJSUrl?: string;
-	clerkJSVariant?: 'headless' | '';
-	clerkJSVersion?: string;
-	sdkMetadata?: SDKMetadata;
-};
+import type { Clerk as ClerkMain, ClerkOptions, ClientResource, Without } from '@clerk/types';
 
 interface HeadlessBrowserClerk extends ClerkMain {
 	load: (opts?: Without<ClerkOptions, 'isSatellite'>) => Promise<void>;

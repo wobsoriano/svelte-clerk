@@ -80,8 +80,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@clerk/backend": "^1.6.2",
-		"@clerk/shared": "^2.5.0",
-		"@clerk/types": "^4.13.0"
+		"@clerk/backend": "^1.6.3",
+		"@clerk/shared": "^2.5.1",
+		"@clerk/types": "^4.13.1"
 	}
 }
