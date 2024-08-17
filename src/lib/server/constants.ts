@@ -1,6 +1,6 @@
 import { constants } from '@clerk/backend/internal';
-import { env as privateEnv } from '$env/static/private';
-import { env as publicEnv } from '$env/static/public';
+import * as privateEnv from "$env/static/private"
+import * as publicEnv from "$env/static/public"
 import { isTruthy } from '@clerk/shared/underscore';
 
 export const API_VERSION = publicEnv.PUBLIC_CLERK_API_VERSION || 'v1';
