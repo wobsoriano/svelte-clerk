@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.5
+
+### Patch Changes
+
+- efff480: Fix dynamic env vars in static builds
+
 ## 0.1.4
 
 ### Patch Changes
