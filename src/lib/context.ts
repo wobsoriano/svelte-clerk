@@ -7,7 +7,7 @@ import type {
 	OrganizationResource,
 	UserResource
 } from '@clerk/types';
-import type { Clerk } from './utils/types';
+import type { Clerk } from './types.js';
 import { getContext, setContext } from 'svelte';
 
 const _contextKey = '$$_clerk';
