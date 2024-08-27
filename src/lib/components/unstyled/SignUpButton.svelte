@@ -3,6 +3,10 @@
 	import type { SignUpProps } from '@clerk/types';
 	import type { Snippet } from 'svelte';
 
+	type SignUpUnsafeMetadata = {
+        [k: string]: unknown;
+    }
+
 	type SignUpButtonProps = {
 		unsafeMetadata?: SignUpUnsafeMetadata;
 	} & Pick<
