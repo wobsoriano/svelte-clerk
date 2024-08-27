@@ -4,8 +4,8 @@
 	import type { Snippet } from 'svelte';
 
 	type SignUpUnsafeMetadata = {
-        [k: string]: unknown;
-    }
+		[k: string]: unknown;
+	};
 
 	type SignUpButtonProps = {
 		unsafeMetadata?: SignUpUnsafeMetadata;

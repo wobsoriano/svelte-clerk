@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type {
+		CheckAuthorization,
 		CheckAuthorizationWithCustomPermissions,
 		OrganizationCustomPermissionKey,
 		OrganizationCustomRoleKey
@@ -41,30 +42,19 @@
 
 	const ctx = useClerkContext();
 
-	const has = (params: Parameters<CheckAuthorizationWithCustomPermissions>[0]) => {
-		if (!params?.permission && !params?.role)
-			throw new Error(
-				'Missing parameters. The prop permission or role is required to be passed. Example usage: `has({permission: "org:posts:edit"})`'
-			);
-		if (!ctx.auth.orgId || !ctx.auth.userId || !ctx.auth.orgRole || !ctx.auth.orgPermissions)
-			return false;
-		if (params.permission) return ctx.auth.orgPermissions.includes(params.permission);
-		if (params.role) return ctx.auth.orgRole === params.role;
-		return false;
-	};
-
 	const isAuthorized = $derived.by(() => {
 		const { userId } = ctx.auth;
 
 		if (!userId) return false;
+
+		const has = ctx.session!.checkAuthorization;
 
 		if (typeof condition === 'function') {
 			return condition(has);
 		}
 
 		if (role || permission) {
-			// @ts-expect-error: Fix types later
-			return has({ role, permission });
+			return has({ role, permission } as Parameters<CheckAuthorization>[0]);
 		}
 
 		return true;
