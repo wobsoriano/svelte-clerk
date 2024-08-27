@@ -74,12 +74,19 @@
 
 	$effect(() => {
 		// @ts-expect-error: Internal
-		clerk?.__unstable__updateProps({ appearance: clerkInitOptions.appearance });
+		clerk?.__unstable__updateProps({
+			appearance: clerkInitOptions.appearance
+		});
 	});
 
 	$effect(() => {
 		// @ts-expect-error: Internal
-		clerk?.__unstable__updateProps({ localization: clerkInitOptions.localization });
+		clerk?.__unstable__updateProps({
+			options: {
+				...clerkInitOptions,
+				localization: clerkInitOptions.localization
+			}
+		});
 	});
 
 	setClerkContext({
