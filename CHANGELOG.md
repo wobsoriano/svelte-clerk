@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.1.5
+
+### Patch Changes
+
+- 1d2270b: Bump clerk dependencies
+- bd457fc: Use authorization checker helper from session resource
+
 ## 0.1.4
 
 ### Patch Changes
