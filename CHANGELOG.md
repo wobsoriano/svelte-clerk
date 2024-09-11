@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.7
+
+### Patch Changes
+
+- afc37fe: Replace package name when initializing logger
+
 ## 0.1.6
 
 ### Patch Changes
