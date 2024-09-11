@@ -101,9 +101,6 @@ export const load = ({ locals }) => {
 - `user` - Authenticated [user](https://clerk.com/docs/references/javascript/user/user).
 - `organization` - Active [Organization](https://clerk.com/docs/references/javascript/organization/organization) of the authenticated user.
 - `session` - [Session](https://clerk.com/docs/references/javascript/session) of the authenticated user.
-- `sessionList` - [Sessions](https://clerk.com/docs/references/javascript/session) of the current Clerk client.
-- `signIn` - See [`SignIn`](https://clerk.com/docs/references/javascript/sign-in/sign-in).
-- `signUp` - See [`SignUp`](https://clerk.com/docs/references/javascript/sign-up/sign-up).
 - `clerk` - See [`Clerk`](https://clerk.com/docs/references/javascript/clerk/clerk).
 
 Example:
