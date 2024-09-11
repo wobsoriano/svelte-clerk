@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
 	import type { Snippet } from 'svelte';
-	import type { Clerk } from '$lib/utils/types.js';
+	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 
-	const { children }: { children: Snippet<[Clerk]> } = $props();
+	const { children }: { children: Snippet<[HeadlessBrowserClerk | BrowserClerk]> } = $props();
 
 	const ctx = useClerkContext();
 </script>

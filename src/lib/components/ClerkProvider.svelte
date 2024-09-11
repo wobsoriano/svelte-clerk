@@ -4,7 +4,7 @@
 	import type { ClientResource, InitialState, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
-	import type { Clerk } from '$lib/types.js';
+	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 	import {
 		loadClerkJsScript,
 		setClerkJsLoadingErrorPackageName,
@@ -23,7 +23,7 @@
 		initialState?: InitialState;
 	} = $props();
 
-	let clerk = $state<Clerk | null>(null);
+	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
 	let resources = $state<Resources>({
 		client: {} as ClientResource,
@@ -38,9 +38,9 @@
 	let user = $derived(auth.user);
 	let organization = $derived(auth.organization);
 
-	async function loadClerk() {
-		setClerkJsLoadingErrorPackageName('clerk-sveltekit');
+	setClerkJsLoadingErrorPackageName('svelte-clerk');
 
+	async function loadClerk() {
 		const opts: LoadClerkJsScriptOptions = {
 			...clerkInitOptions,
 			telemetry: clerkInitOptions.telemetry || {
@@ -64,7 +64,6 @@
 
 		clerk.addListener((payload) => {
 			resources = payload;
-			clerk = window.Clerk;
 		});
 	}
 

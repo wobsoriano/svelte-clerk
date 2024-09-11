@@ -7,13 +7,13 @@ import type {
 	OrganizationResource,
 	UserResource
 } from '@clerk/types';
-import type { Clerk } from './types.js';
+import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 import { getContext, setContext } from 'svelte';
 
 const _contextKey = '$$_clerk';
 
 interface ClerkContext {
-	clerk: Clerk | null;
+	clerk: HeadlessBrowserClerk | BrowserClerk | null;
 	isLoaded: boolean;
 	auth: {
 		userId: string | null | undefined;

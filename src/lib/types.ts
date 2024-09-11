@@ -1,19 +1,17 @@
-import type { Clerk as ClerkMain, ClerkOptions, ClientResource, Without } from '@clerk/types';
+import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/types';
 
-interface HeadlessBrowserClerk extends ClerkMain {
+export interface HeadlessBrowserClerk extends Clerk {
 	load: (opts?: Without<ClerkOptions, 'isSatellite'>) => Promise<void>;
 	updateClient: (client: ClientResource) => void;
 }
 
-interface BrowserClerk extends HeadlessBrowserClerk {
+export interface BrowserClerk extends HeadlessBrowserClerk {
 	onComponentsReady: Promise<void>;
 	components: unknown;
 }
 
-export type Clerk = HeadlessBrowserClerk | BrowserClerk;
-
 declare global {
 	interface Window {
-		Clerk: Clerk;
+		Clerk: HeadlessBrowserClerk | BrowserClerk;
 	}
 }
