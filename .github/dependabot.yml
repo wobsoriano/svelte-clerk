@@ -9,6 +9,8 @@ updates:
     directory: /
     schedule:
       interval: daily
+    allow:
+      - dependency-name: "@clerk/*"
     groups:
       clerk-dependencies:
         patterns:
