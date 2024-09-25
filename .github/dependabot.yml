@@ -9,8 +9,8 @@ updates:
     directory: /
     schedule:
       interval: daily
-    allow:
-      - dependency-name: '@clerk/backend'
-      - dependency-name: '@clerk/shared'
-      - dependency-name: '@clerk/types'
+    groups:
+      clerk-dependencies:
+        patterns:
+          - "@clerk/*"
     versioning-strategy: increase
