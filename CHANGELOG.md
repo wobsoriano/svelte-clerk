@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.10
+
+### Patch Changes
+
+- 4adbc86: Re-export `@clerk/backend` exports in `svelte-clerk/server` export
+
 ## 0.1.9
 
 ### Patch Changes
