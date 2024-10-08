@@ -9,9 +9,7 @@ import {
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
-export default function withClerkHandler(
-	middlewareOptions?: ClerkSvelteKitMiddlewareOptions
-): Handle {
+export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOptions): Handle {
 	return async ({ event, resolve }) => {
 		const { debug = false, ...options } = middlewareOptions ?? {};
 
