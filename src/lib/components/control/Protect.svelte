@@ -13,32 +13,33 @@
 				condition?: never;
 				role: OrganizationCustomRoleKey;
 				permission?: never;
-				children: Snippet;
-				fallback?: Snippet;
 		  }
 		| {
 				condition?: never;
 				role?: never;
 				permission: OrganizationCustomPermissionKey;
-				children: Snippet;
-				fallback?: Snippet;
 		  }
 		| {
 				condition: (has: CheckAuthorizationWithCustomPermissions) => boolean;
 				role?: never;
 				permission?: never;
-				children: Snippet;
-				fallback?: Snippet;
 		  }
 		| {
 				condition?: never;
 				role?: never;
 				permission?: never;
-				children: Snippet;
-				fallback?: Snippet;
 		  };
 
-	const { role, condition, permission, children, fallback }: ProtectProps = $props();
+	const {
+		role,
+		condition,
+		permission,
+		children,
+		fallback
+	}: ProtectProps & {
+		children: Snippet;
+		fallback?: Snippet;
+	} = $props();
 
 	const ctx = useClerkContext();
 
