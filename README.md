@@ -189,72 +189,8 @@ export const load = ({ locals }) => {
 };
 ```
 
-#### Advanced usage
-
-This example uses a custom `Security` class to handle the authorization logic. It is a good practice if you find yourself repeating the same logic across multiple routes.
-
-In a utility file create a class that can provide multiple authorization methods which will trigger an appropriate http response in the event of a failed check:
-
-```ts
-// utils/Security.ts
-import { error, redirect, type RequestEvent } from '@sveltejs/kit';
-import { withClerkHandler } from 'svelte-clerk/server';
-import type { AuthObject } from '@clerk/backend/internal';
-
-export class Security {
-	private readonly auth?: AuthObject;
-
-	constructor(private readonly event: RequestEvent) {
-		this.auth = event.locals.auth;
-	}
-
-	isAuthenticated() {
-		if (!this.auth?.userId) {
-			redirect(307, '/sign-in');
-		}
-		return this;
-	}
-
-	hasPermission(permission: string) {
-		const permitted = this.auth?.has({ permission });
-		if (!permitted) {
-			error(403, 'missing permission: ' + permission);
-		}
-		return this;
-	}
-}
-```
-
-Inject the `Security` class into the event locals so that it can be accessed in the load function:
-
-```ts
-// hooks.server.ts
-import { sequence } from '@sveltejs/kit/hooks';
-import { Security } from '$lib/utils';
-
-export const handle = sequence(withClerkHandler(), ({ event, resolve }) => {
-	event.locals.security = new Security(event);
-
-	return resolve(event);
-});
-```
-
-And use it in your routes:
-
-```ts
-// src/routes/admin/+page.server.ts
-
-export const load = ({ locals: { securty, auth } }) => {
-	// Restrict route to users with specific permissions
-	security.hasPermission('org:sys_memberships:manage').hasPermission('org:sys_domains_manage');
-
-	const project = await getProject(auth.userId);
-
-	return { project };
-};
-```
-
-If you're planning to add authorization logic within a `+layout.server.ts`, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
+> [!NOTE]
+> If you're planning to add authorization logic within a `+layout.server.ts` file, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
 
 ## TODO
 
