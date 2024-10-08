@@ -97,11 +97,11 @@ export const load = ({ locals }) => {
 
 ## Runes
 
-- `auth` - Auth state.
+- `auth` - [Auth](https://clerk.com/docs/references/nextjs/auth-object#auth-object) object.
 - `user` - Authenticated [user](https://clerk.com/docs/references/javascript/user/user).
 - `organization` - Active [Organization](https://clerk.com/docs/references/javascript/organization/organization) of the authenticated user.
 - `session` - [Session](https://clerk.com/docs/references/javascript/session) of the authenticated user.
-- `clerk` - See [`Clerk`](https://clerk.com/docs/references/javascript/clerk/clerk).
+- `clerk` - [`Clerk`](https://clerk.com/docs/references/javascript/clerk/clerk) object.
 
 Example:
 
