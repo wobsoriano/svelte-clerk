@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.1.11
+
+### Patch Changes
+
+- be52273: Bump @clerk/backend from 1.13.8 to 1.13.9
+
 ## 0.1.10
 
 ### Patch Changes
