@@ -2,11 +2,11 @@
 export { default as SignIn } from './interactive/SignIn.svelte';
 export { default as SignUp } from './interactive/SignUp.svelte';
 export { default as UserProfile } from './interactive/UserProfile.svelte';
-export { default as UserButton } from './interactive/UserButton.svelte';
 export { default as CreateOrganization } from './interactive/CreateOrganization.svelte';
 export { default as OrganizationSwitcher } from './interactive/OrganizationSwitcher.svelte';
 export { default as OrganizationProfile } from './interactive/OrganizationProfile.svelte';
 export { default as GoogleOneTap } from './interactive/GoogleOneTap.svelte';
+export { default as UserButton } from './interactive/UserButton';
 
 // Control components
 export { default as ClerkLoaded } from './control/ClerkLoaded.svelte';

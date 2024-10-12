@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { UserButton } from '$lib/components';
 	import { useClerkContext } from '$lib';
+	import Icon from './Icon.svelte';
 	const ctx = useClerkContext();
 </script>
 
@@ -16,7 +17,20 @@
 			<a href="/profile" class="text-gray-300 hover:text-white mr-4"> Profile </a>
 		{/if}
 		<div class="ml-auto">
-			<UserButton afterSignOutUrl="/" />
+			<UserButton afterSignOutUrl="/">
+				<UserButton.Action
+					label="Open chat"
+					onclick={() => {
+						console.log('init chat');
+					}}
+					labelIcon={Icon}
+				/>
+				<UserButton.Link
+					label="Profile"
+					href="/profile"
+					labelIcon={Icon}
+				/>
+			</UserButton>
 		</div>
 	</div>
 </nav>
