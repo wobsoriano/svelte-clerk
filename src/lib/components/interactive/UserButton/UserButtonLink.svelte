@@ -8,14 +8,14 @@
 		label,
 		href,
 		labelIcon
-	}: { children?: Snippet; label: string; href: string; labelIcon?: Component } = $props();
+	}: { children?: Snippet; label: string; href: string; labelIcon: Component } = $props();
 
 	onMount(() => {
 		let app: Record<string, unknown>;
 		addCustomMenuItem('link', {
 			label,
 			mountIcon(el) {
-				app = mount(labelIcon as any, { target: el });
+				app = mount(labelIcon, { target: el });
 			},
 			unmountIcon() {
 				if (app) {
