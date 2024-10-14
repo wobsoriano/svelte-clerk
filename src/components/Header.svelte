@@ -19,14 +19,15 @@
 		<div class="ml-auto">
 			<UserButton afterSignOutUrl="/">
 				<UserButton.MenuItems>
-                    <UserButton.Action
-    					label="Open chat"
-    					onclick={() => {
-    						console.log('init chat');
-    					}}
-    					labelIcon={Icon}
-    				/>
-    				<UserButton.Link label="Profile" href="/profile" labelIcon={Icon} />
+					<!-- <UserButton.Action label="signOut" onclick={() => {}} /> -->
+					<UserButton.Action
+						label="Open chat"
+						onclick={() => {
+							console.log('init chat');
+						}}
+						labelIcon={Icon}
+					/>
+					<UserButton.Link label="Profile" href="/profile" labelIcon={Icon} />
 				</UserButton.MenuItems>
 			</UserButton>
 		</div>
