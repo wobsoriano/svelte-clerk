@@ -2,7 +2,7 @@
 	import { getContext, onMount, mount, type Component, type Snippet, unmount } from 'svelte';
 	import type { UserButtonContext } from './types';
 
-	const { addCustomLink } = getContext<UserButtonContext>('$$_userButton');
+	const { addCustomMenuItem } = getContext<UserButtonContext>('$$_userButtonMenuItems');
 
 	const {
 		label,
@@ -12,7 +12,7 @@
 
 	onMount(() => {
 		let app: Record<string, unknown>;
-		addCustomLink({
+		addCustomMenuItem('link', {
 			label,
 			mountIcon(el) {
 				app = mount(labelIcon as any, { target: el });
