@@ -87,8 +87,14 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
+<<<<<<< HEAD
 		"@clerk/backend": "^1.14.1",
 		"@clerk/shared": "^2.9.2",
 		"@clerk/types": "^4.26.0"
+=======
+		"@clerk/backend": "^1.13.9",
+		"@clerk/shared": "^2.9.0",
+		"@clerk/types": "^4.25.0"
+>>>>>>> 85f7aed (chore: remove unused dependency)
 	}
 }

@@ -376,11 +376,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@jsrob/svelte-portal@0.1.0':
-    resolution: {integrity: sha512-M4JbuZsgPbE9q1q8ArIV15+pXMNM1A7HUhvrJ4kE/R2/Cj7ACib+M12FN8pjr2TEtB7BN0drHahqIuDkR7/ORw==}
-    peerDependencies:
-      svelte: ^5.0.0-next.1
-
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
 
@@ -2169,10 +2164,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@jsrob/svelte-portal@0.1.0(svelte@5.0.0-next.264)':
-    dependencies:
-      svelte: 5.0.0-next.264
 
   '@manypkg/find-root@1.1.0':
     dependencies:
