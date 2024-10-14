@@ -11,11 +11,8 @@
 	let updatedProps = $state(props);
 
 	setContext<UserButtonContext>('$$_userButton', {
-		addCustomAction(item) {
-		  updatedProps.customMenuItems = [...(updatedProps.customMenuItems || []), item]
-		},
-		addCustomLink(item) {
-		  updatedProps.customMenuItems = [...(updatedProps.customMenuItems || []), item]
+		addCustomMenuItem(_, item) {
+			updatedProps.customMenuItems = [...(updatedProps.customMenuItems || []), item];
 		}
 	});
 </script>
