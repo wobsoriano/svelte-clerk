@@ -89,7 +89,6 @@
 	"dependencies": {
 		"@clerk/backend": "^1.13.9",
 		"@clerk/shared": "^2.9.0",
-		"@clerk/types": "^4.25.0",
-		"@jsrob/svelte-portal": "^0.1.0"
+		"@clerk/types": "^4.25.0"
 	}
 }
