@@ -4,24 +4,25 @@
 
 	const { addCustomMenuItem } = getContext<UserButtonContext>('$$_userButtonMenuItems');
 
-	const reorderItemsLabels = ['manageAccount', 'signOut'];
-	type ReorderItemsLabels = (typeof reorderItemsLabels)[number];
-	type BaseActionItem = { label: string; onclick: () => void; labelIcon: Component };
+	type BaseActionItem = { label: string; labelIcon: Component } & (
+		| { onclick: () => void; open?: never }
+		| { open: string; onclick?: never }
+	);
 
-	const props: { label: ReorderItemsLabels } | BaseActionItem = $props();
+	const props: { label: 'manageAccount' | 'signOut' } | BaseActionItem = $props();
 
 	onMount(() => {
-		let app: Record<string, unknown>;
-		const isReorderItem = reorderItemsLabels.includes(props.label);
-
-		if (isReorderItem) {
+	    // Action is reordering default items
+		if (props.label === 'manageAccount' || props.label === 'signOut') {
 			addCustomMenuItem('action', {
 				label: props.label
 			});
 			return;
 		}
 
-		const { label, onclick, labelIcon } = props as BaseActionItem;
+		const { label, onclick, open, labelIcon } = props as BaseActionItem;
+		let app: Record<string, unknown>;
+
 		addCustomMenuItem('action', {
 			label,
 			mountIcon(el) {
@@ -32,7 +33,7 @@
 					unmount(app);
 				}
 			},
-			onClick: onclick
+			...(onclick ? { onClick: onclick } : { open })
 		});
 	});
 </script>

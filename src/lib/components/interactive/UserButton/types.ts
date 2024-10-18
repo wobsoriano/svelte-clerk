@@ -2,10 +2,13 @@ import type { CustomMenuItem } from '@clerk/types';
 
 type ReorderItemLabel = 'manageAccount' | 'signOut';
 
-type BaseActionItem = Pick<CustomMenuItem, 'label' | 'onClick' | 'mountIcon' | 'unmountIcon'>;
+type BaseActionItem = Pick<CustomMenuItem, 'label' | 'mountIcon' | 'unmountIcon'>;
 type BaseLinkItem = Pick<CustomMenuItem, 'label' | 'href' | 'mountIcon' | 'unmountIcon'>;
 
-type ActionItem = { label: ReorderItemLabel } | BaseActionItem;
+type ActionItem =
+	| { label: ReorderItemLabel }
+	| (BaseActionItem & { open: string; onClick?: never })
+	| (BaseActionItem & { onClick: CustomMenuItem['onClick']; open?: never });
 
 type LinkItem = BaseLinkItem;
 
