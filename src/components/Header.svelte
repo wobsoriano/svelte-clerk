@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { UserButton } from '$lib/components';
 	import { useClerkContext } from '$lib';
+	import Icon from './Icon.svelte';
 	const ctx = useClerkContext();
 </script>
 
@@ -16,7 +17,32 @@
 			<a href="/profile" class="text-gray-300 hover:text-white mr-4"> Profile </a>
 		{/if}
 		<div class="ml-auto">
-			<UserButton afterSignOutUrl="/" />
+			<UserButton afterSignOutUrl="/">
+				<UserButton.MenuItems>
+					<!-- <UserButton.Action label="signOut" onclick={() => {}} /> -->
+					<UserButton.Action label="Help" labelIcon={Icon} open="help" />
+					<UserButton.Action
+						label="Open chat"
+						onclick={() => {
+							console.log('init chat');
+						}}
+					>
+					   {#snippet labelIcon()}
+							<Icon />
+						{/snippet}
+					</UserButton.Action>
+					<UserButton.Link label="Profile" href="/profile" labelIcon={Icon} />
+				</UserButton.MenuItems>
+				<UserButton.UserProfilePage label="Help" url="help">
+					{#snippet labelIcon()}
+						<Icon />
+					{/snippet}
+					<div>
+						<h1>Help Page</h1>
+						<p>This is the custom help page</p>
+					</div>
+				</UserButton.UserProfilePage>
+			</UserButton>
 		</div>
 	</div>
 </nav>
