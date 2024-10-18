@@ -192,11 +192,6 @@ export const load = ({ locals }) => {
 > [!NOTE]
 > If you're planning to add authorization logic within a `+layout.server.ts` file, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
 
-## TODO
-
-- [ ] Custom pages
-- [ ] Basic flow e2e
-
 ## License
 
 MIT
