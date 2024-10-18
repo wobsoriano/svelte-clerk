@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext, onMount, mount, type Component, type Snippet, unmount } from 'svelte';
 	import type { UserButtonContext } from './types';
+	import Portal from './Portal.svelte';
 
 	const { addCustomMenuItem } = getContext<UserButtonContext>('$$_userButtonMenuItems');
 
@@ -8,14 +9,14 @@
 		label,
 		href,
 		labelIcon
-	}: { children?: Snippet; label: string; href: string; labelIcon: Component } = $props();
+	}: { label: string; href: string; labelIcon: Component | Snippet } = $props();
 
 	onMount(() => {
 		let app: Record<string, unknown>;
 		addCustomMenuItem('link', {
 			label,
 			mountIcon(el) {
-				app = mount(labelIcon, { target: el });
+				app = mount(Portal, { target: el, props: { children: labelIcon as Snippet } });
 			},
 			unmountIcon() {
 				if (app) {

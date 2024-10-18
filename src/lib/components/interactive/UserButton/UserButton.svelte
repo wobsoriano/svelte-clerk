@@ -13,6 +13,12 @@
 	setContext<UserButtonContext>('$$_userButton', {
 		addCustomMenuItem(_, item) {
 			updatedProps.customMenuItems = [...(updatedProps.customMenuItems || []), item];
+		},
+		addCustomPage(page) {
+			updatedProps.userProfileProps = {
+				...updatedProps.userProfileProps,
+				customPages: [...(updatedProps.userProfileProps?.customPages || []), page]
+			};
 		}
 	});
 </script>

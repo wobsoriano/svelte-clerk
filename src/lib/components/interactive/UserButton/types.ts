@@ -1,4 +1,4 @@
-import type { CustomMenuItem } from '@clerk/types';
+import type { CustomMenuItem, CustomPage } from '@clerk/types';
 
 type ReorderItemLabel = 'manageAccount' | 'signOut';
 
@@ -19,4 +19,5 @@ export type UserButtonContext = {
 		type: T,
 		item: T extends 'action' ? ActionItem : LinkItem
 	): void;
+	addCustomPage(page: CustomPage): void;
 };

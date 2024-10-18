@@ -20,6 +20,7 @@
 			<UserButton afterSignOutUrl="/">
 				<UserButton.MenuItems>
 					<!-- <UserButton.Action label="signOut" onclick={() => {}} /> -->
+					<UserButton.Action label="Help" labelIcon={Icon} open="help" />
 					<UserButton.Action
 						label="Open chat"
 						onclick={() => {
@@ -29,6 +30,15 @@
 					/>
 					<UserButton.Link label="Profile" href="/profile" labelIcon={Icon} />
 				</UserButton.MenuItems>
+				<UserButton.UserProfilePage label="Help" url="help">
+					{#snippet labelIcon()}
+						<Icon />
+					{/snippet}
+					<div>
+						<h1>Help Page</h1>
+						<p>This is the custom help page</p>
+					</div>
+				</UserButton.UserProfilePage>
 			</UserButton>
 		</div>
 	</div>
