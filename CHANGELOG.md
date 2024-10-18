@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.2.0
+
+### Minor Changes
+
+- c44b56d: Add supoport for `<UserButton />` custom menu items
+
 ## 0.1.13
 
 ### Patch Changes
