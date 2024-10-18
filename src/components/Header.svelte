@@ -26,8 +26,11 @@
 						onclick={() => {
 							console.log('init chat');
 						}}
-						labelIcon={Icon}
-					/>
+					>
+					   {#snippet labelIcon()}
+							<Icon />
+						{/snippet}
+					</UserButton.Action>
 					<UserButton.Link label="Profile" href="/profile" labelIcon={Icon} />
 				</UserButton.MenuItems>
 				<UserButton.UserProfilePage label="Help" url="help">
