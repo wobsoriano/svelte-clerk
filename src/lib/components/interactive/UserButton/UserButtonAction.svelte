@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, onMount, mount, type Component, unmount, type Snippet } from 'svelte';
 	import type { UserButtonContext } from './types';
-	import Portal from './Portal.svelte';
+	import Portal from '$lib/components/Portal.svelte';
 
 	const { addCustomMenuItem } = getContext<UserButtonContext>('$$_userButtonMenuItems');
 
