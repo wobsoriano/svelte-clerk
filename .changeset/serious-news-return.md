@@ -2,4 +2,4 @@
 'svelte-clerk': minor
 ---
 
-Add custom menu items
+Add supoport for `<UserButton />` custom menu items
