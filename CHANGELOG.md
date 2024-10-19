@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.3.0
+
+### Minor Changes
+
+- 9daa22f: Bump to Svelte 5 stable
+
 ## 0.2.0
 
 ### Minor Changes
