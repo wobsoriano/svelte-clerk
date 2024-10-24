@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"lint": "prettier --check . && eslint .",
-		"release": "pnpm run package && changeset publish",
+		"release": "pnpm --filter=svelte-clerk run package && changeset publish",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
