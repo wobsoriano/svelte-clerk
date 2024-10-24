@@ -27,7 +27,7 @@
 							console.log('init chat');
 						}}
 					>
-					   {#snippet labelIcon()}
+						{#snippet labelIcon()}
 							<Icon />
 						{/snippet}
 					</UserButton.Action>
