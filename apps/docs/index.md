@@ -8,8 +8,8 @@ hero:
   tagline: Easiest way to add authentication and user management to your Svelte application
   actions:
     - theme: brand
-      text: What is Vue Clerk?
-      link: /what-is-vue-clerk
+      text: What is Svelte Clerk?
+      link: /what-is-svelte-clerk
     - theme: alt
       text: Quickstart
       link: /getting-started
