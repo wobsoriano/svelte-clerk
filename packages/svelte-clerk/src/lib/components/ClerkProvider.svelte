@@ -72,14 +72,14 @@
 	});
 
 	$effect(() => {
-		// @ts-expect-error: Internal
+		// @ts-expect-error: Internal clerk property that is not exposed
 		clerk?.__unstable__updateProps({
 			appearance: clerkInitOptions.appearance
 		});
 	});
 
 	$effect(() => {
-		// @ts-expect-error: Internal
+		// @ts-expect-error: Internal clerk property that is not exposed
 		clerk?.__unstable__updateProps({
 			options: {
 				...clerkInitOptions,

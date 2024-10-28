@@ -11,16 +11,19 @@ Community package that integrates [Clerk](https://clerk.com/) with [SvelteKit](h
 npm install svelte-clerk
 ```
 
-## Set environment variables
+## Set your Clerk API keys
 
 ```bash
 PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxx
 CLERK_SECRET_KEY=sk_test_xxxxxxx
 ```
 
-## Add server handler
+## Configure server handler
+
+This handler will authenticate a token passed from the frontend and attaches the [`Auth`](https://clerk.com/docs/references/nextjs/auth-object#auth-object) object to `event.locals.auth`.
 
 ```ts
+// hooks.server.ts
 import { withClerkHandler } from 'svelte-clerk/server';
 
 export const handle = withClerkHandler();
@@ -37,8 +40,6 @@ declare global {
 	namespace App {...}
 }
 ```
-
-This handler will inject the [Auth](https://clerk.com/docs/references/nextjs/auth-object) object to `event.locals`.
 
 ## Add `<ClerkProvider>` to your root layout
 
@@ -80,6 +81,8 @@ export const load = ({ locals }) => {
 ```
 
 ## Components
+
+To see all available props for each component, visit the [Clerk UI Components](https://clerk.com/docs/components/overview) docs.
 
 - `<ClerkLoaded>`
 - `<ClerkLoading>`

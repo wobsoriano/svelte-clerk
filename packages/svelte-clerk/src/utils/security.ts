@@ -9,10 +9,10 @@ export class Security {
 	}
 
 	isPublic() {
-	  if (this.auth?.userId) {
-      redirect(307, '/profile');
-    }
-    return this;
+		if (this.auth?.userId) {
+			redirect(307, '/profile');
+		}
+		return this;
 	}
 
 	isAuthenticated() {
