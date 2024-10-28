@@ -8,6 +8,6 @@
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
-		<div use:clerkUI={{ clerk, component: 'SignIn', props }}></div>
+		<div use:clerkUI={{ clerk, component: 'SignIn', props: $state.snapshot(props) }}></div>
 	{/snippet}
 </ClerkLoaded>

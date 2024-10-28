@@ -25,7 +25,7 @@
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
-		<div use:clerkUI={{ clerk, component: 'UserButton', props: updatedProps }}></div>
+		<div use:clerkUI={{ clerk, component: 'UserButton', props }}></div>
 	{/snippet}
 </ClerkLoaded>
 
