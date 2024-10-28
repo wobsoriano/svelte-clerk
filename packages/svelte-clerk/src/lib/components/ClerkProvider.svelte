@@ -11,8 +11,6 @@
 		type LoadClerkJsScriptOptions
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
-	import { isTruthy } from '@clerk/shared/underscore';
-	import { env as publicEnv } from '$env/dynamic/public';
 
 	const {
 		children,
@@ -43,10 +41,6 @@
 	async function loadClerk() {
 		const opts: LoadClerkJsScriptOptions = {
 			...clerkInitOptions,
-			telemetry: clerkInitOptions.telemetry || {
-				disabled: isTruthy(publicEnv.PUBLIC_CLERK_TELEMETRY_DISABLED),
-				debug: isTruthy(publicEnv.PUBLIC_CLERK_TELEMETRY_DEBUG)
-			},
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
