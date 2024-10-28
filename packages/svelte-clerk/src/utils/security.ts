@@ -8,6 +8,13 @@ export class Security {
 		this.auth = event.locals.auth;
 	}
 
+	isPublic() {
+	  if (this.auth?.userId) {
+      redirect(307, '/profile');
+    }
+    return this;
+	}
+
 	isAuthenticated() {
 		if (!this.auth?.userId) {
 			redirect(307, '/sign-in');
