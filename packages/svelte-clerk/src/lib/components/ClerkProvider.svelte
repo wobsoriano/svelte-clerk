@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { untrack } from 'svelte';
-	import type { ClientResource, InitialState, Resources } from '@clerk/types';
+	import type { ClientResource, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
 	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
+	import { page } from '$app/stores';
+
 	import {
 		loadClerkJsScript,
 		setClerkJsLoadingErrorPackageName,
@@ -14,11 +16,9 @@
 
 	const {
 		children,
-		initialState,
 		...clerkInitOptions
 	}: LoadClerkJsScriptOptions & {
 		children: Snippet;
-		initialState?: InitialState;
 	} = $props();
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
@@ -30,7 +30,7 @@
 		organization: undefined
 	});
 
-	let auth = $derived(deriveState(isLoaded, resources, initialState));
+	let auth = $derived(deriveState(isLoaded, resources, $page.data.initialState));
 	let client = $derived(resources.client);
 	let session = $derived(auth.session);
 	let user = $derived(auth.user);

@@ -8,13 +8,11 @@
 		PUBLIC_CLERK_SIGN_IN_URL,
 		PUBLIC_CLERK_SIGN_UP_URL
 	} from '$env/static/public';
-	import type { LayoutData } from './$types';
 
-	let { children, data }: { children: Snippet; data: LayoutData } = $props();
+	let { children }: { children: Snippet } = $props();
 </script>
 
 <ClerkProvider
-	{...data}
 	signInUrl={PUBLIC_CLERK_SIGN_IN_URL}
 	signUpUrl={PUBLIC_CLERK_SIGN_UP_URL}
 	publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}

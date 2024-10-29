@@ -6,7 +6,7 @@ import {
 	createClerkRequest,
 	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
-import { parse } from 'set-cookie-parser'
+import { parse } from 'set-cookie-parser';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
@@ -43,21 +43,21 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
 		}
 
-		type CookieSerializerOptions = Parameters<typeof event.cookies.set>[2]
+		type CookieSerializerOptions = Parameters<typeof event.cookies.set>[2];
 
 		if (requestState.headers) {
-			const setCookie = requestState.headers.get('set-cookie')
+			const setCookie = requestState.headers.get('set-cookie');
 			// We separate cookie setting logic because SvelteKit
 			// does not allow setting cookies with setHeaders.
 			if (setCookie) {
-				const parsedCookies = parse(setCookie)
+				const parsedCookies = parse(setCookie);
 				parsedCookies.forEach((parsedCookie) => {
-					const { name, value, ...options } = parsedCookie
-					event.cookies.set(name, value, options as CookieSerializerOptions & { path: string })
-				})
-				requestState.headers.delete('set-cookie')
+					const { name, value, ...options } = parsedCookie;
+					event.cookies.set(name, value, options as CookieSerializerOptions & { path: string });
+				});
+				requestState.headers.delete('set-cookie');
 			}
-			event.setHeaders(Object.fromEntries(requestState.headers))
+			event.setHeaders(Object.fromEntries(requestState.headers));
 		}
 
 		return resolve(event);

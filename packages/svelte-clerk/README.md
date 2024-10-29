@@ -49,7 +49,7 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 // src/+layout.server.ts
 import { buildClerkProps } from 'svelte-clerk/server';
 
-// To enable Clerk SSR support, pass the `initialState` to the `ClerkProvider` component.
+// To enable Clerk SSR support, add initial state props to the load function
 export const load = ({ locals }) => {
 	return {
 		...buildClerkProps(locals.auth)
@@ -60,22 +60,15 @@ export const load = ({ locals }) => {
 ```svelte
 <script lang="ts">
 	import type { Snippet } from '@svelte';
-	import type { LayoutData } from './$types';
 	import { ClerkProvider } from 'svelte-clerk';
 	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
-	const {
-		children,
-		data
-	}: {
-		children: Snippet;
-		data: LayoutData;
-	} = $props();
+	const { children }: { children: Snippet } = $props();
 </script>
 
 <!-- ... -->
 
-<ClerkProvider {...data} publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
+<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>
 ```
