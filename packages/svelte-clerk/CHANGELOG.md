@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.3.6
+
+### Patch Changes
+
+- 0eaa484: Simplify SSR props
+
 ## 0.3.5
 
 ### Patch Changes
