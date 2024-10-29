@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.3.5
+
+### Patch Changes
+
+- 07b13b9: Fix cookie setting
+
 ## 0.3.4
 
 ### Patch Changes
