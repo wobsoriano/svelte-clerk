@@ -48,11 +48,11 @@ importers:
   packages/svelte-clerk:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.15.2
-        version: 1.15.2(react@18.3.1)
+        specifier: ^1.15.5
+        version: 1.15.5(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.11.0
-        version: 2.11.0(react@18.3.1)
+        specifier: ^2.11.3
+        version: 2.11.3(react@18.3.1)
       '@clerk/types':
         specifier: ^4.29.0
         version: 4.29.0
@@ -254,12 +254,12 @@ packages:
   '@changesets/write@0.3.2':
     resolution: {integrity: sha512-kDxDrPNpUgsjDbWBvUo27PzKX4gqeKOlhibaOXDJA6kuBisGqNHv/HwGJrAu8U/dSf8ZEFIeHIPtvSlZI1kULw==}
 
-  '@clerk/backend@1.15.2':
-    resolution: {integrity: sha512-EuurgNAizmM25BQYmPYtaCpbgROfsNtfqHX6AhlgmBwtVtKWfPJcmLTGwOuwVWxZjeVdaNdEPq4aKp2rYZl9CA==}
+  '@clerk/backend@1.15.5':
+    resolution: {integrity: sha512-sgwWNm96IRQCIVmlJpm0Hr09GqK9jP19ko3AZUINuFxfqX+U3o26G7vwUoAGDxeSxvcb7LzxoAVAXBZZFsDzyw==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.11.0':
-    resolution: {integrity: sha512-JW6DVXrvZPb0edFH5ZY+yeexeEzIFsXeh+/BYD40AqiVW2KLwAjpH9SiVaiWwVf9LuKZz9ei+5opnBu9iRG6IQ==}
+  '@clerk/shared@2.11.3':
+    resolution: {integrity: sha512-twA/vbfhLdXU4kCFRme9kP0juzh1FNcKg/HoVaXrT7WaiN68fnpD0TtwVc6jmKV4bj5mjh3TBxrvrp3HOQjigw==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: '>=18 || >=19.0.0-beta'
@@ -2571,9 +2571,9 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@clerk/backend@1.15.2(react@18.3.1)':
+  '@clerk/backend@1.15.5(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 2.11.0(react@18.3.1)
+      '@clerk/shared': 2.11.3(react@18.3.1)
       '@clerk/types': 4.29.0
       cookie: 0.7.0
       snakecase-keys: 5.4.4
@@ -2582,7 +2582,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.11.0(react@18.3.1)':
+  '@clerk/shared@2.11.3(react@18.3.1)':
     dependencies:
       '@clerk/types': 4.29.0
       glob-to-regexp: 0.4.1
