@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.4.1
+
+### Patch Changes
+
+- c0e496a: Do not remount UI components on prop update
+
 ## 0.4.0
 
 ### Minor Changes
