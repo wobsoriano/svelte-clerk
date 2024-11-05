@@ -1,5 +1,17 @@
 # svelte-clerk
 
+## 0.4.0
+
+### Minor Changes
+
+- ec86595: Add `<Waitlist />` component
+
+### Patch Changes
+
+- 86b4096: Bump @clerk/backend from 1.15.5 to 1.15.6
+- 86b4096: Bump @clerk/shared from 2.11.3 to 2.11.4
+- 86b4096: Bump @clerk/types from 4.29.0 to 4.30.0
+
 ## 0.3.8
 
 ### Patch Changes
