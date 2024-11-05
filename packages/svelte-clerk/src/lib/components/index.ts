@@ -7,6 +7,7 @@ export { default as OrganizationSwitcher } from './interactive/OrganizationSwitc
 export { default as OrganizationProfile } from './interactive/OrganizationProfile.svelte';
 export { default as GoogleOneTap } from './interactive/GoogleOneTap.svelte';
 export { default as UserButton } from './interactive/UserButton';
+export { default as Waitlist } from './interactive/Waitlist.svelte';
 
 // Control components
 export { default as ClerkLoaded } from './control/ClerkLoaded.svelte';
