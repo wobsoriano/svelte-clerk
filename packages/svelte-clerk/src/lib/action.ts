@@ -55,9 +55,9 @@ export const clerkUI: Action<HTMLDivElement, ClerkUIConfig> = (
 	}
 
 	return {
-		update: ({ clerk, component, props }) => {
-			unmountComponent({ clerk, component });
-			mountComponent({ clerk, component, props });
+		update: ({ clerk, props }) => {
+		  // @ts-expect-error: Internal API
+			clerk.__unstable__updateProps({ node, props })
 		},
 		destroy: () => {
 			unmountComponent({ clerk, component });
