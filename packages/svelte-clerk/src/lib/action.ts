@@ -7,7 +7,8 @@ import type {
 	OrganizationProfileProps,
 	OrganizationSwitcherProps,
 	CreateOrganizationProps,
-	GoogleOneTapProps
+	GoogleOneTapProps,
+	WaitlistProps
 } from '@clerk/types';
 import type { Action } from 'svelte/action';
 
@@ -20,6 +21,7 @@ type ComponentPropsMap = {
 	OrganizationSwitcher: OrganizationSwitcherProps;
 	CreateOrganization: CreateOrganizationProps;
 	GoogleOneTap: GoogleOneTapProps;
+	Waitlist: WaitlistProps;
 };
 
 type ClerkUIConfig<T extends keyof ComponentPropsMap = keyof ComponentPropsMap> = {
