@@ -16,7 +16,7 @@ function getPrivateEnv(name: string, defaultValue = ''): string {
 // Public env variables
 export const API_VERSION = getPublicEnv('PUBLIC_CLERK_API_VERSION', 'v1');
 export const PUBLISHABLE_KEY = getPublicEnv('PUBLIC_CLERK_PUBLISHABLE_KEY');
-export const API_URL = getPublicEnv('PUBLIC_CLERK_API_URL');
+export const API_URL = getPublicEnv('PUBLIC_CLERK_API_URL', 'https://api.clerk.com');
 export const TELEMETRY_DISABLED = isTruthy(getPublicEnv('PUBLIC_CLERK_TELEMETRY_DISABLED'));
 export const TELEMETRY_DEBUG = isTruthy(getPublicEnv('PUBLIC_CLERK_TELEMETRY_DEBUG'));
 // Private env variables
