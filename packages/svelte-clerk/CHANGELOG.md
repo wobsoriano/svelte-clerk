@@ -1,5 +1,14 @@
 # svelte-clerk
 
+## 0.4.3
+
+### Patch Changes
+
+- ff325ba: Bump @clerk/backend from 1.16.0 to 1.16.1
+- ff325ba: Bump @clerk/shared from 2.12.0 to 2.12.1
+- ff325ba: Bump @clerk/types from 4.31.0 to 4.32.0
+- 547ec7d: Fix API url default value
+
 ## 0.4.2
 
 ### Patch Changes
