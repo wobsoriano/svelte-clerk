@@ -48,8 +48,8 @@ importers:
   packages/svelte-clerk:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.16.1
-        version: 1.16.1(react@18.3.1)
+        specifier: ^1.16.2
+        version: 1.16.2(react@18.3.1)
       '@clerk/shared':
         specifier: ^2.12.1
         version: 2.12.1(react@18.3.1)
@@ -254,8 +254,8 @@ packages:
   '@changesets/write@0.3.2':
     resolution: {integrity: sha512-kDxDrPNpUgsjDbWBvUo27PzKX4gqeKOlhibaOXDJA6kuBisGqNHv/HwGJrAu8U/dSf8ZEFIeHIPtvSlZI1kULw==}
 
-  '@clerk/backend@1.16.1':
-    resolution: {integrity: sha512-Rrw8LLHk5L1gHhWT/nr5zuWvPapvgdTZ4O35v22D8eLaTdYLJOptHquBwaJ9R9WMmYxDi35lm9a4oVk0t5h7BQ==}
+  '@clerk/backend@1.16.2':
+    resolution: {integrity: sha512-Wsl1HGBQRMwMvYPRp+zbO6yWIQokcup3pktVgA/OUN/lhoAgZ/cUugN/4uveWruMtMi439A7tQlaupt1iyUGNw==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/shared@2.12.1':
@@ -2571,7 +2571,7 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@clerk/backend@1.16.1(react@18.3.1)':
+  '@clerk/backend@1.16.2(react@18.3.1)':
     dependencies:
       '@clerk/shared': 2.12.1(react@18.3.1)
       '@clerk/types': 4.32.0
