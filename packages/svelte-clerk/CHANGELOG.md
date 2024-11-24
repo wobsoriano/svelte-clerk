@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.4.8
+
+### Patch Changes
+
+- 98e59a5: Fix missing internal prop updater
+
 ## 0.4.7
 
 ### Patch Changes
