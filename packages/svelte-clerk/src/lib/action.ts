@@ -1,66 +1,51 @@
-import type {
-	Clerk,
-	SignInProps,
-	SignUpProps,
-	UserButtonProps,
-	UserProfileProps,
-	OrganizationProfileProps,
-	OrganizationSwitcherProps,
-	CreateOrganizationProps,
-	GoogleOneTapProps,
-	WaitlistProps
-} from '@clerk/types';
 import type { Action } from 'svelte/action';
 
-type ComponentPropsMap = {
-	SignIn: SignInProps;
-	SignUp: SignUpProps;
-	UserButton: UserButtonProps;
-	UserProfile: UserProfileProps;
-	OrganizationProfile: OrganizationProfileProps;
-	OrganizationSwitcher: OrganizationSwitcherProps;
-	CreateOrganization: CreateOrganizationProps;
-	GoogleOneTap: GoogleOneTapProps;
-	Waitlist: WaitlistProps;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyObject = any;
+
+interface MountProps {
+	mount: ((node: HTMLDivElement, props: AnyObject) => void) | undefined;
+	unmount: ((node: HTMLDivElement) => void) | undefined;
+	updateProps?: (props: AnyObject) => void;
+	props?: AnyObject;
+}
+
+interface OpenProps {
+	open: ((props: AnyObject) => void) | undefined;
+	close: (() => void) | undefined;
+	updateProps?: (props: AnyObject) => void;
+	props?: AnyObject;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isMountProps = (props: any): props is MountProps => {
+	return 'mount' in props;
 };
 
-type ClerkUIConfig<T extends keyof ComponentPropsMap = keyof ComponentPropsMap> = {
-	clerk: Clerk;
-	component: T;
-	props?: ComponentPropsMap[T];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isOpenProps = (props: any): props is OpenProps => {
+	return 'open' in props;
 };
 
-export const clerkUI: Action<HTMLDivElement, ClerkUIConfig> = (
-	node,
-	{ clerk, component, props }
-) => {
-	const mountComponent = ({ clerk, component, props }: ClerkUIConfig) => {
-		if (component === 'GoogleOneTap') {
-			clerk.openGoogleOneTap(props);
-		} else {
-			clerk[`mount${component}`](node, props as Record<string, unknown>);
-		}
-	};
-
-	const unmountComponent = ({ clerk, component }: ClerkUIConfig) => {
-		if (component === 'GoogleOneTap') {
-			clerk.closeGoogleOneTap();
-		} else {
-			clerk[`unmount${component}`](node);
-		}
-	};
-
-	if (clerk) {
-		mountComponent({ clerk, component, props });
+export const clerkUI: Action<HTMLDivElement, MountProps | OpenProps> = (node, props) => {
+	if (isMountProps(props)) {
+		props.mount?.(node, props.props);
+	} else if (isOpenProps(props)) {
+		props.open?.(props.props);
 	}
 
 	return {
-		update: ({ clerk, props }) => {
-		  // @ts-expect-error: Internal API
-			clerk.__unstable__updateProps({ node, props })
+		update: ({ props: updatedProps }) => {
+			if (isMountProps(props)) {
+				props.updateProps?.({ node, props: updatedProps });
+			}
 		},
 		destroy: () => {
-			unmountComponent({ clerk, component });
+			if (isMountProps(props)) {
+				props.unmount?.(node);
+			} else if (isOpenProps(props)) {
+				props.close?.();
+			}
 		}
 	};
 };

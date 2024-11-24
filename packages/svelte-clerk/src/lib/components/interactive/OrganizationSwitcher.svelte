@@ -1,5 +1,5 @@
 <script lang="ts">
-	import clerkUI from '$lib/action.js';
+	import { clerkUI } from '$lib/action.js';
 	import type { OrganizationSwitcherProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
 
@@ -9,7 +9,11 @@
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
-			use:clerkUI={{ clerk, component: 'OrganizationSwitcher', props: $state.snapshot(props) }}
+			use:clerkUI={{
+				mount: clerk.mountOrganizationSwitcher,
+				unmount: clerk.unmountOrganizationSwitcher,
+				props: $state.snapshot(props)
+			}}
 		></div>
 	{/snippet}
 </ClerkLoaded>
