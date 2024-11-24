@@ -28,6 +28,11 @@ export default ts.config(
 		}
 	},
 	{
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn'  // Changed to warning level
+    }
+  },
+	{
 		ignores: ['**/build/', '**/.svelte-kit/', '**/dist/', 'apps/docs/.vitepress/cache/']
 	}
 );

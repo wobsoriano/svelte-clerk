@@ -12,6 +12,7 @@
 			use:clerkUI={{
 				mount: clerk.mountOrganizationProfile,
 				unmount: clerk.unmountOrganizationProfile,
+				updateProps: (clerk as any).__unstable_updateProps,
 				props: $state.snapshot(props)
 			}}
 		></div>
