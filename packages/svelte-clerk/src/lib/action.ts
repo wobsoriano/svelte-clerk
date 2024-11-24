@@ -13,7 +13,6 @@ interface MountProps {
 interface OpenProps {
 	open: ((props: AnyObject) => void) | undefined;
 	close: (() => void) | undefined;
-	updateProps?: (props: AnyObject) => void;
 	props?: AnyObject;
 }
 
