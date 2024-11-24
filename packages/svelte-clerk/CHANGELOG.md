@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.4.7
+
+### Patch Changes
+
+- 2837233: Improve internal Clerk UI action
+
 ## 0.4.6
 
 ### Patch Changes
