@@ -1,5 +1,5 @@
 <script lang="ts">
-	import clerkUI from '$lib/action.js';
+	import { clerkUI } from '$lib/action.js';
 	import type { UserProfileProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
 
@@ -8,6 +8,12 @@
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
-		<div use:clerkUI={{ clerk, component: 'UserProfile', props: $state.snapshot(props) }}></div>
+		<div
+			use:clerkUI={{
+				mount: clerk.mountUserProfile,
+				unmount: clerk.unmountUserProfile,
+				props: $state.snapshot(props)
+			}}
+		></div>
 	{/snippet}
 </ClerkLoaded>

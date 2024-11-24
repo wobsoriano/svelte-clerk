@@ -66,6 +66,10 @@
 	});
 
 	$effect(() => {
+		if (!isLoaded) {
+			return;
+		}
+
 		// @ts-expect-error: Internal clerk property that is not exposed
 		clerk?.__unstable__updateProps({
 			appearance: clerkInitOptions.appearance
@@ -73,6 +77,10 @@
 	});
 
 	$effect(() => {
+		if (!isLoaded) {
+			return;
+		}
+
 		// @ts-expect-error: Internal clerk property that is not exposed
 		clerk?.__unstable__updateProps({
 			options: {

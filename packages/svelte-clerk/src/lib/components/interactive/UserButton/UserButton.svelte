@@ -1,14 +1,18 @@
 <script lang="ts">
-	import clerkUI from '$lib/action.js';
 	import type { UserButtonProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
-	import { setContext, type Snippet } from 'svelte';
+	import { onDestroy, setContext, type Snippet } from 'svelte';
 	import type { UserButtonContext } from './types';
+	import { useClerkContext } from '$lib/context';
 
 	const { children: customMenuItems, ...props }: UserButtonProps & { children?: Snippet } =
 		$props();
 
+	let el = $state<HTMLDivElement | null>(null);
+	let isMounted = $state(false);
 	let updatedProps = $state(props);
+
+	const context = useClerkContext();
 
 	setContext<UserButtonContext>('$$_userButton', {
 		addCustomMenuItem(_, item) {
@@ -21,11 +25,29 @@
 			};
 		}
 	});
+
+	$effect(() => {
+		if (el && context.clerk) {
+			if (isMounted) {
+				// @ts-expect-error: Internal API
+				context.clerk.__unstable__updateProps({ node: el, props: updatedProps });
+			} else {
+				context.clerk.mountUserButton(el, props);
+				isMounted = true;
+			}
+		}
+	});
+
+	onDestroy(() => {
+		if (isMounted) {
+			context.clerk?.unmountUserButton(el!);
+		}
+	});
 </script>
 
 <ClerkLoaded>
-	{#snippet children(clerk)}
-		<div use:clerkUI={{ clerk, component: 'UserButton', props }}></div>
+	{#snippet children()}
+		<div bind:this={el}></div>
 	{/snippet}
 </ClerkLoaded>
 

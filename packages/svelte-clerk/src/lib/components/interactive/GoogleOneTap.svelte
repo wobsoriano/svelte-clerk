@@ -1,5 +1,5 @@
 <script lang="ts">
-	import clerkUI from '$lib/action.js';
+	import { clerkUI } from '$lib/action.js';
 	import type { GoogleOneTapProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
 
@@ -8,6 +8,12 @@
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
-		<div use:clerkUI={{ clerk, component: 'GoogleOneTap', props: $state.snapshot(props) }}></div>
+		<div
+			use:clerkUI={{
+				open: clerk.openGoogleOneTap,
+				close: clerk.closeGoogleOneTap,
+				props: $state.snapshot(props)
+			}}
+		></div>
 	{/snippet}
 </ClerkLoaded>

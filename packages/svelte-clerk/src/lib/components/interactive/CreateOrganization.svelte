@@ -1,5 +1,5 @@
 <script lang="ts">
-	import clerkUI from '$lib/action.js';
+	import { clerkUI } from '$lib/action.js';
 	import type { CreateOrganizationProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
 
@@ -9,7 +9,11 @@
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
-			use:clerkUI={{ clerk, component: 'CreateOrganization', props: $state.snapshot(props) }}
+			use:clerkUI={{
+				mount: clerk.mountCreateOrganization,
+				unmount: clerk.unmountCreateOrganization,
+				props: $state.snapshot(props)
+			}}
 		></div>
 	{/snippet}
 </ClerkLoaded>
