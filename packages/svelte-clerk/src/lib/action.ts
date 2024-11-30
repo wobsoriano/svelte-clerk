@@ -1,6 +1,5 @@
 import type { Action } from 'svelte/action';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyObject = any;
 
 interface MountProps {
@@ -16,13 +15,11 @@ interface OpenProps {
 	props?: AnyObject;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isMountProps = (props: any): props is MountProps => {
+const isMountProps = (props: AnyObject): props is MountProps => {
 	return 'mount' in props;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isOpenProps = (props: any): props is OpenProps => {
+const isOpenProps = (props: AnyObject): props is OpenProps => {
 	return 'open' in props;
 };
 
