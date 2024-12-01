@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.4.10
+
+### Patch Changes
+
+- 1d693d2: Make sure `$page.data` is defined before accessing initial state properties.
+
 ## 0.4.9
 
 ### Patch Changes
