@@ -30,7 +30,7 @@
 		organization: undefined
 	});
 
-	let auth = $derived(deriveState(isLoaded, resources, $page.data.initialState));
+	let auth = $derived(deriveState(isLoaded, resources, $page?.data?.initialState));
 	let client = $derived(resources.client);
 	let session = $derived(auth.session);
 	let user = $derived(auth.user);
