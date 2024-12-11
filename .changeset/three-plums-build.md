@@ -11,7 +11,7 @@ Usage:
 import { buildClerkProps } from 'svelte-clerk/server';
 
 export const load = async ({ locals }) => {
-  const user = await locals.currentUser();
+	const user = await locals.currentUser();
 
 	return {
 		user

@@ -40,7 +40,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 
 		const authObject = requestState.toAuth();
 		event.locals.auth = authObject;
-		event.locals.currentUser = createCurrentUser(authObject)
+		event.locals.currentUser = createCurrentUser(authObject);
 		if (debug) {
 			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
 		}
