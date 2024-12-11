@@ -7,6 +7,7 @@ import {
 	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
 import { parse } from 'set-cookie-parser';
+import { createCurrentUser } from './currentUser.js';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
@@ -39,6 +40,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 
 		const authObject = requestState.toAuth();
 		event.locals.auth = authObject;
+		event.locals.currentUser = createCurrentUser(authObject)
 		if (debug) {
 			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
 		}
