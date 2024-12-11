@@ -8,8 +8,6 @@ Usage:
 
 ```ts
 // src/+page.server.ts
-import { buildClerkProps } from 'svelte-clerk/server';
-
 export const load = async ({ locals }) => {
 	const user = await locals.currentUser();
 
