@@ -7,7 +7,7 @@ Add `currentUser` helper function.
 Usage:
 
 ```ts
-// src/+page.server.ts
+// src/routes/user/+page.server.ts
 export const load = async ({ locals }) => {
 	const user = await locals.currentUser();
 
