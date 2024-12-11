@@ -1,5 +1,24 @@
 # svelte-clerk
 
+## 0.5.0
+
+### Minor Changes
+
+- 8a0b719: Add `currentUser` helper function.
+
+  Usage:
+
+  ```ts
+  // src/routes/user/+page.server.ts
+  export const load = async ({ locals }) => {
+  	const user = await locals.currentUser();
+
+  	return {
+  		user
+  	};
+  };
+  ```
+
 ## 0.4.15
 
 ### Patch Changes
