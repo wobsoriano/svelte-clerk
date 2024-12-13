@@ -48,14 +48,14 @@ importers:
   packages/svelte-clerk:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.21.0
-        version: 1.21.0(react@18.3.1)
+        specifier: ^1.21.1
+        version: 1.21.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.20.0
-        version: 2.20.0(react@18.3.1)
+        specifier: ^2.20.1
+        version: 2.20.1(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.39.2
-        version: 4.39.2
+        specifier: ^4.39.3
+        version: 4.39.3
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1
@@ -254,24 +254,24 @@ packages:
   '@changesets/write@0.3.2':
     resolution: {integrity: sha512-kDxDrPNpUgsjDbWBvUo27PzKX4gqeKOlhibaOXDJA6kuBisGqNHv/HwGJrAu8U/dSf8ZEFIeHIPtvSlZI1kULw==}
 
-  '@clerk/backend@1.21.0':
-    resolution: {integrity: sha512-PSSwyWcZtaOpP/0ldNniEnsAhNp7Mh+ccCIS+9HZVxGIqC5GBOlZLpQKbh+3kJYWCiOr3+ij4dVIQ48To4Z/Pg==}
+  '@clerk/backend@1.21.1':
+    resolution: {integrity: sha512-xv+GFjSI/W00yhpR9XJCbGr6sxKGgKc/t0Zlj+D8Ky+M8M23GkapUOLHQR9DoCLlxWH39piRDzp/dJp+/W7yWQ==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.20.0':
-    resolution: {integrity: sha512-aN9WgWuIIDsMa2N8D5LhoutzdXeq7dZfmpJzn8XtlMvZQmpGPhpHMI996JOu7hV5YL4aeOGsqZTW9Qxsf0szTg==}
+  '@clerk/shared@2.20.1':
+    resolution: {integrity: sha512-z5gapgKKxyQeJyjLURb01+7mC0E7HTFJAUgjYsuoXoFeCA32lHIPewAlXhWPFgAj5KgSsjE68eefatbeaNbAWw==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
-      react: ^18 || ^19.0.0-0
-      react-dom: ^18 || ^19.0.0-0
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
     peerDependenciesMeta:
       react:
         optional: true
       react-dom:
         optional: true
 
-  '@clerk/types@4.39.2':
-    resolution: {integrity: sha512-zkZoJIBe1VIVyT444INCNxLnpee1vT/sP7vrBpYK8PjDkB/gaybRsPvKhZnZDbmNAvpcsc2MR4iWsgfp1O17Yw==}
+  '@clerk/types@4.39.3':
+    resolution: {integrity: sha512-XliIv2Mq0lS4tnVQlzjc+Aa7EfBD06CE3Y8Oaw95Iv1+RY1qYL9uyz5FJsgCqMIWBCk7BnVhvp4zE4RaXHf8tA==}
     engines: {node: '>=18.17.0'}
 
   '@docsearch/css@3.6.2':
@@ -2571,10 +2571,10 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@clerk/backend@1.21.0(react@18.3.1)':
+  '@clerk/backend@1.21.1(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 2.20.0(react@18.3.1)
-      '@clerk/types': 4.39.2
+      '@clerk/shared': 2.20.1(react@18.3.1)
+      '@clerk/types': 4.39.3
       cookie: 0.7.0
       snakecase-keys: 5.4.4
       tslib: 2.4.1
@@ -2582,9 +2582,9 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.20.0(react@18.3.1)':
+  '@clerk/shared@2.20.1(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.39.2
+      '@clerk/types': 4.39.3
       dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
@@ -2593,7 +2593,7 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@clerk/types@4.39.2':
+  '@clerk/types@4.39.3':
     dependencies:
       csstype: 3.1.1
 
