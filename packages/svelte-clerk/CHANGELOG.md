@@ -1,5 +1,13 @@
 # svelte-clerk
 
+## 0.5.1
+
+### Patch Changes
+
+- cafdcfe: Bump @clerk/backend from 1.21.0 to 1.21.1
+- cafdcfe: Bump @clerk/shared from 2.20.0 to 2.20.1
+- cafdcfe: Bump @clerk/types from 4.39.2 to 4.39.3
+
 ## 0.5.0
 
 ### Minor Changes
