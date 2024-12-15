@@ -40,13 +40,13 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 		}
 
 		const authObject = requestState.toAuth();
-		decorateLocals(event, authObject)
+		decorateLocals(event, authObject);
 
 		if (debug) {
 			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
 		}
 
-    decorateHeaders(event, requestState.headers);
+		decorateHeaders(event, requestState.headers);
 
 		return resolve(event);
 	};
@@ -55,7 +55,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 function decorateHeaders(event: RequestEvent, headers: Headers) {
 	type CookieSerializerOptions = Parameters<typeof event.cookies.set>[2];
 
-  const setCookie = headers.get('set-cookie');
+	const setCookie = headers.get('set-cookie');
 	// We separate cookie setting logic because SvelteKit
 	// does not allow setting cookies with setHeaders.
 	if (setCookie) {
@@ -70,6 +70,6 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 }
 
 function decorateLocals(event: RequestEvent, authObject: AuthObject) {
-  event.locals.auth = authObject;
-  event.locals.currentUser = createCurrentUser(authObject);
+	event.locals.auth = authObject;
+	event.locals.currentUser = createCurrentUser(authObject);
 }

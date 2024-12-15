@@ -113,8 +113,12 @@ The following example demonstrates how to use the `auth` rune to access the curr
 
 	const fetchDataFromExternalResource = async () => {
 		const token = await ctx.session.getToken();
-		// Add logic to fetch your data
-		return data;
+		const response = await fetch('https://api.example.com/data', {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		});
+		return response.json();
 	};
 </script>
 
