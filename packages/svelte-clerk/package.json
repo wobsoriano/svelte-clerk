@@ -76,8 +76,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@clerk/backend": "^1.21.2",
-		"@clerk/shared": "^2.20.2",
+		"@clerk/backend": "^1.21.3",
+		"@clerk/shared": "^2.20.3",
 		"@clerk/types": "^4.39.4",
 		"set-cookie-parser": "^2.7.1"
 	}
