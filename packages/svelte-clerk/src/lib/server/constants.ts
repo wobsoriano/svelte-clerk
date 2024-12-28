@@ -2,6 +2,7 @@ import { constants } from '@clerk/backend/internal';
 import * as envPublic from '$env/static/public';
 import * as envPrivate from '$env/static/private';
 import { isTruthy } from '@clerk/shared/underscore';
+import { apiUrlFromPublishableKey } from '@clerk/shared/apiUrlFromPublishableKey';
 
 function getPublicEnv(name: string, defaultValue = ''): string {
 	// @ts-expect-error: Due to the way env vars work in SK, we need to make sure it exists before trying to access it
@@ -16,7 +17,10 @@ function getPrivateEnv(name: string, defaultValue = ''): string {
 // Public env variables
 export const API_VERSION = getPublicEnv('PUBLIC_CLERK_API_VERSION', 'v1');
 export const PUBLISHABLE_KEY = getPublicEnv('PUBLIC_CLERK_PUBLISHABLE_KEY');
-export const API_URL = getPublicEnv('PUBLIC_CLERK_API_URL', 'https://api.clerk.com');
+export const API_URL = getPublicEnv(
+	'PUBLIC_CLERK_API_URL',
+	apiUrlFromPublishableKey(PUBLISHABLE_KEY)
+);
 export const TELEMETRY_DISABLED = isTruthy(getPublicEnv('PUBLIC_CLERK_TELEMETRY_DISABLED'));
 export const TELEMETRY_DEBUG = isTruthy(getPublicEnv('PUBLIC_CLERK_TELEMETRY_DEBUG'));
 // Private env variables
