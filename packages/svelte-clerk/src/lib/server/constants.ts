@@ -4,7 +4,7 @@ import * as envPrivate from '$env/static/private';
 import { isTruthy } from '@clerk/shared/underscore';
 import { apiUrlFromPublishableKey } from '@clerk/shared/apiUrlFromPublishableKey';
 
-function getPublicEnv(name: string, defaultValue = ''): string {
+function getPublicEnv(name: `PUBLIC_${string}`, defaultValue = ''): string {
 	// @ts-expect-error: Due to the way env vars work in SK, we need to make sure it exists before trying to access it
 	return name in envPublic ? envPublic[name] : defaultValue;
 }
