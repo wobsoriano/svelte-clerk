@@ -4,7 +4,7 @@
 	import type { ClientResource, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
-	import { getStaticPublicEnv } from '$lib/utils/getStaticPublicEnv.js';
+	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 	import { page } from '$app/stores';
 
@@ -42,17 +42,7 @@
 	async function loadClerk() {
 		const opts: LoadClerkJsScriptOptions = {
 			...clerkInitOptions,
-			publishableKey: clerkInitOptions.publishableKey || getStaticPublicEnv('PUBLIC_CLERK_PUBLISHABLE_KEY'),
-			signInUrl: clerkInitOptions.signInUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_IN_URL'),
-			signUpUrl: clerkInitOptions.signUpUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_UP_URL'),
-			signInForceRedirectUrl: clerkInitOptions.signInForceRedirectUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL'),
-			signUpForceRedirectUrl: clerkInitOptions.signUpForceRedirectUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL'),
-			signInFallbackRedirectUrl: clerkInitOptions.signInFallbackRedirectUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL'),
-			signUpFallbackRedirectUrl: clerkInitOptions.signUpFallbackRedirectUrl || getStaticPublicEnv('PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL'),
-			clerkJSUrl: clerkInitOptions.clerkJSUrl || getStaticPublicEnv('PUBLIC_CLERK_JS_URL'),
-			clerkJSVersion: clerkInitOptions.clerkJSVersion || getStaticPublicEnv('PUBLIC_CLERK_JS_VERSION'),
-			proxyUrl: clerkInitOptions.proxyUrl || getStaticPublicEnv('PUBLIC_CLERK_PROXY_URL'),
-			domain: clerkInitOptions.domain || getStaticPublicEnv('PUBLIC_CLERK_DOMAIN'),
+			...mergeWithPublicEnvVariables(clerkInitOptions),
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
