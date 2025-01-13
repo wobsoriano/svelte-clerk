@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.6.0
+
+### Minor Changes
+
+- e8c59ec: Automatically use env vars for `<ClerkProvider>` props and server utils
+
 ## 0.5.4
 
 ### Patch Changes
