@@ -4,6 +4,7 @@
 	import type { ClientResource, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
+	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 	import { page } from '$app/stores';
 
@@ -41,6 +42,7 @@
 	async function loadClerk() {
 		const opts: LoadClerkJsScriptOptions = {
 			...clerkInitOptions,
+			...mergeWithPublicEnvVariables(clerkInitOptions),
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
