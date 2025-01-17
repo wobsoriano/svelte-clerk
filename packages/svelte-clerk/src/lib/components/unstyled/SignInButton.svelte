@@ -9,6 +9,7 @@
 		| 'forceRedirectUrl'
 		| 'signUpForceRedirectUrl'
 		| 'signUpFallbackRedirectUrl'
+		| 'withSignUp'
 	>;
 
 	const {
