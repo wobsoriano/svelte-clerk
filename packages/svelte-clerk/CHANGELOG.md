@@ -1,5 +1,17 @@
 # svelte-clerk
 
+## 0.7.0
+
+### Minor Changes
+
+- 2fdb203: Add sign-in-or-up feature props
+
+### Patch Changes
+
+- 269121d: Bump @clerk/backend from 1.21.6 to 1.23.1
+- 19daf49: Bump @clerk/shared from 2.20.6 to 2.20.8
+- 19daf49: Bump @clerk/types from 4.40.2 to 4.41.0
+
 ## 0.6.0
 
 ### Minor Changes
