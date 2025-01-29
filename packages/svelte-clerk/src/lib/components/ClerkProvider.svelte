@@ -15,12 +15,15 @@
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
 
+	type Props = Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
+		publishableKey?: string;
+		children: Snippet;
+	}
+
 	const {
 		children,
 		...clerkInitOptions
-	}: LoadClerkJsScriptOptions & {
-		children: Snippet;
-	} = $props();
+	}: Props = $props();
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
@@ -40,14 +43,14 @@
 	setClerkJsLoadingErrorPackageName('svelte-clerk');
 
 	async function loadClerk() {
-		const opts: LoadClerkJsScriptOptions = {
+		const opts = {
 			...clerkInitOptions,
 			...mergeWithPublicEnvVariables(clerkInitOptions),
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
 
-		await loadClerkJsScript(opts);
+		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
 
 		if (!window.Clerk) {
 			throw new Error('Clerk script failed to load');

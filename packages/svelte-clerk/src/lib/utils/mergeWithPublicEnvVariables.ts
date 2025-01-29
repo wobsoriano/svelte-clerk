@@ -2,7 +2,9 @@ import type { LoadClerkJsScriptOptions } from '@clerk/shared';
 import { getStaticPublicEnvVariables } from './getStaticPublicEnvVariables.js';
 
 export function mergeWithPublicEnvVariables(
-	clerkInitOptions: LoadClerkJsScriptOptions
+	clerkInitOptions: Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
+		publishableKey?: string;
+	}
 ): Partial<LoadClerkJsScriptOptions> {
 	const {
 		publishableKey,
