@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.7.3
+
+### Patch Changes
+
+- 0a6b40a: Make publishable key prop optional and use env var
+
 ## 0.7.2
 
 ### Patch Changes
