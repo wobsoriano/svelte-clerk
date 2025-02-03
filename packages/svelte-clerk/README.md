@@ -191,6 +191,10 @@ export const load = ({ locals }) => {
 > [!NOTE]
 > If you're planning to add authorization logic within a `+layout.server.ts` file, I recommend reading [this blog post](https://www.captaincodeman.com/securing-your-sveltekit-app) first.
 
+## Acknowledgements
+
+Special thanks to [Mark Jaquith](https://github.com/markjaquith) for creating [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit), which paved the way for this Svelte 5 implementation. Their work provided valuable insights and foundation for building this SDK.
+
 ## License
 
 MIT
