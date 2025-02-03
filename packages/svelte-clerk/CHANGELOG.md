@@ -1,5 +1,13 @@
 # svelte-clerk
 
+## 0.7.5
+
+### Patch Changes
+
+- 25646fb: Bump @clerk/backend from 1.23.9 to 1.23.11
+- 25646fb: Bump @clerk/shared from 2.20.16 to 2.20.18
+- 25646fb: Bump @clerk/types from 4.44.2 to 4.45.0
+
 ## 0.7.4
 
 ### Patch Changes
