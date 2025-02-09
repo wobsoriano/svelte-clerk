@@ -18,12 +18,9 @@
 	type Props = Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
 		publishableKey?: string;
 		children: Snippet;
-	}
+	};
 
-	const {
-		children,
-		...clerkInitOptions
-	}: Props = $props();
+	const { children, ...clerkInitOptions }: Props = $props();
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
