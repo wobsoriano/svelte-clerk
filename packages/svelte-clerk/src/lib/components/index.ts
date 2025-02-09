@@ -16,6 +16,8 @@ export { default as Protect } from './control/Protect.svelte';
 export { default as SignedIn } from './control/SignedIn.svelte';
 export { default as SignedOut } from './control/SignedOut.svelte';
 export { default as AuthenticateWithRedirectCallback } from './control/AuthenticateWithRedirectCallback.svelte';
+export { default as RedirectToSignIn } from './control/RedirectToSignIn.svelte';
+export { default as RedirectToSignUp } from './control/RedirectToSignUp.svelte';
 
 // Unstyled components
 export { default as SignInButton } from './unstyled/SignInButton.svelte';

@@ -7,6 +7,10 @@
 	const ctx = useClerkContext();
 
 	$effect(() => {
-		void ctx.clerk?.handleRedirectCallback(props);
+		if (!ctx.clerk) {
+			return;
+		}
+
+		void ctx.clerk.handleRedirectCallback(props);
 	});
 </script>
