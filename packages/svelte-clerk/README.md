@@ -2,8 +2,10 @@
 
 Community package that integrates [Clerk](https://clerk.com/) with [SvelteKit](https://kit.svelte.dev/).
 
-> [!IMPORTANT]
-> This package requires Svelte 5 and uses [`runes`](https://svelte-5-preview.vercel.app/docs/runes) and [`snippets`](https://svelte-5-preview.vercel.app/docs/snippets) under the hood. If you're using Svelte 4, please refer to [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit).
+### Prerequisites
+
+- Svelte 5
+- An existing Clerk application. [Create your account for free](https://dashboard.clerk.com/sign-up?utm_source=github&utm_medium=clerk_nuxt).
 
 ## Installation
 
