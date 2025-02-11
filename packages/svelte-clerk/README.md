@@ -173,7 +173,7 @@ To protect your routes, you can use the load function to check for the `userId` 
 import { redirect } from '@sveltejs/kit';
 import { clerkClient } from 'svelte-clerk/server';
 
-export const load = ({ locals }) => {
+export const load = async ({ locals }) => {
 	const { userId } = locals.auth;
 
 	if (!userId) {
