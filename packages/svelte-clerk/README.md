@@ -193,7 +193,7 @@ export const load = async ({ locals }) => {
 
 ## Acknowledgements
 
-Special thanks to [Mark Jaquith](https://github.com/markjaquith) for creating [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit), which paved the way for this Svelte 5 implementation. Their work provided valuable insights and foundation for building this SDK.
+Special thanks to [Mark Jaquith](https://github.com/markjaquith) for creating [clerk-sveltekit](https://github.com/markjaquith/clerk-sveltekit), which paved the way for this Svelte 5 implementation. His work provided valuable insights and foundation for building this SDK.
 
 ## License
 
