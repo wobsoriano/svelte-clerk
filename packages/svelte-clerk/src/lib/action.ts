@@ -23,6 +23,10 @@ const isOpenProps = (props: AnyObject): props is OpenProps => {
 	return 'open' in props;
 };
 
+/**
+ * Used to orchestrate mounting of Clerk components in a host Svelte application.
+ * Components are rendered into a specific DOM node using mount/unmount methods provided by the Clerk class.
+ */
 export const clerkUI: Action<HTMLDivElement, MountProps | OpenProps> = (node, props) => {
 	if (isMountProps(props)) {
 		props.mount(node, props.props);
