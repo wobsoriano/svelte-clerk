@@ -3,15 +3,15 @@ import type { Action } from 'svelte/action';
 type AnyObject = any;
 
 interface MountProps {
-	mount: ((node: HTMLDivElement, props: AnyObject) => void) | undefined;
-	unmount: ((node: HTMLDivElement) => void) | undefined;
-	updateProps?: (props: AnyObject) => void;
+	mount: ((node: HTMLDivElement, props: AnyObject) => void);
+	unmount: ((node: HTMLDivElement) => void);
+	updateProps: (props: AnyObject) => void;
 	props?: AnyObject;
 }
 
 interface OpenProps {
-	open: ((props: AnyObject) => void) | undefined;
-	close: (() => void) | undefined;
+	open: ((props: AnyObject) => void);
+	close: (() => void);
 	props?: AnyObject;
 }
 
@@ -25,22 +25,22 @@ const isOpenProps = (props: AnyObject): props is OpenProps => {
 
 export const clerkUI: Action<HTMLDivElement, MountProps | OpenProps> = (node, props) => {
 	if (isMountProps(props)) {
-		props.mount?.(node, props.props);
+		props.mount(node, props.props);
 	} else if (isOpenProps(props)) {
-		props.open?.(props.props);
+		props.open(props.props);
 	}
 
 	return {
 		update: ({ props: updatedProps }) => {
 			if (isMountProps(props)) {
-				props.updateProps?.({ node, props: updatedProps });
+				props.updateProps({ node, props: updatedProps });
 			}
 		},
 		destroy: () => {
 			if (isMountProps(props)) {
-				props.unmount?.(node);
+				props.unmount(node);
 			} else if (isOpenProps(props)) {
-				props.close?.();
+				props.close();
 			}
 		}
 	};
