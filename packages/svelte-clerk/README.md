@@ -88,7 +88,7 @@ To see all available props for each component, visit the [Clerk UI Components](h
 - `<SignUp>`
 - `<UserButton>`
 - `<UserProfile>`
-- `<OrganizatioList>`
+- `<OrganizationList>`
 - `<OrganizationProfile>`
 - `<OrganizationSwitcher>`
 - `<CreateOrganization>`
