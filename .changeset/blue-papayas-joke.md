@@ -1,5 +1,5 @@
 ---
-'svelte-clerk': minor
+'svelte-clerk': patch
 ---
 
 Add [`OrganizationList`](https://clerk.com/docs/components/organization/organization-list) component.
