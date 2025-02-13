@@ -60,7 +60,7 @@ export const load = ({ locals }) => {
 ```
 
 ```svelte
-// src/routes/+layout.svelte
+<!-- src/routes/+layout.svelte -->
 <script lang="ts">
 	import type { Snippet } from '@svelte';
 	import { ClerkProvider } from 'svelte-clerk';

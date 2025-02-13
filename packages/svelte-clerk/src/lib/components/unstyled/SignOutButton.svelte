@@ -1,15 +1,9 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
+	import type { PropsWithChildren } from '$lib/types';
 	import type { SignOutOptions } from '@clerk/types';
-	import type { Snippet } from 'svelte';
 
-	const {
-		sessionId,
-		redirectUrl = '/',
-		children
-	}: SignOutOptions & {
-		children?: Snippet;
-	} = $props();
+	const { sessionId, redirectUrl = '/', children }: PropsWithChildren<SignOutOptions> = $props();
 
 	const ctx = useClerkContext();
 

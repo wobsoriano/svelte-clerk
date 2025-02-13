@@ -13,4 +13,3 @@ Usage:
 
 <OrganizationList />
 ```
-

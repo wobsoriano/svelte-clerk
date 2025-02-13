@@ -1,25 +1,9 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { SignInProps } from '@clerk/types';
-	import type { Snippet } from 'svelte';
+	import type { PropsWithChildren } from '$lib/types';
+	import type { SignInButtonProps } from '@clerk/types';
 
-	type SignInButtonProps = Pick<
-		SignInProps,
-		| 'fallbackRedirectUrl'
-		| 'forceRedirectUrl'
-		| 'signUpForceRedirectUrl'
-		| 'signUpFallbackRedirectUrl'
-		| 'withSignUp'
-	>;
-
-	const {
-		mode,
-		children,
-		...props
-	}: SignInButtonProps & {
-		children?: Snippet;
-		mode?: 'redirect' | 'modal' | undefined;
-	} = $props();
+	const { mode, children, ...props }: PropsWithChildren<SignInButtonProps> = $props();
 
 	const ctx = useClerkContext();
 
