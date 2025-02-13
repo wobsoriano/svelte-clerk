@@ -60,6 +60,7 @@ export const load = ({ locals }) => {
 ```
 
 ```svelte
+<!-- src/routes/+layout.svelte -->
 <script lang="ts">
 	import type { Snippet } from '@svelte';
 	import { ClerkProvider } from 'svelte-clerk';
@@ -67,7 +68,6 @@ export const load = ({ locals }) => {
 	const { children }: { children: Snippet } = $props();
 </script>
 
-// src/routes/+layout.svelte
 <!-- ... -->
 
 <ClerkProvider>
