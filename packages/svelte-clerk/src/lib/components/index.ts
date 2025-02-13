@@ -3,6 +3,7 @@ export { default as SignIn } from './interactive/SignIn.svelte';
 export { default as SignUp } from './interactive/SignUp.svelte';
 export { default as UserProfile } from './interactive/UserProfile.svelte';
 export { default as CreateOrganization } from './interactive/CreateOrganization.svelte';
+export { default as OrganizationList } from './interactive/OrganizationList.svelte';
 export { default as OrganizationSwitcher } from './interactive/OrganizationSwitcher.svelte';
 export { default as OrganizationProfile } from './interactive/OrganizationProfile.svelte';
 export { default as GoogleOneTap } from './interactive/GoogleOneTap.svelte';

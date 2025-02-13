@@ -3,15 +3,15 @@ import type { Action } from 'svelte/action';
 type AnyObject = any;
 
 interface MountProps {
-	mount: ((node: HTMLDivElement, props: AnyObject) => void);
-	unmount: ((node: HTMLDivElement) => void);
+	mount: (node: HTMLDivElement, props: AnyObject) => void;
+	unmount: (node: HTMLDivElement) => void;
 	updateProps: (props: AnyObject) => void;
 	props?: AnyObject;
 }
 
 interface OpenProps {
-	open: ((props: AnyObject) => void);
-	close: (() => void);
+	open: (props: AnyObject) => void;
+	close: () => void;
 	props?: AnyObject;
 }
 
