@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.8.3
+
+### Patch Changes
+
+- f1d3cec: Replace deprecated `page` store from `$app/stores` with `page` state from `$app/state`.
+- 32c7921: Allow overriding of `routerPush` and `routerReplace` options in the `<ClerkProvider>` component.
+
 ## 0.8.2
 
 ### Patch Changes
