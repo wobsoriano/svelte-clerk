@@ -6,7 +6,7 @@
 	import { deriveState } from '@clerk/shared/deriveState';
 	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	import {
 		loadClerkJsScript,
@@ -31,7 +31,7 @@
 		organization: undefined
 	});
 
-	let auth = $derived(deriveState(isLoaded, resources, $page?.data?.initialState));
+	let auth = $derived(deriveState(isLoaded, resources, page?.data?.initialState));
 	let client = $derived(resources.client);
 	let session = $derived(auth.session);
 	let user = $derived(auth.user);
@@ -41,10 +41,10 @@
 
 	async function loadClerk() {
 		const opts = {
+			routerPush: (to: string) => goto(to),
+			routerReplace: (to: string) => goto(to, { replaceState: true }),
 			...clerkInitOptions,
 			...mergeWithPublicEnvVariables(clerkInitOptions),
-			routerPush: (to: string) => goto(to),
-			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
 
 		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
