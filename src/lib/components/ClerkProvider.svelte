@@ -31,11 +31,11 @@
 		organization: undefined
 	});
 
-	let auth = $derived(deriveState(isLoaded, resources, page?.data?.initialState));
-	let client = $derived(resources.client);
-	let session = $derived(auth.session);
-	let user = $derived(auth.user);
-	let organization = $derived(auth.organization);
+	const auth = $derived(deriveState(isLoaded, resources, page?.data?.initialState));
+	const client = $derived(resources.client);
+	const session = $derived(auth.session);
+	const user = $derived(auth.user);
+	const organization = $derived(auth.organization);
 
 	setClerkJsLoadingErrorPackageName('svelte-clerk');
 
@@ -44,7 +44,7 @@
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true }),
 			...clerkInitOptions,
-			...mergeWithPublicEnvVariables(clerkInitOptions),
+			...mergeWithPublicEnvVariables(clerkInitOptions)
 		};
 
 		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
