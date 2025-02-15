@@ -41,10 +41,10 @@
 
 	async function loadClerk() {
 		const opts = {
+			routerPush: (to: string) => goto(to),
+			routerReplace: (to: string) => goto(to, { replaceState: true }),
 			...clerkInitOptions,
 			...mergeWithPublicEnvVariables(clerkInitOptions),
-			routerPush: (to: string) => goto(to),
-			routerReplace: (to: string) => goto(to, { replaceState: true })
 		};
 
 		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
