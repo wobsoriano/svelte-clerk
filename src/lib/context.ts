@@ -12,7 +12,7 @@ import { getContext, setContext } from 'svelte';
 
 const _contextKey = '$$_clerk';
 
-interface ClerkContext {
+export interface ClerkContext {
 	clerk: HeadlessBrowserClerk | BrowserClerk | null;
 	isLoaded: boolean;
 	auth: {
