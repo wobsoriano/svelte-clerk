@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.8.5
+
+### Patch Changes
+
+- 36d96c7: Export the `ClerkContext` interface and `setClerkContext` function. This allows usage without the `ClerkProvider` component in advanced use cases and in tests.
+
 ## 0.8.4
 
 ### Patch Changes
