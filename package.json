@@ -1,6 +1,6 @@
 {
 	"name": "svelte-clerk",
-	"version": "0.8.4",
+	"version": "0.8.5",
 	"license": "MIT",
 	"packageManager": "pnpm@9.13.2",
 	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
