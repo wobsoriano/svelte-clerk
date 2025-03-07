@@ -1,12 +1,11 @@
-import * as envPublic from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import { isTruthy } from '@clerk/shared/underscore';
 
 export function getEnvVariable(
 	name: `PUBLIC_${string}`,
 	defaultValue?: string
 ): string | undefined {
-	// @ts-expect-error: Due to the way env vars work in SK, we need to make sure it exists before trying to access it
-	return name in envPublic ? envPublic[name] : defaultValue;
+	return name in env ? env[name] : defaultValue;
 }
 
 export function getStaticPublicEnvVariables() {
