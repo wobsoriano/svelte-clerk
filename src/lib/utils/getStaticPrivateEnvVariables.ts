@@ -1,8 +1,7 @@
-import * as envPrivate from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 function getEnvVariable(name: string, defaultValue?: string): string | undefined {
-	// @ts-expect-error: Due to the way env vars work in SK, we need to make sure it exists before trying to access it
-	return name in envPrivate ? envPrivate[name] : defaultValue;
+	return name in env ? env[name] : defaultValue;
 }
 
 export function getStaticPrivateEnvVariables() {
