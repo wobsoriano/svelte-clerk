@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.25.0
-        version: 1.25.0(react@18.3.1)
+        specifier: ^1.25.1
+        version: 1.25.1(react@18.3.1)
       '@clerk/shared':
         specifier: ^3.0.0
         version: 3.0.0(react@18.3.1)
@@ -163,8 +163,8 @@ packages:
   '@changesets/write@0.3.2':
     resolution: {integrity: sha512-kDxDrPNpUgsjDbWBvUo27PzKX4gqeKOlhibaOXDJA6kuBisGqNHv/HwGJrAu8U/dSf8ZEFIeHIPtvSlZI1kULw==}
 
-  '@clerk/backend@1.25.0':
-    resolution: {integrity: sha512-ga+SZsuqvHN+9zu+m838QSOd9NVMf/jhSzCgyC1zt4PUnbL/I5Q3dUxz+nR5ELo4Icc+Z9Ad0DdAE9r3OtbIbw==}
+  '@clerk/backend@1.25.1':
+    resolution: {integrity: sha512-VTOg+LGqxY+ydPHxi+hrC+Uc9EIbieiku/+ZxJMhFSzYNhtkwC/UBws4JnFNoz2aLa28Pazf0WIBxwrqZgg69Q==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/shared@3.0.0':
@@ -2075,7 +2075,7 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@clerk/backend@1.25.0(react@18.3.1)':
+  '@clerk/backend@1.25.1(react@18.3.1)':
     dependencies:
       '@clerk/shared': 3.0.0(react@18.3.1)
       '@clerk/types': 4.47.0
