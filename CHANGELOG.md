@@ -1,5 +1,15 @@
 # svelte-clerk
 
+## 0.9.0
+
+### Minor Changes
+
+- 6d990ca: Use dynamic env vars for proper runtime support
+
+### Patch Changes
+
+- f7d73d2: Bump @clerk/backend from 1.25.0 to 1.25.1 in the clerk-dependencies group
+
 ## 0.8.7
 
 ### Patch Changes
