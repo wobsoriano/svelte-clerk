@@ -4,6 +4,16 @@
 	"license": "MIT",
 	"packageManager": "pnpm@9.13.2",
 	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
+	"keywords": [
+		"clerk",
+		"typescript",
+		"svelte",
+		"auth",
+		"authentication",
+		"passwordless",
+		"session",
+		"jwt"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/wobsoriano/svelte-clerk.git"
