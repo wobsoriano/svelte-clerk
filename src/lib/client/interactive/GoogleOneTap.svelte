@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { clerkUI } from '$lib/action.js';
 	import type { GoogleOneTapProps } from '@clerk/types';
-	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
+	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
 	const props: GoogleOneTapProps = $props();
 </script>

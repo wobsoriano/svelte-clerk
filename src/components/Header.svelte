@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UserButton } from '$lib/components';
+	import { UserButton } from '$lib/client';
 	import { useClerkContext } from '$lib';
 	import Icon from './Icon.svelte';
 	const ctx = useClerkContext();

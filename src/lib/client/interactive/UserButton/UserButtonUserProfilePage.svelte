@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, onMount, mount, type Snippet, unmount, type Component } from 'svelte';
 	import type { UserButtonContext } from './types';
-	import Portal from '$lib/components/Portal.svelte';
+	import Portal from '$lib/client/Portal.svelte';
 
 	const { addCustomPage } = getContext<UserButtonContext>('$$_userButton');
 

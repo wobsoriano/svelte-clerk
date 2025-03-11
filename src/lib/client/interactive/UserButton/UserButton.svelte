@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserButtonProps } from '@clerk/types';
-	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
+	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 	import { onDestroy, setContext, type Snippet } from 'svelte';
 	import type { UserButtonContext } from './types';
 	import { useClerkContext } from '$lib/context';
