@@ -2,7 +2,7 @@
 'svelte-clerk': minor
 ---
 
-Add support for static SvelteKit adapter.
+Add support for SvelteKit static adapter.
 
 Usage:
 
