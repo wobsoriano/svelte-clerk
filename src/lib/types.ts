@@ -14,8 +14,7 @@ export interface BrowserClerk extends HeadlessBrowserClerk {
 
 export type PropsWithChildren<T> = T & { children?: Snippet };
 
-export type ClerkProviderProps = Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
-	publishableKey?: string;
+export type ClerkProviderProps = LoadClerkJsScriptOptions & {
 	children: Snippet;
 };
 
