@@ -9,14 +9,22 @@ Usage:
 ```svelte
 <script lang="ts">
 	import type { Snippet } from '@svelte';
-	import { ClerkProvider } from 'svelte-clerk/client'; // import from /client
-
-	const { children }: { children: Snippet } = $props();
+	import {
+        ClerkProvider,
+        SignedIn,
+        SignedOut,
+        UserButton,
+        SignInButton
+    } from 'svelte-clerk/client'; // import from /client
 </script>
 
-<!-- ... -->
-
 <ClerkProvider>
-	{@render children()}
+	<SignedIn>
+        <UserButton />
+        <p>Welcome back!</p>
+    </SignedIn>
+    <SignedOut>
+        <SignInButton mode="modal" />
+    </SignedOut>
 </ClerkProvider>
 ```
