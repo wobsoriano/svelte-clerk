@@ -1,3 +1,5 @@
+export { type ClerkContext, setClerkContext, useClerkContext } from '$lib/context.js';
+
 // Interactive components
 export { default as SignIn } from './interactive/SignIn.svelte';
 export { default as SignUp } from './interactive/SignUp.svelte';
