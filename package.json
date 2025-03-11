@@ -36,6 +36,10 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
+		"./client": {
+			"types": "./dist/client/index.d.ts",
+			"svelte": "./dist/client/index.js"
+		},
 		"./components": {
 			"types": "./dist/components/index.d.ts",
 			"svelte": "./dist/components/index.js"
