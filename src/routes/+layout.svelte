@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import type { Snippet } from 'svelte';
-	import { ClerkProvider } from '$lib/components';
+	import { ClerkProvider } from '$lib/index.js';
 	import Header from '../components/Header.svelte';
 
 	let { children }: { children: Snippet } = $props();

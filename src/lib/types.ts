@@ -1,3 +1,4 @@
+import type { LoadClerkJsScriptOptions } from '@clerk/shared';
 import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/types';
 import type { Snippet } from 'svelte';
 
@@ -12,6 +13,10 @@ export interface BrowserClerk extends HeadlessBrowserClerk {
 }
 
 export type PropsWithChildren<T> = T & { children?: Snippet };
+
+export type ClerkProviderProps = LoadClerkJsScriptOptions & {
+	children: Snippet;
+};
 
 declare global {
 	interface Window {

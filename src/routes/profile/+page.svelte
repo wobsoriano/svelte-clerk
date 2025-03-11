@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UserProfile } from '$lib/components';
+	import { UserProfile } from '$lib/client';
 </script>
 
 <UserProfile />

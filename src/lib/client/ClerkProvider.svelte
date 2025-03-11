@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
 	import { untrack } from 'svelte';
-	import type { ClientResource, Resources } from '@clerk/types';
+	import type { ClientResource, InitialState, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
-	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
-	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
-	import { page } from '$app/state';
+	import type { ClerkProviderProps, HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 
 	import {
 		loadClerkJsScript,
@@ -15,23 +12,24 @@
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
 
-	type Props = Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
-		publishableKey?: string;
-		children: Snippet;
-	};
-
-	const { children, ...clerkInitOptions }: Props = $props();
+	const {
+		children,
+		initialState,
+		...clerkInitOptions
+	}: ClerkProviderProps & {
+		initialState?: InitialState;
+	} = $props();
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
 	let resources = $state<Resources>({
-		client: {} as ClientResource,
+		client: undefined as unknown as ClientResource,
 		session: undefined,
 		user: undefined,
 		organization: undefined
 	});
 
-	const auth = $derived(deriveState(isLoaded, resources, page?.data?.initialState));
+	const auth = $derived(deriveState(isLoaded, resources, initialState));
 	const client = $derived(resources.client);
 	const session = $derived(auth.session);
 	const user = $derived(auth.user);
@@ -43,8 +41,7 @@
 		const opts = {
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true }),
-			...clerkInitOptions,
-			...mergeWithPublicEnvVariables(clerkInitOptions)
+			...clerkInitOptions
 		};
 
 		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);

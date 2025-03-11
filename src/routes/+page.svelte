@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SignedIn, SignedOut } from '$lib/components';
+	import { SignedIn, SignedOut } from '$lib/client';
 </script>
 
 <h1 class="text-2xl font-bold mb-5">Welcome</h1>

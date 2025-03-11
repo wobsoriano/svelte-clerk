@@ -64,6 +64,7 @@ export const load = ({ locals }) => {
 <script lang="ts">
 	import type { Snippet } from '@svelte';
 	import { ClerkProvider } from 'svelte-clerk';
+	// import { ClerkProvider } from 'svelte/clerk' -> static apps
 
 	const { children }: { children: Snippet } = $props();
 </script>
@@ -93,6 +94,7 @@ To see all available props for each component, visit the [Clerk UI Components](h
 - `<OrganizationSwitcher>`
 - `<CreateOrganization>`
 - `<GoogleOneTap>`
+- `<Waitlist />`
 
 ## Runes
 

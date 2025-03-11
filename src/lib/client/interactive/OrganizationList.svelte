@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { clerkUI } from '$lib/action.js';
-	import type { SignInProps } from '@clerk/types';
-	import ClerkLoaded from '$lib/components/control/ClerkLoaded.svelte';
+	import type { OrganizationListProps } from '@clerk/types';
+	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
-	const props: SignInProps = $props();
+	const props: OrganizationListProps = $props();
 </script>
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
 			use:clerkUI={{
-				mount: clerk.mountSignIn,
-				unmount: clerk.unmountSignIn,
+				mount: clerk.mountOrganizationList,
+				unmount: clerk.unmountOrganizationList,
 				updateProps: (clerk as any).__unstable_updateProps,
 				props: $state.snapshot(props)
 			}}
