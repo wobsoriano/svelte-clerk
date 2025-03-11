@@ -1,5 +1,5 @@
 import type { LoadClerkJsScriptOptions } from '@clerk/shared';
-import { getStaticPublicEnvVariables } from './getStaticPublicEnvVariables.js';
+import { getDynamicPublicEnvVariables } from './getDynamicPublicEnvVariables.js';
 
 /**
  * Merges the public environment variables with the Clerk initialization options.
@@ -28,24 +28,24 @@ export function mergeWithPublicEnvVariables(
 		telemetry
 	} = clerkInitOptions;
 	return {
-		publishableKey: publishableKey || getStaticPublicEnvVariables().publishableKey,
-		signInUrl: signInUrl || getStaticPublicEnvVariables().signInUrl,
-		signUpUrl: signUpUrl || getStaticPublicEnvVariables().signUpUrl,
+		publishableKey: publishableKey || getDynamicPublicEnvVariables().publishableKey,
+		signInUrl: signInUrl || getDynamicPublicEnvVariables().signInUrl,
+		signUpUrl: signUpUrl || getDynamicPublicEnvVariables().signUpUrl,
 		signInForceRedirectUrl:
-			signInForceRedirectUrl || getStaticPublicEnvVariables().signInForceRedirectUrl,
+			signInForceRedirectUrl || getDynamicPublicEnvVariables().signInForceRedirectUrl,
 		signUpForceRedirectUrl:
-			signUpForceRedirectUrl || getStaticPublicEnvVariables().signUpForceRedirectUrl,
+			signUpForceRedirectUrl || getDynamicPublicEnvVariables().signUpForceRedirectUrl,
 		signInFallbackRedirectUrl:
-			signInFallbackRedirectUrl || getStaticPublicEnvVariables().signInFallbackRedirectUrl,
+			signInFallbackRedirectUrl || getDynamicPublicEnvVariables().signInFallbackRedirectUrl,
 		signUpFallbackRedirectUrl:
-			signUpFallbackRedirectUrl || getStaticPublicEnvVariables().signUpFallbackRedirectUrl,
-		clerkJSUrl: clerkJSUrl || getStaticPublicEnvVariables().clerkJSUrl,
-		clerkJSVersion: clerkJSVersion || getStaticPublicEnvVariables().clerkJSVersion,
-		proxyUrl: proxyUrl || getStaticPublicEnvVariables().proxyUrl,
-		domain: domain || getStaticPublicEnvVariables().domain,
+			signUpFallbackRedirectUrl || getDynamicPublicEnvVariables().signUpFallbackRedirectUrl,
+		clerkJSUrl: clerkJSUrl || getDynamicPublicEnvVariables().clerkJSUrl,
+		clerkJSVersion: clerkJSVersion || getDynamicPublicEnvVariables().clerkJSVersion,
+		proxyUrl: proxyUrl || getDynamicPublicEnvVariables().proxyUrl,
+		domain: domain || getDynamicPublicEnvVariables().domain,
 		telemetry: telemetry || {
-			debug: getStaticPublicEnvVariables().telemetryDebug,
-			disabled: getStaticPublicEnvVariables().telemetryDisabled
+			debug: getDynamicPublicEnvVariables().telemetryDebug,
+			disabled: getDynamicPublicEnvVariables().telemetryDisabled
 		}
 	};
 }

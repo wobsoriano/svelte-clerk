@@ -8,7 +8,7 @@ export function getEnvVariable(
 	return name in env ? env[name] : defaultValue;
 }
 
-export function getStaticPublicEnvVariables() {
+export function getDynamicPublicEnvVariables() {
 	return {
 		publishableKey: getEnvVariable('PUBLIC_CLERK_PUBLISHABLE_KEY'),
 		domain: getEnvVariable('PUBLIC_CLERK_DOMAIN'),

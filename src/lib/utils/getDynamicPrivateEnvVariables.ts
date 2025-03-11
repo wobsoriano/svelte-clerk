@@ -4,7 +4,7 @@ function getEnvVariable(name: string, defaultValue?: string): string | undefined
 	return name in env ? env[name] : defaultValue;
 }
 
-export function getStaticPrivateEnvVariables() {
+export function getDynamicPrivateEnvVariables() {
 	return {
 		apiVersion: getEnvVariable('CLERK_API_VERSION', 'v1'),
 		secretKey: getEnvVariable('CLERK_SECRET_KEY'),
