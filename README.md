@@ -64,7 +64,7 @@ export const load = ({ locals }) => {
 <script lang="ts">
 	import type { Snippet } from '@svelte';
 	import { ClerkProvider } from 'svelte-clerk';
-	// import { ClerkProvider } from 'svelte/clerk' -> static apps
+	// import { ClerkProvider } from 'svelte-clerk/client' -> static apps
 
 	const { children }: { children: Snippet } = $props();
 </script>
