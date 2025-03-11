@@ -94,6 +94,7 @@ To see all available props for each component, visit the [Clerk UI Components](h
 - `<OrganizationSwitcher>`
 - `<CreateOrganization>`
 - `<GoogleOneTap>`
+- `<Waitlist />`
 
 ## Runes
 
