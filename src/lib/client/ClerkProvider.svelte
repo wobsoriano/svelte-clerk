@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { ClientResource, Resources } from '@clerk/types';
+	import type { ClientResource, InitialState, Resources } from '@clerk/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
 	import type { ClerkProviderProps, HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
-	import { page } from '$app/state';
 
 	import {
 		loadClerkJsScript,
@@ -13,7 +12,13 @@
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
 
-	const { children, ...clerkInitOptions }: ClerkProviderProps = $props();
+	const {
+		children,
+		initialState,
+		...clerkInitOptions
+	}: ClerkProviderProps & {
+		initialState?: InitialState;
+	} = $props();
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
@@ -24,7 +29,7 @@
 		organization: undefined
 	});
 
-	const auth = $derived(deriveState(isLoaded, resources, page?.data?.initialState));
+	const auth = $derived(deriveState(isLoaded, resources, initialState));
 	const client = $derived(resources.client);
 	const session = $derived(auth.session);
 	const user = $derived(auth.user);
