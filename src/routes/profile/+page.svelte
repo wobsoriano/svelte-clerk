@@ -27,8 +27,8 @@
 					props: { children: CustomPageComponent as unknown as Snippet }
 				});
 			},
-			unmount: () => {
-				if (page) {
+			unmount: (el) => {
+				if (el && page) {
 					unmount(page);
 				}
 			}
