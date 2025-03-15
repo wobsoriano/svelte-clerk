@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.10.2
+
+### Patch Changes
+
+- 3a0c70c: Fix incorrect property name when updating Clerk UI props
+
 ## 0.10.1
 
 ### Patch Changes
