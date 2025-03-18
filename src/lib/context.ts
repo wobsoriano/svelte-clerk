@@ -1,5 +1,5 @@
 import type {
-	ActiveSessionResource,
+	SignedInSessionResource,
 	ActJWTClaim,
 	ClientResource,
 	OrganizationCustomPermissionKey,
@@ -25,7 +25,7 @@ export interface ClerkContext {
 		orgPermissions: OrganizationCustomPermissionKey[] | null | undefined;
 	};
 	client: ClientResource | null | undefined;
-	session: ActiveSessionResource | null | undefined;
+	session: SignedInSessionResource | null | undefined;
 	user: UserResource | null | undefined;
 	organization: OrganizationResource | null | undefined;
 }
