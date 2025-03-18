@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.10.3
+
+### Patch Changes
+
+- 07a890c: Use `SignedInSessionResource` type for the session resource.
+
 ## 0.10.2
 
 ### Patch Changes
