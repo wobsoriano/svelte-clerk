@@ -47,7 +47,7 @@ importers:
         version: 2.4.10
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.2)
+        version: 10.4.20(postcss@8.5.3)
       eslint:
         specifier: ^9.13.0
         version: 9.13.0(jiti@1.21.6)
@@ -62,7 +62,7 @@ importers:
         version: 15.11.0
       postcss:
         specifier: ^8.4.47
-        version: 8.5.2
+        version: 8.5.3
       prettier:
         specifier: ^3.4.2
         version: 3.5.1
@@ -332,12 +332,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@eslint-community/eslint-utils@4.4.0':
-    resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
   '@eslint-community/eslint-utils@4.5.1':
     resolution: {integrity: sha512-soEIOALTfTK6EjmKMMoLugwaP0rzkad90iIWd1hMO9ARkSAyjfMfkRRhLvD5qH7vvM0Cg72pieUfR6yh6XxC4w==}
@@ -768,10 +762,6 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
-  chokidar@4.0.1:
-    resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
-    engines: {node: '>= 14.16.0'}
-
   chokidar@4.0.3:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
@@ -914,10 +904,6 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
-
-  eslint-scope@8.1.0:
-    resolution: {integrity: sha512-14dSvlhaVhKKsa9Fx1l8A17s7ah7Ef7wCakJ10LYk6+GYmP9yDti2oq2SEwcyndt6knfcZyhyxwY3i9yL78EQw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   eslint-scope@8.3.0:
     resolution: {integrity: sha512-pUNxi75F8MJ/GdeKtVLSbYg4ZI34J6C0C7sbL4YOp2exGwen7ZsuBqKzUhXd0qMQ362yET3z+uPwKeg/0C2XCQ==}
@@ -1503,10 +1489,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.2:
-    resolution: {integrity: sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -1598,11 +1580,6 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
-
-  semver@7.6.2:
-    resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
-    engines: {node: '>=10'}
-    hasBin: true
 
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
@@ -1939,7 +1916,7 @@ snapshots:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.6.2
+      semver: 7.7.1
 
   '@changesets/assemble-release-plan@6.0.4':
     dependencies:
@@ -1948,7 +1925,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.1
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.6.2
+      semver: 7.7.1
 
   '@changesets/changelog-git@0.2.0':
     dependencies:
@@ -1981,7 +1958,7 @@ snapshots:
       package-manager-detector: 0.2.0
       picocolors: 1.1.1
       resolve-from: 5.0.0
-      semver: 7.6.2
+      semver: 7.7.1
       spawndamnit: 2.0.0
       term-size: 2.2.1
 
@@ -2004,7 +1981,7 @@ snapshots:
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
       picocolors: 1.1.1
-      semver: 7.6.2
+      semver: 7.7.1
 
   '@changesets/get-release-plan@4.0.4':
     dependencies:
@@ -2167,11 +2144,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.1':
     optional: true
-
-  '@eslint-community/eslint-utils@4.4.0(eslint@9.13.0(jiti@1.21.6))':
-    dependencies:
-      eslint: 9.13.0(jiti@1.21.6)
-      eslint-visitor-keys: 3.4.3
 
   '@eslint-community/eslint-utils@4.5.1(eslint@9.13.0(jiti@1.21.6))':
     dependencies:
@@ -2374,7 +2346,7 @@ snapshots:
       chokidar: 4.0.3
       kleur: 4.1.5
       sade: 1.8.1
-      semver: 7.6.2
+      semver: 7.7.1
       svelte: 5.23.2
       svelte2tsx: 0.7.35(svelte@5.23.2)(typescript@5.6.3)
     transitivePeerDependencies:
@@ -2477,7 +2449,7 @@ snapshots:
       fast-glob: 3.3.2
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.6.2
+      semver: 7.7.1
       ts-api-utils: 1.3.0(typescript@5.6.3)
     optionalDependencies:
       typescript: 5.6.3
@@ -2486,7 +2458,7 @@ snapshots:
 
   '@typescript-eslint/utils@8.11.0(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.13.0(jiti@1.21.6))
+      '@eslint-community/eslint-utils': 4.5.1(eslint@9.13.0(jiti@1.21.6))
       '@typescript-eslint/scope-manager': 8.11.0
       '@typescript-eslint/types': 8.11.0
       '@typescript-eslint/typescript-estree': 8.11.0(typescript@5.6.3)
@@ -2544,14 +2516,14 @@ snapshots:
 
   array-union@2.1.0: {}
 
-  autoprefixer@10.4.20(postcss@8.5.2):
+  autoprefixer@10.4.20(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.0
       caniuse-lite: 1.0.30001666
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.2
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   axobject-query@4.1.0: {}
@@ -2608,10 +2580,6 @@ snapshots:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
-
-  chokidar@4.0.1:
-    dependencies:
-      readdirp: 4.0.1
 
   chokidar@4.0.3:
     dependencies:
@@ -2742,20 +2710,15 @@ snapshots:
       eslint-compat-utils: 0.6.4(eslint@9.13.0(jiti@1.21.6))
       esutils: 2.0.3
       known-css-properties: 0.35.0
-      postcss: 8.5.2
-      postcss-load-config: 3.1.4(postcss@8.5.2)
-      postcss-safe-parser: 7.0.1(postcss@8.5.2)
+      postcss: 8.5.3
+      postcss-load-config: 3.1.4(postcss@8.5.3)
+      postcss-safe-parser: 7.0.1(postcss@8.5.3)
       semver: 7.7.1
       svelte-eslint-parser: 1.1.0(svelte@5.23.2)
     optionalDependencies:
       svelte: 5.23.2
     transitivePeerDependencies:
       - ts-node
-
-  eslint-scope@8.1.0:
-    dependencies:
-      esrecurse: 4.3.0
-      estraverse: 5.3.0
 
   eslint-scope@8.3.0:
     dependencies:
@@ -2768,7 +2731,7 @@ snapshots:
 
   eslint@9.13.0(jiti@1.21.6):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.13.0(jiti@1.21.6))
+      '@eslint-community/eslint-utils': 4.5.1(eslint@9.13.0(jiti@1.21.6))
       '@eslint-community/regexpp': 4.11.0
       '@eslint/config-array': 0.18.0
       '@eslint/core': 0.7.0
@@ -2785,7 +2748,7 @@ snapshots:
       cross-spawn: 7.0.3
       debug: 4.4.0
       escape-string-regexp: 4.0.0
-      eslint-scope: 8.1.0
+      eslint-scope: 8.3.0
       eslint-visitor-keys: 4.1.0
       espree: 10.2.0
       esquery: 1.6.0
@@ -3248,44 +3211,44 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  postcss-import@15.1.0(postcss@8.5.2):
+  postcss-import@15.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.5.2):
+  postcss-js@4.0.1(postcss@8.5.3):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.5.2
+      postcss: 8.5.3
 
-  postcss-load-config@3.1.4(postcss@8.5.2):
+  postcss-load-config@3.1.4(postcss@8.5.3):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
-  postcss-load-config@4.0.2(postcss@8.5.2):
+  postcss-load-config@4.0.2(postcss@8.5.3):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.4.5
     optionalDependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
-  postcss-nested@6.2.0(postcss@8.5.2):
+  postcss-nested@6.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.1
 
-  postcss-safe-parser@7.0.1(postcss@8.5.2):
+  postcss-safe-parser@7.0.1(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
-  postcss-scss@4.0.9(postcss@8.5.2):
+  postcss-scss@4.0.9(postcss@8.5.3):
     dependencies:
-      postcss: 8.5.2
+      postcss: 8.5.3
 
   postcss-selector-parser@6.1.1:
     dependencies:
@@ -3298,12 +3261,6 @@ snapshots:
       util-deprecate: 1.0.2
 
   postcss-value-parser@4.2.0: {}
-
-  postcss@8.5.2:
-    dependencies:
-      nanoid: 3.3.8
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.5.3:
     dependencies:
@@ -3404,8 +3361,6 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  semver@7.6.2: {}
-
   semver@7.7.1: {}
 
   set-cookie-parser@2.7.1: {}
@@ -3499,7 +3454,7 @@ snapshots:
   svelte-check@4.1.5(svelte@5.23.2)(typescript@5.6.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
-      chokidar: 4.0.1
+      chokidar: 4.0.3
       fdir: 6.3.0
       picocolors: 1.1.1
       sade: 1.8.1
@@ -3513,8 +3468,8 @@ snapshots:
       eslint-scope: 8.3.0
       eslint-visitor-keys: 4.1.0
       espree: 10.2.0
-      postcss: 8.5.2
-      postcss-scss: 4.0.9(postcss@8.5.2)
+      postcss: 8.5.3
+      postcss-scss: 4.0.9(postcss@8.5.3)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
       svelte: 5.23.2
@@ -3565,11 +3520,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.2
-      postcss-import: 15.1.0(postcss@8.5.2)
-      postcss-js: 4.0.1(postcss@8.5.2)
-      postcss-load-config: 4.0.2(postcss@8.5.2)
-      postcss-nested: 6.2.0(postcss@8.5.2)
+      postcss: 8.5.3
+      postcss-import: 15.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 4.0.2(postcss@8.5.3)
+      postcss-nested: 6.2.0(postcss@8.5.3)
       postcss-selector-parser: 6.1.1
       resolve: 1.22.8
       sucrase: 3.35.0
