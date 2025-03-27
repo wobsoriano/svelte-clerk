@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.25.6
-        version: 1.25.6(react@18.3.1)
+        specifier: ^1.25.7
+        version: 1.25.7(react@18.3.1)
       '@clerk/shared':
-        specifier: ^3.2.1
-        version: 3.2.1(react@18.3.1)
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.49.2
-        version: 4.49.2
+        specifier: ^4.50.0
+        version: 4.50.0
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1
@@ -163,12 +163,12 @@ packages:
   '@changesets/write@0.3.2':
     resolution: {integrity: sha512-kDxDrPNpUgsjDbWBvUo27PzKX4gqeKOlhibaOXDJA6kuBisGqNHv/HwGJrAu8U/dSf8ZEFIeHIPtvSlZI1kULw==}
 
-  '@clerk/backend@1.25.6':
-    resolution: {integrity: sha512-JxHs9OXhx37RWK5rO3IITh+KP3EYQed9rLZiJKvQxr7A7plYAJhK8BzjNXAE5IXZbCZjkOGFyynmuXnjnyUqaw==}
+  '@clerk/backend@1.25.7':
+    resolution: {integrity: sha512-r2zkzFG+E6LuUzlC9+7tz59TktSJ1W3wzPTcHTkBSdHDYL881lbdC2Q4J9PfGqYSqz3V4cpyfGllMLcQXJ+g1g==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@3.2.1':
-    resolution: {integrity: sha512-KLLb/AohQH/p+XcRAwtijQRmnZA/dfCu+jkY6nDDS5J3PQDl/cUxuRVCCTeitOrCzwP7vLxowKz6cSqUq5Irlg==}
+  '@clerk/shared@3.2.2':
+    resolution: {integrity: sha512-zR60rRCVLt4maa4WFCAUrokIuC9DfwC5nFbFFmKmxNX6IeRMI/Y5lhrUJ4g+fhre79dhkB574mzOWev5/sMp0g==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
@@ -179,8 +179,8 @@ packages:
       react-dom:
         optional: true
 
-  '@clerk/types@4.49.2':
-    resolution: {integrity: sha512-b4LR3Xsegqe0S6ZkaSJ1skO5a36EIiYRCFBzrJIbJX58vh25FFbOs4VHcK71uCLGJ1Jm1bViPi8QPGYoqYAUuw==}
+  '@clerk/types@4.50.0':
+    resolution: {integrity: sha512-hiuD7/HBPyDvyegcbqi++iUbX7gL9k24qiLrEpr9uFP61ZupFrzjHYTaRK7y0kAJWtfrEJ3+29u1odCqwYazQQ==}
     engines: {node: '>=18.17.0'}
 
   '@esbuild/aix-ppc64@0.25.1':
@@ -2044,10 +2044,10 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@clerk/backend@1.25.6(react@18.3.1)':
+  '@clerk/backend@1.25.7(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 3.2.1(react@18.3.1)
-      '@clerk/types': 4.49.2
+      '@clerk/shared': 3.2.2(react@18.3.1)
+      '@clerk/types': 4.50.0
       cookie: 1.0.2
       snakecase-keys: 8.0.1
       tslib: 2.8.1
@@ -2055,9 +2055,9 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@3.2.1(react@18.3.1)':
+  '@clerk/shared@3.2.2(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.49.2
+      '@clerk/types': 4.50.0
       dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
@@ -2066,7 +2066,7 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@clerk/types@4.49.2':
+  '@clerk/types@4.50.0':
     dependencies:
       csstype: 3.1.3
 
