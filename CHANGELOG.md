@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.10.8
+
+### Patch Changes
+
+- 0b6bab1: Deprecate `event.locals.auth` in favor of `event.locals.auth()` as function
+
 ## 0.10.7
 
 ### Patch Changes
