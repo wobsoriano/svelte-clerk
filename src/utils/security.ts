@@ -5,7 +5,7 @@ export class Security {
 	private readonly auth?: AuthObject;
 
 	constructor(private readonly event: RequestEvent) {
-		this.auth = event.locals.auth;
+		this.auth = event.locals.auth();
 	}
 
 	isPublic() {

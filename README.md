@@ -22,7 +22,7 @@ CLERK_SECRET_KEY=sk_test_xxxxxxx
 
 ## Configure server handler
 
-This handler will authenticate a token passed from the frontend and attaches the [`Auth`](https://clerk.com/docs/references/nextjs/auth-object#auth-object) object to `event.locals.auth`.
+This handler will authenticate a token passed from the frontend and attaches the [`Auth`](https://clerk.com/docs/references/nextjs/auth-object#auth-object) object to `event.locals.auth()`.
 
 ```ts
 // hooks.server.ts
@@ -54,7 +54,7 @@ import { buildClerkProps } from 'svelte-clerk/server';
 // To enable Clerk SSR support, add initial state props to the load function
 export const load = ({ locals }) => {
 	return {
-		...buildClerkProps(locals.auth)
+		...buildClerkProps(locals.auth())
 	};
 };
 ```
@@ -180,7 +180,7 @@ import { redirect } from '@sveltejs/kit';
 import { clerkClient } from 'svelte-clerk/server';
 
 export const load = async ({ locals }) => {
-	const { userId } = locals.auth;
+	const { userId } = locals.auth();
 
 	if (!userId) {
 		return redirect(307, '/sign-in');

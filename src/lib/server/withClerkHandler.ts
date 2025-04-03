@@ -9,6 +9,7 @@ import {
 import { parse } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
 import type { AuthObject } from '@clerk/backend';
+import { deprecated } from '@clerk/shared/deprecated';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
@@ -70,6 +71,16 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 }
 
 function decorateLocals(event: RequestEvent, authObject: AuthObject) {
-	event.locals.auth = authObject;
-	event.locals.currentUser = createCurrentUser(authObject);
+	const authHandler = () => authObject;
+
+	const auth = new Proxy(Object.assign(authHandler, authObject), {
+		get(target, prop: string, receiver) {
+			deprecated('event.locals.auth', 'Use `event.locals.auth()` as a function instead.');
+
+			return Reflect.get(target, prop, receiver);
+		}
+	});
+
+	event.locals.auth = auth;
+	event.locals.currentUser = createCurrentUser(auth());
 }
