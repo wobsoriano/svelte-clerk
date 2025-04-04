@@ -6,7 +6,7 @@ This package is unofficial and not affiliated with Clerk.
 
 ## Documentation
 
-For detailed setup and usage instructions, please visit the [documentation](https://svelte-clerk.vercel.app).
+For detailed setup and usage instructions, please visit the [documentation](https://svelte-clerk.netlify.app).
 
 ## Acknowledgements
 
