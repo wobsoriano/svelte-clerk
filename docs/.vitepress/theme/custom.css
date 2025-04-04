@@ -1,0 +1,60 @@
+:root {
+  /* Brand Colors */
+  --vp-c-brand-1: #FF3E00;
+  --vp-c-brand-2: #ff6b33;
+  --vp-c-brand-3: #ff8c66;
+  --vp-c-brand-soft: rgba(255, 62, 0, 0.1);
+  
+  /* Text Colors */
+  --vp-c-text-1: #4A4A4A;
+  --vp-c-text-2: #666666;
+  
+  /* Background Colors */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f9f9f9;
+  --vp-c-bg-mute: #f1f1f1;
+  --vp-c-bg-alt: #f9f9f9;
+  
+  /* Border Colors */
+  --vp-c-divider: #e5e5e5;
+  --vp-c-divider-light: #f1f1f1;
+  --vp-c-border: #e5e5e5;
+  
+  /* Custom Block Colors */
+  --vp-custom-block-tip-border: var(--vp-c-brand-1);
+  --vp-custom-block-tip-text: var(--vp-c-brand-1);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  
+  --vp-custom-block-warning-border: #ffb700;
+  --vp-custom-block-warning-text: #ffb700;
+  --vp-custom-block-warning-bg: rgba(255, 183, 0, 0.1);
+  
+  --vp-custom-block-danger-border: #ff4d4f;
+  --vp-custom-block-danger-text: #ff4d4f;
+  --vp-custom-block-danger-bg: rgba(255, 77, 79, 0.1);
+  
+  /* Button Colors */
+  --vp-button-brand-border: var(--vp-c-brand-1);
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+  --vp-button-brand-hover-border: var(--vp-c-brand-2);
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: var(--vp-c-brand-3);
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-c-brand-3);
+}
+
+.dark {
+  --vp-c-bg: hsl(220, 10%, 12%);
+  --vp-c-bg-soft: hsl(220, 10%, 15%);
+  --vp-c-bg-mute: hsl(220, 10%, 18%);
+  --vp-c-bg-alt: hsl(220, 10%, 15%);
+  
+  --vp-c-text-1: #ffffff;
+  --vp-c-text-2: rgba(255, 255, 255, 0.8);
+  
+  --vp-c-divider: hsl(220, 10%, 20%);
+  --vp-c-divider-light: hsl(220, 10%, 18%);
+  --vp-c-border: hsl(220, 10%, 20%);
+} 
