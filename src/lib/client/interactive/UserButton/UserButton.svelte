@@ -46,9 +46,7 @@
 </script>
 
 <ClerkLoaded>
-	{#snippet children()}
-		<div bind:this={el}></div>
-	{/snippet}
+	<div bind:this={el}></div>
 </ClerkLoaded>
 
 {@render customMenuItems?.()}
