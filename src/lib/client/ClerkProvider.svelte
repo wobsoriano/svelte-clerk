@@ -11,6 +11,7 @@
 		type LoadClerkJsScriptOptions
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
+	import { removeNetlifyCacheBustParam } from '$lib/utils/netlifyCacheBust';
 
 	const {
 		children,
@@ -61,7 +62,10 @@
 	}
 
 	$effect(() => {
-		untrack(() => loadClerk());
+		untrack(() => {
+			removeNetlifyCacheBustParam();
+			loadClerk();
+		});
 	});
 
 	$effect(() => {

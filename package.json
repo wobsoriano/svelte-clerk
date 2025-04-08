@@ -59,10 +59,10 @@
 		"@sveltejs/kit": "^2.20.0"
 	},
 	"peerDependenciesMeta": {
-    "@sveltejs/kit": {
-      "optional": true
-    }
-  },
+		"@sveltejs/kit": {
+			"optional": true
+		}
+	},
 	"typesVersions": {
 		">4.0": {
 			"index.d.ts": [
