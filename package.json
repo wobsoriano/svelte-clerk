@@ -55,7 +55,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0",
+		"svelte": "^5.11.0",
 		"@sveltejs/kit": "^2.20.0"
 	},
 	"peerDependenciesMeta": {
