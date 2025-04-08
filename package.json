@@ -68,8 +68,8 @@
 			"index.d.ts": [
 				"./dist/index.d.ts"
 			],
-			"components": [
-				"./dist/components/index.d.ts"
+			"client": [
+				"./dist/client/index.d.ts"
 			],
 			"server": [
 				"./dist/server/index.d.ts"
