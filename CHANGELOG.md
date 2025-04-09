@@ -1,5 +1,18 @@
 # svelte-clerk
 
+## 0.11.0
+
+### Minor Changes
+
+- 9b704c6: Set `svelte` peer dependency to `^5.11.0` and optional `@sveltejs/kit` peer dependency to `^2.20.0`
+
+### Patch Changes
+
+- cba4d77: Bump @clerk/backend from 1.27.0 to 1.27.1
+- cba4d77: Bump @clerk/shared from 3.4.0 to 3.4.1
+- cba4d77: Bump @clerk/types from 4.51.0 to 4.51.1
+- 6b79910: Fix Netlify and Clerk dev instance redirect loop
+
 ## 0.10.10
 
 ### Patch Changes
