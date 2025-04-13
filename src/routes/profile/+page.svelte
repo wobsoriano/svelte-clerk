@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UserProfile } from '$lib/client';
+	import { SignedIn, UserProfile } from '$lib/client';
 	import { mount, onMount, unmount, type Snippet } from 'svelte';
 	import type { CustomPage } from '@clerk/types';
 	import Portal from '$lib/client/Portal.svelte';
@@ -36,4 +36,6 @@
 	});
 </script>
 
-<UserProfile {customPages} />
+<SignedIn>
+    <UserProfile {customPages} />
+</SignedIn>

@@ -1,32 +1,36 @@
-import { clerk, setupClerkTestingToken, clerkSetup } from '@clerk/testing/playwright';
 import { test } from '@playwright/test';
-import { test as setup } from '@playwright/test'
+import { ClerkPage } from './common';
 
-setup('global setup', async ({}) => {
-  await clerkSetup()
-})
+const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME as string;
+const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD as string;
 
 test('protect page from unauthenticated users', async ({ page }) => {
-  await setupClerkTestingToken({ page });
-
+	const clerk = new ClerkPage(page);
 	await page.goto('/dashboard');
-	await page.waitForSelector("h1:has-text('Sign in')");
+	await page.waitForURL('/sign-in');
+	await clerk.waitForSignInMounted();
 });
 
 test('sign in and navigate to a protected page', async ({ page }) => {
-  await setupClerkTestingToken({ page });
-
+	const clerk = new ClerkPage(page);
+	
 	await page.goto('/sign-in');
-  await clerk.signIn({
-    page,
-    signInParams: {
-      strategy: 'password',
-      identifier: process.env.E2E_CLERK_USER_USERNAME!,
-      password: process.env.E2E_CLERK_USER_PASSWORD!,
-    },
-  });
+	await clerk.waitForSignInMounted();
+	await clerk.signInWithEmailAndPassword(USER_EMAIL, USER_PASSWORD);
+	await clerk.toBeSignedIn();
+	await page.waitForURL('/profile');
+	await clerk.waitForUserProfileMounted();
+});
 
-  await page.goto('/dashboard');
+test('sign out', async ({ page }) => {
+	const clerk = new ClerkPage(page);
+	
+	await page.goto('/sign-in');
+	await clerk.waitForSignInMounted();
+	await clerk.signInWithEmailAndPassword(USER_EMAIL, USER_PASSWORD);
+	await clerk.toBeSignedIn();
+	await page.waitForURL('/profile');
+	await clerk.waitForUserProfileMounted();
 
-  await page.waitForSelector("h1:has-text('Dashboard')");
+	await clerk.signOut();
 });
