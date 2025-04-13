@@ -83,7 +83,6 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
-		"@clerk/testing": "^1.4.38",
 		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/adapter-static": "^3.0.8",
