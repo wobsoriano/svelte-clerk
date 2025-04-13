@@ -2,7 +2,7 @@
 	"name": "svelte-clerk",
 	"version": "0.11.1",
 	"license": "MIT",
-	"packageManager": "pnpm@9.13.2",
+	"packageManager": "pnpm@10.8.0",
 	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
 	"keywords": [
 		"clerk",
