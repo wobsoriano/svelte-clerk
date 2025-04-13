@@ -4,6 +4,9 @@ outline: deep
 
 # Svelte Quickstart
 
+> [!IMPORTANT]
+> This guide is for static apps only. For SSR apps, please refer to the [SvelteKit Quickstart](/kit/quickstart) guide.
+
 ### 1. Installation
 
 The Svelte Clerk SDK gives you access to prebuilt components, runes, and helpers to make user authentication easier.
@@ -28,11 +31,12 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from 'svelte-clerk/client';
+	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/private';
 
 	const { children }: { children: Snippet } = $props();
 </script>
 
-<ClerkProvider>
+<ClerkProvider publishableKey={PUBLIC_CLERK_PUBLISHABLE_KEY}>
 	{@render children()}
 </ClerkProvider>
 ```
