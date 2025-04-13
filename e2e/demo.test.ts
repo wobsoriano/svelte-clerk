@@ -1,8 +1,12 @@
 import { test } from '@playwright/test';
 import { ClerkPage } from './common';
 
-const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME as string;
-const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD as string;
+const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME || 'test+clerk_test@example.com' as string;
+const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD || '@Thecanary01' as string;
+
+test.afterEach(async ({ page }) => {
+  await page.context().clearCookies();
+});
 
 test('protect page from unauthenticated users', async ({ page }) => {
 	const clerk = new ClerkPage(page);
