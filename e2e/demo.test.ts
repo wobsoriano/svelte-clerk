@@ -13,7 +13,7 @@ test('protect page from unauthenticated users', async ({ page }) => {
 
 test('sign in and navigate to a protected page', async ({ page }) => {
 	const clerk = new ClerkPage(page);
-	
+
 	await page.goto('/sign-in');
 	await clerk.waitForSignInMounted();
 	await clerk.signInWithEmailAndPassword(USER_EMAIL, USER_PASSWORD);
@@ -24,7 +24,7 @@ test('sign in and navigate to a protected page', async ({ page }) => {
 
 test('sign out', async ({ page }) => {
 	const clerk = new ClerkPage(page);
-	
+
 	await page.goto('/sign-in');
 	await clerk.waitForSignInMounted();
 	await clerk.signInWithEmailAndPassword(USER_EMAIL, USER_PASSWORD);

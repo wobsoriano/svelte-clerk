@@ -37,5 +37,5 @@
 </script>
 
 <SignedIn>
-    <UserProfile {customPages} />
+	<UserProfile {customPages} />
 </SignedIn>
