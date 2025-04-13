@@ -32,7 +32,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
-		"docs:preview": "vitepress preview docs"
+		"docs:preview": "vitepress preview docs",
+		"test:e2e": "playwright test",
+		"test": "npm run test:e2e"
 	},
 	"exports": {
 		".": {
@@ -55,8 +57,8 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.11.0",
-		"@sveltejs/kit": "^2.20.0"
+		"@sveltejs/kit": "^2.20.0",
+		"svelte": "^5.11.0"
 	},
 	"peerDependenciesMeta": {
 		"@sveltejs/kit": {
@@ -81,6 +83,8 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
+		"@clerk/testing": "^1.4.38",
+		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.20.4",
