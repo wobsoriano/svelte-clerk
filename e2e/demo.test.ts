@@ -8,6 +8,8 @@ if (!USER_EMAIL || !USER_PASSWORD) {
 	throw new Error('E2E_CLERK_USER_USERNAME and E2E_CLERK_USER_PASSWORD must be set');
 }
 
+test.describe.configure({ mode: 'parallel' });
+
 test('Clerk client loads on first visit', async ({ page }) => {
 	const clerk = createClerkTestUtils(page);
 	await page.goto('/');
