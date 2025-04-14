@@ -45,6 +45,8 @@ export function createClerkTestUtils(page: Page) {
 			const identifierField = signIn.getIdentifierField();
 			await expect(identifierField).toBeVisible();
 			await identifierField.fill(opts.email);
+			await signIn.getContinueButton().click();
+
 			await signIn.setInstantPassword(opts.password);
 			await signIn.getContinueButton().click();
 		}
