@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { createClerkTestUtils } from './utils';
 
-const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME;
-const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD;
+const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME || 'test+clerk_test@example.com';
+const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD || '@Thecanary1001';
 
 if (!USER_EMAIL || !USER_PASSWORD) {
 	throw new Error('E2E_CLERK_USER_USERNAME and E2E_CLERK_USER_PASSWORD must be set');
@@ -26,11 +26,12 @@ test('sign in with hash routing', async ({ page }) => {
 
 	await clerk.signIn.setIdentifier(USER_EMAIL);
 	await clerk.signIn.continue();
-	await page.waitForURL(`http://localhost:4173/sign-in#/factor-one`);
+	await page.waitForURL('http://localhost:4173/sign-in#/factor-one');
 
 	await clerk.signIn.setPassword(USER_PASSWORD);
 	await clerk.signIn.continue();
 
+	await clerk.waitForClerkJsLoaded();
 	await clerk.expect.toBeSignedIn();
 });
 
