@@ -7,6 +7,6 @@ export default defineConfig({
 	},
 	testDir: 'e2e',
 	use: {
-		headless: false
+		headless: true
 	}
 });

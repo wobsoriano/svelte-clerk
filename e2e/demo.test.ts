@@ -8,7 +8,7 @@ if (!USER_EMAIL || !USER_PASSWORD) {
 	throw new Error('E2E_CLERK_USER_USERNAME and E2E_CLERK_USER_PASSWORD must be set');
 }
 
-test.skip('Clerk client loads on first visit', async ({ page }) => {
+test('Clerk client loads on first visit', async ({ page }) => {
 	const clerk = createClerkTestUtils(page);
 	await page.goto('/');
 
@@ -56,4 +56,27 @@ test('renders user button', async ({ page }) => {
 	await clerk.userProfile.waitForUserProfileModal();
 
 	await expect(page.getByText(/profile details/i)).toBeVisible();
+});
+
+test('renders user profile', async ({ page }) => {
+	const clerk = createClerkTestUtils(page);
+
+	await page.goto('/sign-in');
+	await clerk.signIn.waitForMounted();
+	await clerk.signIn.signInWithEmailAndInstantPassword({
+		email: USER_EMAIL,
+		password: USER_PASSWORD
+	});
+	await page.waitForURL('/profile');
+	await clerk.expect.toBeSignedIn();
+
+	await clerk.userProfile.waitForMounted();
+});
+
+test('redirects to sign-in when unauthenticated', async ({ page, context }) => {
+	const clerk = createClerkTestUtils(page);
+
+	await page.goto('/user');
+	await page.waitForURL('http://localhost:4173/sign-in');
+	await clerk.signIn.waitForMounted();
 });
