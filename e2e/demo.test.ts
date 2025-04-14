@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { createClerkTestUtils } from './common';
+import { createClerkTestUtils } from './utils';
 
 const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME as string;
 const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD as string;
 
 test.afterEach(async ({ page }) => {
-  await page.context().clearCookies();
+	await page.context().clearCookies();
 });
 
 test('protect page from unauthenticated users', async ({ page }) => {
@@ -24,8 +24,8 @@ test('sign in and navigate to a protected page', async ({ page }) => {
 		email: USER_EMAIL,
 		password: USER_PASSWORD
 	});
-	await clerk.toBeSignedIn();
 	await page.waitForURL('/profile');
+	await clerk.expect.toBeSignedIn();
 	await clerk.userProfile.waitForMounted();
 	await clerk.userButton.triggerSignOut();
 });

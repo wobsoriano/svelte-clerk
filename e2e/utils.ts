@@ -1,22 +1,22 @@
-import { test as base, expect, type Page, type Locator } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 export function createClerkTestUtils(page: Page) {
-  const common = {
-    getIdentifierField() {
+	const common = {
+		getIdentifierField() {
 			return page.locator('input[name=identifier]');
 		},
 		getPasswordField() {
 			return page.locator('input[name=password]');
 		}
-  }
+	};
 
-  const userButton = {
+	const userButton = {
 		async waitForMounted() {
 			return page.waitForSelector('.cl-userButtonTrigger', { state: 'attached' });
 		},
-    toggleTrigger() {
-      return page.locator('.cl-userButtonTrigger').click();
-    },
+		toggleTrigger() {
+			return page.locator('.cl-userButtonTrigger').click();
+		},
 		async waitForPopover() {
 			return page.waitForSelector('.cl-userButtonPopoverCard', { state: 'visible' });
 		},
@@ -26,7 +26,7 @@ export function createClerkTestUtils(page: Page) {
 			await userButton.waitForPopover();
 			return page.getByRole('menuitem', { name: /Sign out$/i }).click();
 		}
-  }
+	};
 
 	const signIn = {
 		...common,
@@ -54,18 +54,22 @@ export function createClerkTestUtils(page: Page) {
 		getUserButton() {
 			return page.locator('.cl-userButtonTrigger');
 		},
-		async waitForMounted() {
+		waitForMounted() {
 			return page.waitForSelector('.cl-userProfile-root', { state: 'attached' });
-		},
+		}
 	};
 
-	return {
-		signIn,
-    userButton,
-		userProfile,
+	const expect = {
 		toBeSignedIn() {
 			// @ts-ignore
 			return page.waitForFunction(() => !!window.Clerk?.user);
 		}
+	};
+
+	return {
+		signIn,
+		userButton,
+		userProfile,
+		expect
 	};
 }
