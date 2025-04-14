@@ -11,6 +11,9 @@ export function createClerkTestUtils(page: Page) {
 		getContinueButton() {
 			return page.getByRole('button', { name: 'Continue', exact: true });
 		},
+		continue() {
+			return common.getContinueButton().click();
+		}
 	};
 
 	const userButton = {
@@ -45,10 +48,9 @@ export function createClerkTestUtils(page: Page) {
 			const identifierField = signIn.getIdentifierField();
 			await expect(identifierField).toBeVisible();
 			await identifierField.fill(opts.email);
-			await signIn.getContinueButton().click();
 
 			await signIn.setInstantPassword(opts.password);
-			await signIn.getContinueButton().click();
+			await signIn.continue();
 		}
 	};
 

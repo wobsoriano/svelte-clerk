@@ -4,6 +4,10 @@ import { createClerkTestUtils } from './utils';
 const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME as string;
 const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD as string;
 
+if (!USER_EMAIL || !USER_PASSWORD) {
+	throw new Error('E2E_CLERK_USER_USERNAME and E2E_CLERK_USER_PASSWORD must be set');
+}
+
 test.afterEach(async ({ page }) => {
 	await page.context().clearCookies();
 });
