@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { createClerkTestUtils } from './utils';
 
-const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME || 'test+clerk_test@example.com';
-const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD || '@Thecanary1001';
+const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME;
+const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD;
 
 if (!USER_EMAIL || !USER_PASSWORD) {
 	throw new Error('E2E_CLERK_USER_USERNAME and E2E_CLERK_USER_PASSWORD must be set');
