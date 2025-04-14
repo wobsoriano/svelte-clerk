@@ -7,7 +7,10 @@ export function createClerkTestUtils(page: Page) {
 		},
 		getPasswordField() {
 			return page.locator('input[name=password]');
-		}
+		},
+		getContinueButton() {
+			return page.getByRole('button', { name: 'Continue', exact: true });
+		},
 	};
 
 	const userButton = {
@@ -30,9 +33,6 @@ export function createClerkTestUtils(page: Page) {
 
 	const signIn = {
 		...common,
-		getContinueButton() {
-			return page.getByRole('button', { name: 'Continue', exact: true });
-		},
 		async waitForMounted() {
 			return page.waitForSelector('.cl-signIn-root', { state: 'attached' });
 		},
