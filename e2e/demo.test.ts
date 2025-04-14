@@ -27,5 +27,7 @@ test('sign in and navigate to a protected page', async ({ page }) => {
 	await clerk.expect.toBeSignedIn();
 	await page.waitForURL('/profile');
 	await clerk.userProfile.waitForMounted();
+
+	await clerk.userButton.waitForMounted();
 	await clerk.userButton.triggerSignOut();
 });

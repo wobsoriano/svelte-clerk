@@ -56,3 +56,11 @@ jobs:
 
       - name: Run tests
         run: pnpm test
+
+      - name: Upload html report as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: html-report #artifact name
+          path: playwright-report/ # relative path for the html report
+          retention-days: 5 # save the report for 5 days

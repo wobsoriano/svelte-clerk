@@ -55,9 +55,6 @@ export function createClerkTestUtils(page: Page) {
 	};
 
 	const userProfile = {
-		getUserButton() {
-			return page.locator('.cl-userButtonTrigger');
-		},
 		waitForMounted() {
 			return page.waitForSelector('.cl-userProfile-root', { state: 'attached' });
 		}
