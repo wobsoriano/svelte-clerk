@@ -78,7 +78,7 @@ test('renders user profile', async ({ page }) => {
 test('redirects to sign-in when unauthenticated', async ({ page, context }) => {
 	const clerk = createClerkTestUtils(page);
 
-	await page.goto('/user');
+	await page.goto('/profile');
 	await page.waitForURL('http://localhost:4173/sign-in');
 	await clerk.signIn.waitForMounted();
 });
