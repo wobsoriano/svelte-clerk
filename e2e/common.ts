@@ -1,4 +1,4 @@
-import type { Page, Locator } from '@playwright/test';
+import { type Page, type Locator, expect } from '@playwright/test';
 
 export class ClerkPage {
 	readonly page: Page;
@@ -16,6 +16,20 @@ export class ClerkPage {
 		this.userButton = page.locator('.cl-userButtonTrigger');
 		this.signOutButton = page.getByRole('menuitem', { name: /Sign out$/i });
 	}
+
+	getIdentifierInput() {
+		return this.page.locator('input[name=identifier]');
+	}
+
+	getPasswordInput() {
+		return this.page.locator('input[name=password]');
+	}
+
+	async setInstantPassword (val: string) {
+    const passField = this.getPasswordInput();
+    await expect(passField).toBeVisible();
+    await passField.fill(val, { force: true });
+  }
 
 	async waitForSignInMounted() {
 		await this.page.waitForSelector('.cl-signIn-root', { state: 'attached' });
@@ -38,10 +52,17 @@ export class ClerkPage {
 		await this.page.waitForFunction(() => !!window.Clerk?.user);
 	}
 
+	async continue() {
+	 return this.page.getByRole('button', { name: 'Continue', exact: true }).click()
+	}
+
 	async signInWithEmailAndPassword(email: string, password: string) {
-		await this.identifierField.fill(email);
-		await this.passwordField.fill(password, { force: true });
-		await this.continueButton.click();
+    const identifierInput = this.getIdentifierInput();
+    await expect(identifierInput).toBeVisible();
+
+    await identifierInput.fill(email);
+    await this.setInstantPassword(password);
+    await this.continue();
 	}
 
 	async toggleUserButton() {
