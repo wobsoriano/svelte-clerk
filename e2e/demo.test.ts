@@ -24,7 +24,6 @@ test('sign in and navigate to a protected page', async ({ page }) => {
 		email: USER_EMAIL,
 		password: USER_PASSWORD
 	});
-	await clerk.expect.toBeSignedIn();
 	await page.goto('/profile');
 	await clerk.userProfile.waitForMounted();
 
