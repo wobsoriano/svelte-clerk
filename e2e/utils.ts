@@ -59,7 +59,7 @@ export function createClerkTestUtils(page: Page) {
 		}
 	};
 
-	const expect = {
+	const expectClerk = {
 		toBeSignedIn() {
 			// @ts-ignore
 			return page.waitForFunction(() => !!window.Clerk?.user);
@@ -70,6 +70,6 @@ export function createClerkTestUtils(page: Page) {
 		signIn,
 		userButton,
 		userProfile,
-		expect
+		expect: expectClerk
 	};
 }
