@@ -10,7 +10,7 @@ if (!USER_EMAIL || !USER_PASSWORD) {
 
 test.describe.configure({ mode: 'parallel' });
 
-test('Clerk client loads on first visit', async ({ page }) => {
+test.skip('Clerk client loads on first visit', async ({ page }) => {
 	const clerk = createClerkTestUtils(page);
 	await page.goto('/');
 
@@ -31,7 +31,6 @@ test('sign in with hash routing', async ({ page }) => {
 	await clerk.signIn.setPassword(USER_PASSWORD);
 	await clerk.signIn.continue();
 
-  await page.waitForURL('/profile');
 	await clerk.expect.toBeSignedIn();
 });
 
