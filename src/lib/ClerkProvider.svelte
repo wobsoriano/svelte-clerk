@@ -11,7 +11,11 @@
 	}: Omit<ClerkProviderProps, 'publishableKey'> & {
 		publishableKey?: string;
 	} = $props();
-	const mergedProps = $derived<LoadClerkJsScriptOptions>(mergeWithPublicEnvVariables(props) as any);
+
+	const mergedProps = $derived({
+		...props,
+		...mergeWithPublicEnvVariables(props)
+	} as LoadClerkJsScriptOptions);
 </script>
 
 <ClerkProvider initialState={page?.data?.initialState} {...mergedProps}>
