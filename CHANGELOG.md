@@ -1,5 +1,14 @@
 # svelte-clerk
 
+## 0.11.3
+
+### Patch Changes
+
+- 30f344a: Bump @clerk/backend from 1.29.0 to 1.29.1
+- 30f344a: Bump @clerk/shared from 3.7.1 to 3.7.2
+- 30f344a: Bump @clerk/types from 4.54.1 to 4.54.2
+- 6da4e7e: Fix missing provider props
+
 ## 0.11.2
 
 ### Patch Changes
