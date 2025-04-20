@@ -5,7 +5,7 @@ outline: deep
 # Svelte Quickstart
 
 > [!IMPORTANT]
-> This guide is for static apps only. For SSR apps, please refer to the [SvelteKit Quickstart](/kit/quickstart) guide.
+> This guide is for static apps only. For SSR apps, please refer to the [SSR Quickstart](/ssr/quickstart) guide.
 
 ### 1. Installation
 
