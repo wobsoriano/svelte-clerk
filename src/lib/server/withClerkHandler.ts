@@ -11,8 +11,7 @@ import { parse } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
 import type { AuthObject } from '@clerk/backend';
 import { deprecated } from '@clerk/shared/deprecated';
-import { isDevelopmentFromPublishableKey } from '@clerk/shared';
-import { NETLIFY_CACHE_BUST_PARAM } from '$lib/utils/netlifyCacheBust.js';
+import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler'
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
@@ -36,7 +35,11 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			if (debug) {
 				console.log('[svelte-clerk] Handshake redirect triggered');
 			}
-			handleNetlifyCacheInDevInstance(locationHeader, requestState);
+			handleNetlifyCacheInDevInstance({
+				locationHeader,
+				publishableKey: requestState.publishableKey,
+				requestStateHeaders: requestState.headers
+			});
 			return new Response(null, { status: 307, headers: requestState.headers });
 		}
 
@@ -87,22 +90,4 @@ function decorateLocals(event: RequestEvent, authObject: AuthObject) {
 
 	event.locals.auth = auth;
 	event.locals.currentUser = createCurrentUser(auth());
-}
-
-/**
- * Prevents infinite redirects in Netlify's functions
- * by adding a cache bust parameter to the original redirect URL. This ensures Netlify
- * doesn't serve a cached response during the authentication flow.
- */
-function handleNetlifyCacheInDevInstance(locationHeader: string, requestState: RequestState) {
-	// Only run on Netlify environment and Clerk development instance
-	if (process.env.NETLIFY && isDevelopmentFromPublishableKey(requestState.publishableKey)) {
-		const hasHandshakeQueryParam = locationHeader.includes('__clerk_handshake');
-		// If location header is the original URL before the handshake redirects, add cache bust param
-		if (!hasHandshakeQueryParam) {
-			const url = new URL(locationHeader);
-			url.searchParams.append(NETLIFY_CACHE_BUST_PARAM, Date.now().toString());
-			requestState.headers.set('Location', url.toString());
-		}
-	}
 }
