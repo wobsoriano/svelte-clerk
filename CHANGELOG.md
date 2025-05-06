@@ -1,5 +1,14 @@
 # svelte-clerk
 
+## 0.11.6
+
+### Patch Changes
+
+- d3e16a6: Bump @clerk/backend from 1.30.0 to 1.31.2
+- d3e16a6: Bump @clerk/shared from 3.7.4 to 3.7.8
+- d3e16a6: Bump @clerk/types from 4.55.1 to 4.56.3
+- 1d0a8dd: Use built-in Netlify cache handling function
+
 ## 0.11.5
 
 ### Patch Changes
