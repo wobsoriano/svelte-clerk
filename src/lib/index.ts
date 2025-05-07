@@ -10,6 +10,7 @@ export {
 	GoogleOneTap,
 	UserButton,
 	Waitlist,
+	PricingTable,
 	ClerkLoaded,
 	ClerkLoading,
 	Protect,
