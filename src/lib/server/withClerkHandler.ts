@@ -11,7 +11,7 @@ import { parse } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
 import type { AuthObject } from '@clerk/backend';
 import { deprecated } from '@clerk/shared/deprecated';
-import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler'
+import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
