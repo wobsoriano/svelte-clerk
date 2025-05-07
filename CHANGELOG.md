@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.12.0
+
+### Minor Changes
+
+- 6362a1c: Introduce `<PricingTable />` component. Read more about Clerk Billing [here](https://clerk.com/billing).
+
 ## 0.11.6
 
 ### Patch Changes
