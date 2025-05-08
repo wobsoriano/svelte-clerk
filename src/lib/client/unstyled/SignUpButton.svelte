@@ -1,17 +1,32 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { PropsWithChildren } from '$lib/types';
+	import type { ButtonProps, PropsWithChildren } from '$lib/types';
 	import type { SignUpButtonProps } from '@clerk/types';
 
-	const { mode, children, ...props }: PropsWithChildren<SignUpButtonProps> = $props();
+	const {
+		mode,
+		children,
+		style,
+		class: buttonClass,
+		asChild,
+		...props
+	}: PropsWithChildren<
+		SignUpButtonProps,
+		{
+			signUp(): void;
+		}
+	> &
+		ButtonProps = $props();
 
 	const ctx = useClerkContext();
 
 	function signUp() {
+		if (!ctx.clerk) return;
 		if (mode === 'modal') {
-			return ctx.clerk?.openSignUp(props);
+			void ctx.clerk.openSignUp(props);
+			return;
 		}
-		return ctx.clerk?.redirectToSignUp({
+		void ctx.clerk.redirectToSignUp({
 			...props,
 			signUpFallbackRedirectUrl: props.fallbackRedirectUrl,
 			signUpForceRedirectUrl: props.forceRedirectUrl
@@ -19,10 +34,14 @@
 	}
 </script>
 
-<button type="button" onclick={signUp}>
-	{#if children}
-		{@render children()}
-	{:else}
-		Sign up
-	{/if}
-</button>
+{#if asChild}
+	{@render children?.({ signUp })}
+{:else}
+	<button type="button" {style} class={buttonClass} onclick={signUp}>
+		{#if children}
+			{@render children({ signUp })}
+		{:else}
+			Sign up
+		{/if}
+	</button>
+{/if}

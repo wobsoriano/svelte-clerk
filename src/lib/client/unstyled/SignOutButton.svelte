@@ -1,21 +1,39 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { PropsWithChildren } from '$lib/types';
+	import type { ButtonProps, PropsWithChildren } from '$lib/types';
 	import type { SignOutOptions } from '@clerk/types';
 
-	const { sessionId, redirectUrl = '/', children }: PropsWithChildren<SignOutOptions> = $props();
+	const {
+		sessionId,
+		redirectUrl = '/',
+		children,
+		style,
+		class: buttonClass,
+		asChild
+	}: PropsWithChildren<
+		SignOutOptions,
+		{
+			signOut(): void;
+		}
+	> &
+		ButtonProps = $props();
 
 	const ctx = useClerkContext();
 
 	function signOut() {
-		return ctx.clerk?.signOut({ sessionId, redirectUrl });
+		if (!ctx.clerk) return;
+		void ctx.clerk.signOut({ sessionId, redirectUrl });
 	}
 </script>
 
-<button type="button" onclick={signOut}>
-	{#if children}
-		{@render children()}
-	{:else}
-		Sign out
-	{/if}
-</button>
+{#if asChild}
+	{@render children?.({ signOut })}
+{:else}
+	<button type="button" {style} class={buttonClass} onclick={signOut}>
+		{#if children}
+			{@render children({ signOut })}
+		{:else}
+			Sign out
+		{/if}
+	</button>
+{/if}
