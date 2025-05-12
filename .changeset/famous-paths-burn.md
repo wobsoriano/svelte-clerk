@@ -6,7 +6,7 @@ Allow custom buttons for unstyled components using the `asChild` prop.
 
 Example:
 
-```svelte
+```html
 <script>
 import { SignInButton } from 'svelte-clerk'
 </script>
