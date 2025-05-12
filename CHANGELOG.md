@@ -1,5 +1,28 @@
 # svelte-clerk
 
+## 0.12.1
+
+### Patch Changes
+
+- bf6e4d5: Bump @clerk/backend from 1.31.4 to 1.32.0
+- bf6e4d5: Bump @clerk/shared from 3.8.1 to 3.8.2
+- bf6e4d5: Bump @clerk/types from 4.57.1 to 4.58.0
+- 4f90a54: Allow custom buttons for unstyled components using the `asChild` prop.
+
+  Example:
+
+  ```html
+  <script>
+  	import { SignInButton } from 'svelte-clerk';
+  </script>
+
+  <SignInButton asChild>
+  	{#snippet children({ signIn })}
+  	<button onclick="{signIn}">Custom sign in button</button>
+  	{/snippet}
+  </SignInButton>
+  ```
+
 ## 0.12.0
 
 ### Minor Changes
