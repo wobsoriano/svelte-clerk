@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clerkUI } from '$lib/action.js';
+	import { clerkHostRenderer } from '$lib/action.js';
 	import type { SignInProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
@@ -9,7 +9,7 @@
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
-			use:clerkUI={{
+			use:clerkHostRenderer={{
 				mount: clerk.mountSignIn,
 				unmount: clerk.unmountSignIn,
 				updateProps: (clerk as any).__unstable__updateProps,
