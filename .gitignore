@@ -1,3 +1,4 @@
+test-results
 node_modules
 
 # Output
@@ -24,3 +25,5 @@ vite.config.ts.timestamp-*
 # Vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache
+
+playwright/.clerk
