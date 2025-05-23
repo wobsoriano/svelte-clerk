@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.32.3
-        version: 1.32.3(react@18.3.1)
+        specifier: ^1.33.0
+        version: 1.33.0(react@18.3.1)
       '@clerk/shared':
-        specifier: ^3.9.2
-        version: 3.9.2(react@18.3.1)
+        specifier: ^3.9.3
+        version: 3.9.3(react@18.3.1)
       '@clerk/types':
         specifier: ^4.59.1
         version: 4.59.1
@@ -255,8 +255,8 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clerk/backend@1.32.3':
-    resolution: {integrity: sha512-6t3d9MlMtQAZu9elfaavTu4sTRLzUKlyv6Sz5ohPSD81Qy+k4VtqK+krQDwlB2aigRCpuAlSMpGs4N1zeb7MMg==}
+  '@clerk/backend@1.33.0':
+    resolution: {integrity: sha512-+1mCXuwMQLM7MDsw+Zi81Ju2BSxHmAl/PkuOBzzOpx521DKEm42k9am9PH+Dr+qBln52xXwi7PfSmZmSYh7jZQ==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       svix: ^1.62.0
@@ -264,8 +264,8 @@ packages:
       svix:
         optional: true
 
-  '@clerk/shared@3.9.2':
-    resolution: {integrity: sha512-w5hUmqcsfCrGC6vX1uMi4+OVa2HcZpGZFWRMCL9Yig7JN/RZx+5Q7Uue7/GJmKRSsG2F4Jc2Yed6oIHIq6vVPg==}
+  '@clerk/shared@3.9.3':
+    resolution: {integrity: sha512-guXfBGNsqwBq1y5Pw8mfGZ7SPvZW6pJZeBB4A6JtU+edVKF8VQ1MbkWwD4Z2z7P+/D2OnIpVA+IkyHr2tO4eng==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
@@ -2758,9 +2758,9 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@clerk/backend@1.32.3(react@18.3.1)':
+  '@clerk/backend@1.33.0(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 3.9.2(react@18.3.1)
+      '@clerk/shared': 3.9.3(react@18.3.1)
       '@clerk/types': 4.59.1
       cookie: 1.0.2
       snakecase-keys: 8.0.1
@@ -2769,7 +2769,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@3.9.2(react@18.3.1)':
+  '@clerk/shared@3.9.3(react@18.3.1)':
     dependencies:
       '@clerk/types': 4.59.1
       dequal: 2.0.3
