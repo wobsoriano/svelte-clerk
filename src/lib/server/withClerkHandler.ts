@@ -5,15 +5,16 @@ import {
 	AuthStatus,
 	createClerkRequest,
 	type AuthenticateRequestOptions,
-	type RequestState
 } from '@clerk/backend/internal';
 import { parse } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
-import type { AuthObject } from '@clerk/backend';
-import { deprecated } from '@clerk/shared/deprecated';
+import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
+import type { PendingSessionOptions } from '@clerk/types';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
+
+type SessionAuthObject = SignedInAuthObject | SignedOutAuthObject;
 
 export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOptions): Handle {
 	return async ({ event, resolve }) => {
@@ -27,7 +28,8 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 		const requestState = await clerkClient.authenticateRequest(clerkWebRequest, {
 			...options,
 			secretKey: options?.secretKey ?? constants.SECRET_KEY,
-			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY
+			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
+			acceptsToken: 'session_token',
 		});
 
 		const locationHeader = requestState.headers.get(constants.Headers.Location);
@@ -47,11 +49,11 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			throw new Error('[svelte-clerk] Handshake status without redirect');
 		}
 
-		const authObject = requestState.toAuth();
-		decorateLocals(event, authObject);
+		const auth = (options?: PendingSessionOptions) => requestState.toAuth(options);
+		decorateLocals(event, auth);
 
 		if (debug) {
-			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
+			console.log('[svelte-clerk] ' + JSON.stringify(auth()));
 		}
 
 		decorateHeaders(event, requestState.headers);
@@ -77,17 +79,7 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 	event.setHeaders(Object.fromEntries(headers));
 }
 
-function decorateLocals(event: RequestEvent, authObject: AuthObject) {
-	const authHandler = () => authObject;
-
-	const auth = new Proxy(Object.assign(authHandler, authObject), {
-		get(target, prop: string, receiver) {
-			deprecated('event.locals.auth', 'Use `event.locals.auth()` as a function instead.');
-
-			return Reflect.get(target, prop, receiver);
-		}
-	});
-
+function decorateLocals(event: RequestEvent, auth: (options?: PendingSessionOptions) => SessionAuthObject) {
 	event.locals.auth = auth;
 	event.locals.currentUser = createCurrentUser(auth());
 }
