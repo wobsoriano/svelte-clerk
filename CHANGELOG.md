@@ -1,5 +1,17 @@
 # svelte-clerk
 
+## 0.13.0
+
+### Minor Changes
+
+- 0cf3b59: Introduce Clerk Backend v2 and prepare for machine auth feature
+
+### Patch Changes
+
+- e760bd2: Bump @clerk/backend from 1.34.0 to 2.0.0
+- e760bd2: Bump @clerk/shared from 3.9.5 to 3.9.6
+- e760bd2: Bump @clerk/types from 4.59.3 to 4.60.0
+
 ## 0.12.5
 
 ### Patch Changes
