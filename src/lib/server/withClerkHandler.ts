@@ -4,7 +4,7 @@ import * as constants from './constants.js';
 import {
 	AuthStatus,
 	createClerkRequest,
-	type AuthenticateRequestOptions,
+	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
 import { parse, splitCookiesString } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
@@ -29,7 +29,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			...options,
 			secretKey: options?.secretKey ?? constants.SECRET_KEY,
 			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
-			acceptsToken: 'session_token',
+			acceptsToken: 'session_token'
 		});
 
 		const locationHeader = requestState.headers.get(constants.Headers.Location);
@@ -80,7 +80,10 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 	event.setHeaders(Object.fromEntries(headers));
 }
 
-function decorateLocals(event: RequestEvent, auth: (options?: PendingSessionOptions) => SessionAuthObject) {
+function decorateLocals(
+	event: RequestEvent,
+	auth: (options?: PendingSessionOptions) => SessionAuthObject
+) {
 	event.locals.auth = auth;
 	event.locals.currentUser = createCurrentUser(auth());
 }
