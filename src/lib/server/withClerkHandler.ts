@@ -6,7 +6,7 @@ import {
 	createClerkRequest,
 	type AuthenticateRequestOptions,
 } from '@clerk/backend/internal';
-import { parse } from 'set-cookie-parser';
+import { parse, splitCookiesString } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
 import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
