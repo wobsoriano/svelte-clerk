@@ -6,7 +6,7 @@ import {
 	createClerkRequest,
 	type AuthenticateRequestOptions,
 } from '@clerk/backend/internal';
-import { parse } from 'set-cookie-parser';
+import { parse, splitCookiesString } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
 import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
@@ -69,7 +69,8 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 	// We separate cookie setting logic because SvelteKit
 	// does not allow setting cookies with setHeaders.
 	if (setCookie) {
-		const parsedCookies = parse(setCookie);
+		const splitCookies = splitCookiesString(setCookie);
+		const parsedCookies = parse(splitCookies);
 		parsedCookies.forEach((parsedCookie) => {
 			const { name, value, ...options } = parsedCookie;
 			event.cookies.set(name, value, options as CookieSerializerOptions & { path: string });
