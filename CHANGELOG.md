@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.13.1
+
+### Patch Changes
+
+- 11b0267: Fix cookies not being properly set
+
 ## 0.13.0
 
 ### Minor Changes
