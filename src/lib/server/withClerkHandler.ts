@@ -4,6 +4,7 @@ import * as constants from './constants.js';
 import {
 	AuthStatus,
 	createClerkRequest,
+	TokenType,
 	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
 import { parse, splitCookiesString } from 'set-cookie-parser';
@@ -29,7 +30,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			...options,
 			secretKey: options?.secretKey ?? constants.SECRET_KEY,
 			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
-			acceptsToken: 'session_token'
+			acceptsToken: TokenType.SessionToken
 		});
 
 		const locationHeader = requestState.headers.get(constants.Headers.Location);
