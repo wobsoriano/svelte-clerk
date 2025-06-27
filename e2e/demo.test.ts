@@ -1,5 +1,6 @@
+import 'dotenv/config'
 import { expect, test } from '@playwright/test';
-import { createClerkTestUtils } from './utils';
+import { createPageObjects } from '@clerk/testing/playwright/unstable';
 
 const USER_EMAIL = process.env.E2E_CLERK_USER_USERNAME;
 const USER_PASSWORD = process.env.E2E_CLERK_USER_PASSWORD;
@@ -10,80 +11,95 @@ if (!USER_EMAIL || !USER_PASSWORD) {
 
 test.describe.configure({ mode: 'parallel' });
 
-test.skip('Clerk client loads on first visit', async ({ page }) => {
-	const clerk = createClerkTestUtils(page);
-	await page.goto('/');
-
-	await clerk.waitForClerkJsLoaded();
-	await clerk.expect.toBeSignedOut();
+test('Clerk client loads and sign in button renders', async ({ page, baseURL }) => {
+	const po = createPageObjects({ page, baseURL });
+	await po.page.goToAppHome();
+  await po.page.waitForClerkJsLoaded();
+  await po.expect.toBeSignedOut();
+  await expect(po.page.getByRole('link', { name: /Sign in/i })).toBeVisible();
 });
 
-test('sign in with hash routing', async ({ page }) => {
-	const clerk = createClerkTestUtils(page);
+test('render user button component when user completes sign in flow', async ({ page, baseURL }) => {
+  const po = createPageObjects({ page, baseURL });
+  await po.page.goToRelative('/sign-in');
+  await po.signIn.waitForMounted();
+  await po.signIn.signInWithEmailAndInstantPassword({ email: USER_EMAIL, password: USER_PASSWORD });
+  await po.expect.toBeSignedIn();
 
-	await page.goto('/sign-in');
-	await clerk.signIn.waitForMounted();
+  await po.page.waitForAppUrl('/');
+  await po.userButton.waitForMounted();
+  await po.userButton.toggleTrigger();
+  await po.userButton.waitForPopover();
 
-	await clerk.signIn.setIdentifier(USER_EMAIL);
-	await clerk.signIn.continue();
-	await page.waitForURL('http://localhost:4173/sign-in#/factor-one');
-
-	await clerk.signIn.setPassword(USER_PASSWORD);
-	await clerk.signIn.continue();
-
-	await clerk.waitForClerkJsLoaded();
-	await clerk.expect.toBeSignedIn();
+  await po.userButton.toHaveVisibleMenuItems([/Manage account/i, /Sign out$/i]);
 });
 
-test.skip('renders user button', async ({ page }) => {
-	const clerk = createClerkTestUtils(page);
+// test('sign in with hash routing', async ({ page }) => {
+// 	const clerk = createClerkTestUtils(page);
 
-	// Sign in
-	await page.goto('/sign-in');
-	await clerk.signIn.waitForMounted();
-	await clerk.signIn.setIdentifier(USER_EMAIL);
-	await clerk.signIn.continue();
-	await page.waitForURL(`http://localhost:4173/sign-in#/factor-one`);
-	await clerk.signIn.setPassword(USER_PASSWORD);
-	await clerk.signIn.continue();
-  await page.waitForURL('/profile');
-	await clerk.expect.toBeSignedIn();
+// 	await page.goto('/sign-in');
+// 	await clerk.signIn.waitForMounted();
 
-	await page.goto('/');
+// 	await clerk.signIn.setIdentifier(USER_EMAIL);
+// 	await clerk.signIn.continue();
+// 	await page.waitForURL('http://localhost:4173/sign-in#/factor-one');
 
-	await clerk.userButton.waitForMounted();
-	await clerk.userButton.toggleTrigger();
-	await clerk.userButton.waitForPopover();
+// 	await clerk.signIn.setPassword(USER_PASSWORD);
+// 	await clerk.signIn.continue();
 
-	await clerk.userButton.toHaveVisibleMenuItems([/Manage account/i, /Sign out$/i]);
+// 	await clerk.waitForClerkJsLoaded();
+// 	await clerk.expect.toBeSignedIn();
+// });
 
-	await clerk.userButton.triggerManageAccount();
-	await clerk.userProfile.waitForUserProfileModal();
+// test.skip('renders user button', async ({ page }) => {
+// 	const clerk = createClerkTestUtils(page);
 
-	await expect(page.getByText(/profile details/i)).toBeVisible();
-});
+// 	// Sign in
+// 	await page.goto('/sign-in');
+// 	await clerk.signIn.waitForMounted();
+// 	await clerk.signIn.setIdentifier(USER_EMAIL);
+// 	await clerk.signIn.continue();
+// 	await page.waitForURL(`http://localhost:4173/sign-in#/factor-one`);
+// 	await clerk.signIn.setPassword(USER_PASSWORD);
+// 	await clerk.signIn.continue();
+//   await page.waitForURL('/profile');
+// 	await clerk.expect.toBeSignedIn();
 
-test.skip('renders user profile', async ({ page }) => {
-	const clerk = createClerkTestUtils(page);
+// 	await page.goto('/');
 
-	// Sign in
-	await page.goto('/sign-in');
-	await clerk.signIn.waitForMounted();
-	await clerk.signIn.setIdentifier(USER_EMAIL);
-	await clerk.signIn.continue();
-	await page.waitForURL(`http://localhost:4173/sign-in#/factor-one`);
-	await clerk.signIn.setPassword(USER_PASSWORD);
-	await clerk.signIn.continue();
-  await page.waitForURL('/profile');
-	await clerk.expect.toBeSignedIn();
+// 	await clerk.userButton.waitForMounted();
+// 	await clerk.userButton.toggleTrigger();
+// 	await clerk.userButton.waitForPopover();
 
-	await clerk.userProfile.waitForMounted();
-});
+// 	await clerk.userButton.toHaveVisibleMenuItems([/Manage account/i, /Sign out$/i]);
 
-test.skip('redirects to sign-in when unauthenticated', async ({ page, context }) => {
-	const clerk = createClerkTestUtils(page);
+// 	await clerk.userButton.triggerManageAccount();
+// 	await clerk.userProfile.waitForUserProfileModal();
 
-	await page.goto('/profile');
-	await page.waitForURL('http://localhost:4173/sign-in');
-	await clerk.signIn.waitForMounted();
-});
+// 	await expect(page.getByText(/profile details/i)).toBeVisible();
+// });
+
+// test.skip('renders user profile', async ({ page }) => {
+// 	const clerk = createClerkTestUtils(page);
+
+// 	// Sign in
+// 	await page.goto('/sign-in');
+// 	await clerk.signIn.waitForMounted();
+// 	await clerk.signIn.setIdentifier(USER_EMAIL);
+// 	await clerk.signIn.continue();
+// 	await page.waitForURL(`http://localhost:4173/sign-in#/factor-one`);
+// 	await clerk.signIn.setPassword(USER_PASSWORD);
+// 	await clerk.signIn.continue();
+//   await page.waitForURL('/profile');
+// 	await clerk.expect.toBeSignedIn();
+
+// 	await clerk.userProfile.waitForMounted();
+// });
+
+// test.skip('redirects to sign-in when unauthenticated', async ({ page, context }) => {
+// 	const clerk = createClerkTestUtils(page);
+
+// 	await page.goto('/profile');
+// 	await page.waitForURL('http://localhost:4173/sign-in');
+// 	await clerk.signIn.waitForMounted();
+// });

@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
 	webServer: {
@@ -8,5 +8,16 @@ export default defineConfig({
 	testDir: 'e2e',
 	use: {
 		headless: true
-	}
+	},
+	projects: [
+	  {
+      name: 'setup Clerk',
+      testMatch: /global\.setup\.ts/,
+    },
+    {
+      name: 'chromium with Clerk',
+      use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup Clerk'],
+    },
+	]
 });
