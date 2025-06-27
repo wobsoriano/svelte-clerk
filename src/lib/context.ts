@@ -1,11 +1,13 @@
 import type {
 	SignedInSessionResource,
-	ActJWTClaim,
+	ActClaim,
 	ClientResource,
 	OrganizationCustomPermissionKey,
 	OrganizationCustomRoleKey,
 	OrganizationResource,
-	UserResource
+	UserResource,
+	SessionStatusClaim,
+	JwtPayload
 } from '@clerk/types';
 import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 import { getContext, setContext } from 'svelte';
@@ -18,11 +20,14 @@ export interface ClerkContext {
 	auth: {
 		userId: string | null | undefined;
 		sessionId: string | null | undefined;
-		actor: ActJWTClaim | null | undefined;
+		actor: ActClaim | null | undefined;
+		sessionStatus: SessionStatusClaim | null | undefined;
+		sessionClaims: JwtPayload | null | undefined;
 		orgId: string | null | undefined;
 		orgRole: OrganizationCustomRoleKey | null | undefined;
 		orgSlug: string | null | undefined;
 		orgPermissions: OrganizationCustomPermissionKey[] | null | undefined;
+		factorVerificationAge: [number, number] | null;
 	};
 	client: ClientResource | null | undefined;
 	session: SignedInSessionResource | null | undefined;

@@ -8,23 +8,23 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Docs', link: '/svelte/quickstart' }
+			{ text: 'Docs', link: '/spa/quickstart' }
 		],
 
 		sidebar: [
 			{
-				text: 'Svelte',
+				text: 'SPA',
 				items: [
-					{ text: 'Quickstart', link: '/svelte/quickstart' },
-					{ text: 'Components', link: '/svelte/components' },
-					{ text: 'Helpers', link: '/svelte/helpers' }
+					{ text: 'Quickstart', link: '/spa/quickstart' },
+					{ text: 'Components', link: '/spa/components' },
+					{ text: 'Helpers', link: '/spa/helpers' }
 				]
 			},
 			{
-				text: 'SvelteKit',
+				text: 'SSR',
 				items: [
-					{ text: 'Quickstart', link: '/kit/quickstart' },
-					{ text: 'Helpers', link: '/kit/helpers' }
+					{ text: 'Quickstart', link: '/ssr/quickstart' },
+					{ text: 'Helpers', link: '/ssr/helpers' }
 				]
 			},
 			{

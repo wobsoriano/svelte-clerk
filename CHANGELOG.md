@@ -1,5 +1,155 @@
 # svelte-clerk
 
+## 0.13.2
+
+### Patch Changes
+
+- 4f062e6: Bump @clerk/backend from 2.0.0 to 2.1.0
+- 4f062e6: Bump @clerk/shared from 3.9.6 to 3.9.7
+- 4f062e6: Bump @clerk/types from 4.60.0 to 4.60.1
+
+## 0.13.1
+
+### Patch Changes
+
+- 11b0267: Fix cookies not being properly set
+
+## 0.13.0
+
+### Minor Changes
+
+- 0cf3b59: Introduce Clerk Backend v2 and prepare for machine auth feature
+
+### Patch Changes
+
+- e760bd2: Bump @clerk/backend from 1.34.0 to 2.0.0
+- e760bd2: Bump @clerk/shared from 3.9.5 to 3.9.6
+- e760bd2: Bump @clerk/types from 4.59.3 to 4.60.0
+
+## 0.12.5
+
+### Patch Changes
+
+- ce667fc: Bump @clerk/backend from 1.33.1 to 1.34.0
+- ce667fc: Bump @clerk/shared from 3.9.4 to 3.9.5
+- ce667fc: Bump @clerk/types from 4.59.2 to 4.59.3
+
+## 0.12.4
+
+### Patch Changes
+
+- e4200d5: Bump @clerk/backend from 1.32.2 to 1.33.1
+- e4200d5: Bump @clerk/shared from 3.9.1 to 3.9.4
+- e4200d5: Bump @clerk/types from 4.59.0 to 4.59.2
+
+## 0.12.3
+
+### Patch Changes
+
+- ec8798a: Bump @clerk/backend from 1.32.0 to 1.32.2
+- ec8798a: Bump @clerk/shared from 3.8.2 to 3.9.1
+- ec8798a: Bump @clerk/types from 4.58.0 to 4.59.0
+
+## 0.12.2
+
+### Patch Changes
+
+- d9b47ac: Add `feature` and `plan` prop to `<Protect>` component.
+
+  Usage:
+
+  Plan
+
+  ```svelte
+  <Protect plan="my-plan" />
+  ```
+
+  Feature
+
+  ```svelte
+  <Protect feature="my-feature" />
+  ```
+
+  Scoped per user or per org
+
+  ```svelte
+  <Protect feature="org:my-feature" />
+  <Protect feature="user:my-feature" />
+  <Protect plan="org:my-plan" />
+  <Protect plan="user:my-plan" />
+  ```
+
+## 0.12.1
+
+### Patch Changes
+
+- bf6e4d5: Bump @clerk/backend from 1.31.4 to 1.32.0
+- bf6e4d5: Bump @clerk/shared from 3.8.1 to 3.8.2
+- bf6e4d5: Bump @clerk/types from 4.57.1 to 4.58.0
+- 4f90a54: Allow custom buttons for unstyled components using the `asChild` prop.
+
+  Example:
+
+  ```html
+  <script>
+  	import { SignInButton } from 'svelte-clerk';
+  </script>
+
+  <SignInButton asChild>
+  	{#snippet children({ signIn })}
+  	<button onclick="{signIn}">Custom sign in button</button>
+  	{/snippet}
+  </SignInButton>
+  ```
+
+## 0.12.0
+
+### Minor Changes
+
+- 6362a1c: Introduce `<PricingTable />` component. Read more about Clerk Billing [here](https://clerk.com/billing).
+
+## 0.11.6
+
+### Patch Changes
+
+- d3e16a6: Bump @clerk/backend from 1.30.0 to 1.31.2
+- d3e16a6: Bump @clerk/shared from 3.7.4 to 3.7.8
+- d3e16a6: Bump @clerk/types from 4.55.1 to 4.56.3
+- 1d0a8dd: Use built-in Netlify cache handling function
+
+## 0.11.5
+
+### Patch Changes
+
+- 16ca21c: Bump @clerk/backend from 1.29.2 to 1.30.0
+- 16ca21c: Bump @clerk/shared from 3.7.3 to 3.7.4
+- 16ca21c: Bump @clerk/types from 4.55.0 to 4.55.1
+
+## 0.11.4
+
+### Patch Changes
+
+- a79e175: Bump @clerk/backend from 1.29.1 to 1.29.2
+- a79e175: Bump @clerk/shared from 3.7.2 to 3.7.3
+- a79e175: Bump @clerk/types from 4.54.2 to 4.55.0
+
+## 0.11.3
+
+### Patch Changes
+
+- 30f344a: Bump @clerk/backend from 1.29.0 to 1.29.1
+- 30f344a: Bump @clerk/shared from 3.7.1 to 3.7.2
+- 30f344a: Bump @clerk/types from 4.54.1 to 4.54.2
+- 6da4e7e: Fix missing provider props
+
+## 0.11.2
+
+### Patch Changes
+
+- 6f5aa3a: Bump @clerk/backend from 1.27.3 to 1.29.0
+- 6f5aa3a: Bump @clerk/shared from 3.6.0 to 3.7.1
+- 6f5aa3a: Bump @clerk/types from 4.53.0 to 4.54.1
+
 ## 0.11.1
 
 ### Patch Changes

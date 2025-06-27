@@ -1,17 +1,35 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { PropsWithChildren } from '$lib/types';
+	import type { ButtonProps, PropsWithChildren } from '$lib/types';
 	import type { SignInButtonProps } from '@clerk/types';
+	import type { Snippet } from 'svelte';
 
-	const { mode, children, ...props }: PropsWithChildren<SignInButtonProps> = $props();
+	const {
+		mode,
+		children,
+		style,
+		class: buttonClass,
+		asChild,
+		...props
+	}: PropsWithChildren<
+		SignInButtonProps,
+		{
+			signIn(): void;
+		}
+	> &
+		ButtonProps = $props();
 
 	const ctx = useClerkContext();
 
 	function signIn() {
+		if (!ctx.clerk) return;
+
 		if (mode === 'modal') {
-			return ctx.clerk?.openSignIn(props);
+			void ctx.clerk.openSignIn(props);
+			return;
 		}
-		return ctx.clerk?.redirectToSignIn({
+
+		void ctx.clerk.redirectToSignIn({
 			...props,
 			signInFallbackRedirectUrl: props.fallbackRedirectUrl,
 			signInForceRedirectUrl: props.forceRedirectUrl
@@ -19,10 +37,14 @@
 	}
 </script>
 
-<button type="button" onclick={signIn}>
-	{#if children}
-		{@render children()}
-	{:else}
-		Sign in
-	{/if}
-</button>
+{#if asChild}
+	{@render children?.({ signIn })}
+{:else}
+	<button type="button" {style} class={buttonClass} onclick={signIn}>
+		{#if children}
+			{@render children({ signIn })}
+		{:else}
+			Sign in
+		{/if}
+	</button>
+{/if}

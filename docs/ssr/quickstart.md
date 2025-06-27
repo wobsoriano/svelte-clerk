@@ -66,8 +66,9 @@ To enable SSR support, pass the initial auth state to the return object of the l
 ```ts
 // src/routes/+layout.server.ts
 import { buildClerkProps } from 'svelte-clerk/server';
+import type { LayoutServerLoad } from './$types';
 
-export const load = ({ locals }) => {
+export const load: LayoutServerLoad = ({ locals }) => {
 	return {
 		...buildClerkProps(locals.auth())
 	};

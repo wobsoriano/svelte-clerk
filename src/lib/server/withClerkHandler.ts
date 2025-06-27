@@ -4,17 +4,18 @@ import * as constants from './constants.js';
 import {
 	AuthStatus,
 	createClerkRequest,
-	type AuthenticateRequestOptions,
-	type RequestState
+	TokenType,
+	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
-import { parse } from 'set-cookie-parser';
+import { parse, splitCookiesString } from 'set-cookie-parser';
 import { createCurrentUser } from './currentUser.js';
-import type { AuthObject } from '@clerk/backend';
-import { deprecated } from '@clerk/shared/deprecated';
-import { isDevelopmentFromPublishableKey } from '@clerk/shared';
-import { NETLIFY_CACHE_BUST_PARAM } from '$lib/utils/netlifyCacheBust.js';
+import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
+import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
+import type { PendingSessionOptions } from '@clerk/types';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
+
+type SessionAuthObject = SignedInAuthObject | SignedOutAuthObject;
 
 export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOptions): Handle {
 	return async ({ event, resolve }) => {
@@ -28,7 +29,8 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 		const requestState = await clerkClient.authenticateRequest(clerkWebRequest, {
 			...options,
 			secretKey: options?.secretKey ?? constants.SECRET_KEY,
-			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY
+			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
+			acceptsToken: TokenType.SessionToken
 		});
 
 		const locationHeader = requestState.headers.get(constants.Headers.Location);
@@ -36,7 +38,11 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			if (debug) {
 				console.log('[svelte-clerk] Handshake redirect triggered');
 			}
-			handleNetlifyCacheInDevInstance(locationHeader, requestState);
+			handleNetlifyCacheInDevInstance({
+				locationHeader,
+				publishableKey: requestState.publishableKey,
+				requestStateHeaders: requestState.headers
+			});
 			return new Response(null, { status: 307, headers: requestState.headers });
 		}
 
@@ -44,11 +50,11 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 			throw new Error('[svelte-clerk] Handshake status without redirect');
 		}
 
-		const authObject = requestState.toAuth();
-		decorateLocals(event, authObject);
+		const auth = (options?: PendingSessionOptions) => requestState.toAuth(options);
+		decorateLocals(event, auth);
 
 		if (debug) {
-			console.log('[svelte-clerk] ' + JSON.stringify(authObject));
+			console.log('[svelte-clerk] ' + JSON.stringify(auth()));
 		}
 
 		decorateHeaders(event, requestState.headers);
@@ -64,7 +70,8 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 	// We separate cookie setting logic because SvelteKit
 	// does not allow setting cookies with setHeaders.
 	if (setCookie) {
-		const parsedCookies = parse(setCookie);
+		const splitCookies = splitCookiesString(setCookie);
+		const parsedCookies = parse(splitCookies);
 		parsedCookies.forEach((parsedCookie) => {
 			const { name, value, ...options } = parsedCookie;
 			event.cookies.set(name, value, options as CookieSerializerOptions & { path: string });
@@ -74,35 +81,10 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 	event.setHeaders(Object.fromEntries(headers));
 }
 
-function decorateLocals(event: RequestEvent, authObject: AuthObject) {
-	const authHandler = () => authObject;
-
-	const auth = new Proxy(Object.assign(authHandler, authObject), {
-		get(target, prop: string, receiver) {
-			deprecated('event.locals.auth', 'Use `event.locals.auth()` as a function instead.');
-
-			return Reflect.get(target, prop, receiver);
-		}
-	});
-
+function decorateLocals(
+	event: RequestEvent,
+	auth: (options?: PendingSessionOptions) => SessionAuthObject
+) {
 	event.locals.auth = auth;
 	event.locals.currentUser = createCurrentUser(auth());
-}
-
-/**
- * Prevents infinite redirects in Netlify's functions
- * by adding a cache bust parameter to the original redirect URL. This ensures Netlify
- * doesn't serve a cached response during the authentication flow.
- */
-function handleNetlifyCacheInDevInstance(locationHeader: string, requestState: RequestState) {
-	// Only run on Netlify environment and Clerk development instance
-	if (process.env.NETLIFY && isDevelopmentFromPublishableKey(requestState.publishableKey)) {
-		const hasHandshakeQueryParam = locationHeader.includes('__clerk_handshake');
-		// If location header is the original URL before the handshake redirects, add cache bust param
-		if (!hasHandshakeQueryParam) {
-			const url = new URL(locationHeader);
-			url.searchParams.append(NETLIFY_CACHE_BUST_PARAM, Date.now().toString());
-			requestState.headers.set('Location', url.toString());
-		}
-	}
 }

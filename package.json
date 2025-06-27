@@ -1,6 +1,6 @@
 {
 	"name": "svelte-clerk",
-	"version": "0.11.1",
+	"version": "0.13.2",
 	"license": "MIT",
 	"packageManager": "pnpm@10.8.0",
 	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
@@ -60,11 +60,6 @@
 		"@sveltejs/kit": "^2.20.0",
 		"svelte": "^5.11.0"
 	},
-	"peerDependenciesMeta": {
-		"@sveltejs/kit": {
-			"optional": true
-		}
-	},
 	"typesVersions": {
 		">4.0": {
 			"index.d.ts": [
@@ -84,24 +79,24 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
 		"@playwright/test": "^1.49.1",
-		"@sveltejs/adapter-auto": "^6.0.0",
+		"@sveltejs/adapter-auto": "^6.0.1",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.20.4",
-		"@sveltejs/package": "^2.3.10",
-		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@sveltejs/kit": "^2.22.0",
+		"@sveltejs/package": "^2.3.11",
+		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@types/eslint": "^9.6.1",
 		"@types/set-cookie-parser": "^2.4.10",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.13.0",
 		"eslint-config-prettier": "^10.0.1",
-		"eslint-plugin-svelte": "^3.5.1",
+		"eslint-plugin-svelte": "^3.9.3",
 		"globals": "^15.11.0",
 		"postcss": "^8.5.3",
 		"prettier": "^3.5.1",
-		"prettier-plugin-svelte": "^3.3.3",
+		"prettier-plugin-svelte": "^3.4.0",
 		"publint": "^0.2.11",
-		"svelte": "^5.25.8",
-		"svelte-check": "^4.1.5",
+		"svelte": "^5.34.7",
+		"svelte-check": "^4.2.2",
 		"tailwindcss": "^3.4.14",
 		"tslib": "^2.8.0",
 		"typescript": "^5.6.3",
@@ -113,9 +108,9 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@clerk/backend": "^1.27.3",
-		"@clerk/shared": "^3.6.0",
-		"@clerk/types": "^4.53.0",
+		"@clerk/backend": "^2.1.0",
+		"@clerk/shared": "^3.9.7",
+		"@clerk/types": "^4.60.1",
 		"set-cookie-parser": "^2.7.1"
 	}
 }

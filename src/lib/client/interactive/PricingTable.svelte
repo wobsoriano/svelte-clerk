@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { SignInProps } from '@clerk/types';
+	import type { PricingTableProps } from '@clerk/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
-	const props: SignInProps = $props();
+	const props: PricingTableProps = $props();
 </script>
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
 			use:clerkHostRenderer={{
-				mount: clerk.mountSignIn,
-				unmount: clerk.unmountSignIn,
+				mount: clerk.mountPricingTable,
+				unmount: clerk.unmountPricingTable,
 				updateProps: (clerk as any).__unstable__updateProps,
 				props: $state.snapshot(props)
 			}}

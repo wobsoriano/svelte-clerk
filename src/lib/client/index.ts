@@ -11,6 +11,7 @@ export { default as OrganizationProfile } from './interactive/OrganizationProfil
 export { default as GoogleOneTap } from './interactive/GoogleOneTap.svelte';
 export { default as UserButton } from './interactive/UserButton';
 export { default as Waitlist } from './interactive/Waitlist.svelte';
+export { default as PricingTable } from './interactive/PricingTable.svelte';
 
 // Control components
 export { default as ClerkLoaded } from './control/ClerkLoaded.svelte';
