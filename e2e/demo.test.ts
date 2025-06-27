@@ -50,3 +50,17 @@ test('redirects to sign-in when unauthenticated', async ({ page, baseURL }) => {
   await po.page.waitForURL(`${baseURL}/sign-in`);
   await po.signIn.waitForMounted();
 });
+
+test('<SignInButton /> renders and respects props', async ({ page, baseURL }) => {
+  const po = createPageObjects({ page, baseURL });
+  await po.page.goToRelative('/unstyled');
+  await po.expect.toBeSignedOut();
+  await po.page.waitForClerkJsLoaded();
+
+  await po.page.getByRole('button', { name: /Sign in/i }).click();
+  await po.signIn.waitForMounted();
+  await po.signIn.signInWithEmailAndInstantPassword({ email: USER_EMAIL, password: USER_PASSWORD });
+
+  await po.page.waitForAppUrl('/');
+  await po.expect.toBeSignedIn();
+});
