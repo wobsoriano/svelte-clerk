@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { SignedIn, UserProfile } from '$lib/client';
+	import { SignedIn, useClerkContext, UserProfile } from '$lib/client';
 	import { mount, onMount, unmount, type Snippet } from 'svelte';
 	import type { CustomPage } from '@clerk/types';
 	import Portal from '$lib/client/Portal.svelte';
 	import CustomPageComponent from '../../components/CustomPage.svelte';
 
 	let customPages = $state<CustomPage[]>([]);
+
+	const ctx = useClerkContext();
 
 	onMount(() => {
 		let page: Record<string, unknown>;
@@ -38,4 +40,5 @@
 
 <SignedIn>
 	<UserProfile {customPages} />
+	<p>User ID: {ctx.user?.emailAddresses[0].emailAddress}</p>
 </SignedIn>
