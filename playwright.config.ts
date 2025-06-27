@@ -10,14 +10,14 @@ export default defineConfig({
 		headless: true
 	},
 	projects: [
-	  {
-      name: 'setup Clerk',
-      testMatch: /global\.setup\.ts/,
-    },
-    {
-      name: 'chromium with Clerk',
-      use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup Clerk'],
-    },
+		{
+			name: 'setup Clerk',
+			testMatch: /global\.setup\.ts/
+		},
+		{
+			name: 'chromium with Clerk',
+			use: { ...devices['Desktop Chrome'] },
+			dependencies: ['setup Clerk']
+		}
 	]
 });
