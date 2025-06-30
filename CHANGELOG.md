@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.13.4
+
+### Patch Changes
+
+- 8c906e0: Use shared `ProtectProps` type
+
 ## 0.13.3
 
 ### Patch Changes
