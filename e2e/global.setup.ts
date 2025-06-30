@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '@dotenvx/dotenvx/config';
 import { clerkSetup } from '@clerk/testing/playwright';
 import { test as setup } from '@playwright/test';
 

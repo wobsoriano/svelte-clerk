@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '@dotenvx/dotenvx/config';
 import { expect, test } from '@playwright/test';
 import { createPageObjects } from '@clerk/testing/playwright/unstable';
 

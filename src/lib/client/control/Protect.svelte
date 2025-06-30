@@ -1,58 +1,12 @@
 <script lang="ts">
 	import type {
-		Autocomplete,
 		CheckAuthorizationWithCustomPermissions,
 		JwtPayload,
-		OrganizationCustomPermissionKey,
-		OrganizationCustomRoleKey
+		ProtectProps
 	} from '@clerk/types';
 	import type { Snippet } from 'svelte';
 	import { createCheckAuthorization } from '@clerk/shared/authorization';
 	import { useClerkContext } from '$lib/context.js';
-
-	type ProtectProps =
-		| {
-				condition?: never;
-				role: OrganizationCustomRoleKey;
-				permission?: never;
-				feature?: never;
-				plan?: never;
-		  }
-		| {
-				condition?: never;
-				role?: never;
-				feature?: never;
-				plan?: never;
-				permission: OrganizationCustomPermissionKey;
-		  }
-		| {
-				condition: (has: CheckAuthorizationWithCustomPermissions) => boolean;
-				role?: never;
-				permission?: never;
-				feature?: never;
-				plan?: never;
-		  }
-		| {
-				condition?: never;
-				role?: never;
-				permission?: never;
-				feature: Autocomplete<`user:${string}` | `org:${string}`>;
-				plan?: never;
-		  }
-		| {
-				condition?: never;
-				role?: never;
-				permission?: never;
-				feature?: never;
-				plan: Autocomplete<`user:${string}` | `org:${string}`>;
-		  }
-		| {
-				condition?: never;
-				role?: never;
-				permission?: never;
-				feature?: never;
-				plan?: never;
-		  };
 
 	const {
 		role,
