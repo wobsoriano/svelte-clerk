@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.13.5
+
+### Patch Changes
+
+- 2e16538: Bump @clerk/testing from 1.9.0 to 1.9.1 in the clerk-dependencies group
+
 ## 0.13.4
 
 ### Patch Changes
