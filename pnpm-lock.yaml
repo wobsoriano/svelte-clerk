@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^2.3.1
-        version: 2.3.1(react@18.3.1)
+        specifier: ^2.4.0
+        version: 2.4.0(react@18.3.1)
       '@clerk/shared':
-        specifier: ^3.10.1
-        version: 3.10.1(react@18.3.1)
+        specifier: ^3.10.2
+        version: 3.10.2(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.62.1
-        version: 4.62.1
+        specifier: ^4.63.0
+        version: 4.63.0
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1
@@ -264,12 +264,12 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clerk/backend@2.3.1':
-    resolution: {integrity: sha512-T4Ug8R3PtLUkG/5YWZXB9NpgmgqPnVOloINnlWUJPH323sFHz2AAOhfx6r/li/fpQ99Xn3oaqTOmVYlMy0AIsA==}
+  '@clerk/backend@2.4.0':
+    resolution: {integrity: sha512-CTnd6Ut7lQDSvfEBtD+JHbGE4wIbKIp2zbeYkeGN9IP6wA6gZ++T7FQPGItLzGQmipCX3GPQ6mvEFf/ch39BwA==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@3.10.1':
-    resolution: {integrity: sha512-V3MFEja75qcH7MHdZ8OUo+ndQK+ivGcIQHSeDpnIAvVRXWjYy8JDpS/tYwt81FW8hgq/WcxT1rpEd27XUKrrNg==}
+  '@clerk/shared@3.10.2':
+    resolution: {integrity: sha512-4bp080EPX9Z/qLSdf9V22NNATC5GFjfEOtlfAOw2Xq24IAIxve3ePd92TcAsMHYThn3Pmwcj7upnvUB24IXKQw==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
@@ -292,8 +292,8 @@ packages:
       cypress:
         optional: true
 
-  '@clerk/types@4.62.1':
-    resolution: {integrity: sha512-qr0HrlM+VS/QEqjRP+1qSp2ipi+MrGGs/ih+HDqe0d/egfobFGGOg0Z759ZBE6Nd5WHWVTWWuFiilnfhJ8QqdQ==}
+  '@clerk/types@4.63.0':
+    resolution: {integrity: sha512-U3FTDzKx8uGve8gtaRv/QpfhEjK/dg9m9BuzIhYEowZ56jNimXDaXuijAcCZEeKwf+DDQmAPaNOinev6D2qtiQ==}
     engines: {node: '>=18.17.0'}
 
   '@docsearch/css@3.8.2':
@@ -878,6 +878,9 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
+
+  '@stablelib/base64@1.0.1':
+    resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
 
   '@sveltejs/acorn-typescript@1.0.5':
     resolution: {integrity: sha512-IwQk4yfwLdibDlrXVE04jTZYlLnwsTT2PIOQQGNLWfjavGifnk1JD1LcZjZaBTRcxZu2FfPfNLOE04DSu9lqtQ==}
@@ -1504,6 +1507,9 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
+
+  fast-sha256@1.3.0:
+    resolution: {integrity: sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==}
 
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
@@ -2293,6 +2299,9 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
+  standardwebhooks@1.0.0:
+    resolution: {integrity: sha512-BbHGOQK9olHPMvQNHWul6MYlrRTAOKn03rOe4A8O3CLWhNf4YHBqq2HJKKC+sfqpxiBY52pNeesD6jIiLDz8jg==}
+
   std-env@3.9.0:
     resolution: {integrity: sha512-UGvjygr6F6tpH7o2qyqR6QYpwraIjKSdtzyBdyytFOHmPZY917kwdwLG0RbOjWOnKmnm3PeHjaoLLMie7kPLQw==}
 
@@ -2371,8 +2380,8 @@ packages:
     resolution: {integrity: sha512-5PEg+QQKce4t1qiOtVUhUS3AQRTtxJyGBTpxLcNWnr0Ve8q4r06bMo0Gv8uhtCPWlztZHoi3Ye7elLhu+PCTMg==}
     engines: {node: '>=18'}
 
-  swr@2.3.3:
-    resolution: {integrity: sha512-dshNvs3ExOqtZ6kJBaAsabhPdHyeY4P2cKwRCniDVifBMoG/SVI7tfLWqPXriVspf2Rg4tPzXJTnwaihIeFw2A==}
+  swr@2.3.4:
+    resolution: {integrity: sha512-bYd2lrhc+VarcpkgWclcUi92wYCpOgMws9Sd1hG1ntAu0NEy+14CbotuFjshBU2kt9rYj9TSmDcybpxpeTU1fg==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -2903,33 +2912,34 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@clerk/backend@2.3.1(react@18.3.1)':
+  '@clerk/backend@2.4.0(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 3.10.1(react@18.3.1)
-      '@clerk/types': 4.62.1
+      '@clerk/shared': 3.10.2(react@18.3.1)
+      '@clerk/types': 4.63.0
       cookie: 1.0.2
       snakecase-keys: 8.0.1
+      standardwebhooks: 1.0.0
       tslib: 2.8.1
     transitivePeerDependencies:
       - react
       - react-dom
 
-  '@clerk/shared@3.10.1(react@18.3.1)':
+  '@clerk/shared@3.10.2(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.62.1
+      '@clerk/types': 4.63.0
       dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
       std-env: 3.9.0
-      swr: 2.3.3(react@18.3.1)
+      swr: 2.3.4(react@18.3.1)
     optionalDependencies:
       react: 18.3.1
 
   '@clerk/testing@1.9.1(@playwright/test@1.51.1)(react@18.3.1)':
     dependencies:
-      '@clerk/backend': 2.3.1(react@18.3.1)
-      '@clerk/shared': 3.10.1(react@18.3.1)
-      '@clerk/types': 4.62.1
+      '@clerk/backend': 2.4.0(react@18.3.1)
+      '@clerk/shared': 3.10.2(react@18.3.1)
+      '@clerk/types': 4.63.0
       dotenv: 16.4.7
     optionalDependencies:
       '@playwright/test': 1.51.1
@@ -2937,7 +2947,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/types@4.62.1':
+  '@clerk/types@4.63.0':
     dependencies:
       csstype: 3.1.3
 
@@ -3368,6 +3378,8 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.2': {}
+
+  '@stablelib/base64@1.0.1': {}
 
   '@sveltejs/acorn-typescript@1.0.5(acorn@8.14.1)':
     dependencies:
@@ -4088,6 +4100,8 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
+
+  fast-sha256@1.3.0: {}
 
   fastq@1.19.1:
     dependencies:
@@ -4812,6 +4826,11 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
+  standardwebhooks@1.0.0:
+    dependencies:
+      '@stablelib/base64': 1.0.1
+      fast-sha256: 1.3.0
+
   std-env@3.9.0: {}
 
   string-width@4.2.3:
@@ -4912,7 +4931,7 @@ snapshots:
       magic-string: 0.30.17
       zimmerframe: 1.1.2
 
-  swr@2.3.3(react@18.3.1):
+  swr@2.3.4(react@18.3.1):
     dependencies:
       dequal: 2.0.3
       react: 18.3.1
