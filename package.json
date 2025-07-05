@@ -49,6 +49,10 @@
 			"types": "./dist/server/index.d.ts",
 			"svelte": "./dist/server/index.js"
 		},
+		"./webhooks": {
+			"types": "./dist/webhooks.d.ts",
+			"svelte": "./dist/webhooks.js"
+		},
 		"./env": "./dist/env.d.ts"
 	},
 	"files": [
