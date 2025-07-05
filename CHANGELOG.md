@@ -1,5 +1,39 @@
 # svelte-clerk
 
+## 0.14.0
+
+### Minor Changes
+
+- 6b0b5b0: Introduce `verifyWebhook()` helper
+
+  Make sure to set the `CLERK_WEBHOOK_SIGNING_SECRET` environment variable in your SvelteKit project to use this helper.
+
+  Usage:
+
+  ```ts
+  import { verifyWebhook } from 'svelte-clerk/webhooks';
+  import type { RequestHandler } from './$types';
+
+  export const GET: RequestHandler = async ({ request }) => {
+  	try {
+  		const evt = await verifyWebhook(request);
+  		if (evt.type === 'user.created') {
+  			// Handle user creation
+  			console.log('New user created:', evt.data.id);
+  		}
+  	} catch (err) {
+  		// Invalid webhook signature
+  		return new Response('Webhook verification failed', { status: 400 });
+  	}
+  };
+  ```
+
+### Patch Changes
+
+- d2421dd: Bump @clerk/backend from 2.3.1 to 2.4.0
+- d2421dd: Bump @clerk/shared from 3.10.1 to 3.10.2
+- d2421dd: Bump @clerk/types from 4.62.1 to 4.63.0
+
 ## 0.13.4
 
 ### Patch Changes
