@@ -2,7 +2,8 @@
 
 Svelte Clerk is the easiest way to add authentication and user management to your Svelte and SvelteKit applications. Add sign up, sign in, and profile management to your application in minutes.
 
-This package is unofficial and not affiliated with Clerk. If you have issues or suggestions, please open an issue in this repository.
+> [!IMPORTANT]
+> This package is unofficial and not affiliated with Clerk. If you have issues or suggestions, please open an issue in this repository.
 
 ## Documentation
 
