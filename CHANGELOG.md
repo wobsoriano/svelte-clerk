@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.15.0
+
+### Minor Changes
+
+- 231f4fe: Remove deprecated `currentUser()` local. Please use `clerkClient.users.getUser(id)` instead.
+
 ## 0.14.3
 
 ### Patch Changes
