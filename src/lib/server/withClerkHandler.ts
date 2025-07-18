@@ -8,7 +8,7 @@ import {
 	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
 import { parse, splitCookiesString } from 'set-cookie-parser';
-import type { ClerkRequest, SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
+import type { ClerkRequest } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
 import type { PendingSessionOptions } from '@clerk/types';
 import { handleValueOrFn } from '@clerk/shared/utils';
@@ -16,10 +16,9 @@ import { isHttpOrHttps } from '@clerk/shared/proxy';
 import { isDevelopmentFromSecretKey } from '@clerk/shared/keys';
 import { getDynamicPublicEnvVariables } from '$lib/utils/getDynamicPublicEnvVariables.js';
 import { isTruthy } from '@clerk/shared/underscore';
+import type { SessionAuthObject } from '@clerk/backend';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
-
-type SessionAuthObject = SignedInAuthObject | SignedOutAuthObject;
 
 export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOptions): Handle {
 	return async ({ event, resolve }) => {
@@ -93,46 +92,51 @@ function decorateLocals(
 	event.locals.auth = auth;
 }
 
-function handleMultiDomainAndProxy (
-  clerkRequest: ClerkRequest,
-  opts: AuthenticateRequestOptions,
-) {
-  const relativeOrAbsoluteProxyUrl = handleValueOrFn(
-    opts?.proxyUrl,
-    clerkRequest.clerkUrl,
-    getDynamicPublicEnvVariables().proxyUrl,
-  );
+function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: AuthenticateRequestOptions) {
+	const relativeOrAbsoluteProxyUrl = handleValueOrFn(
+		opts?.proxyUrl,
+		clerkRequest.clerkUrl,
+		getDynamicPublicEnvVariables().proxyUrl
+	);
 
-  let proxyUrl;
-  if (!!relativeOrAbsoluteProxyUrl && !isHttpOrHttps(relativeOrAbsoluteProxyUrl)) {
-    proxyUrl = new URL(relativeOrAbsoluteProxyUrl, clerkRequest.clerkUrl).toString();
-  } else {
-    proxyUrl = relativeOrAbsoluteProxyUrl;
-  }
+	let proxyUrl;
+	if (!!relativeOrAbsoluteProxyUrl && !isHttpOrHttps(relativeOrAbsoluteProxyUrl)) {
+		proxyUrl = new URL(relativeOrAbsoluteProxyUrl, clerkRequest.clerkUrl).toString();
+	} else {
+		proxyUrl = relativeOrAbsoluteProxyUrl;
+	}
 
-  const isSatellite = handleValueOrFn(opts.isSatellite, new URL(clerkRequest.url), isTruthy(getDynamicPublicEnvVariables().isSatellite) || false);
-  const domain = handleValueOrFn(opts.domain, new URL(clerkRequest.url), getDynamicPublicEnvVariables().domain);
-  const signInUrl = opts?.signInUrl || getDynamicPublicEnvVariables().signInUrl;
+	const isSatellite = handleValueOrFn(
+		opts.isSatellite,
+		new URL(clerkRequest.url),
+		isTruthy(getDynamicPublicEnvVariables().isSatellite) || false
+	);
+	const domain = handleValueOrFn(
+		opts.domain,
+		new URL(clerkRequest.url),
+		getDynamicPublicEnvVariables().domain
+	);
+	const signInUrl = opts?.signInUrl || getDynamicPublicEnvVariables().signInUrl;
 
-  if (isSatellite && !proxyUrl && !domain) {
-    throw new Error(missingDomainAndProxy);
-  }
+	if (isSatellite && !proxyUrl && !domain) {
+		throw new Error(missingDomainAndProxy);
+	}
 
-  if (
-    isSatellite &&
-    !isHttpOrHttps(signInUrl) &&
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    isDevelopmentFromSecretKey(opts.secretKey || constants.SECRET_KEY!)
-  ) {
-    throw new Error(missingSignInUrlInDev);
-  }
+	if (
+		isSatellite &&
+		!isHttpOrHttps(signInUrl) &&
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		isDevelopmentFromSecretKey(opts.secretKey || constants.SECRET_KEY!)
+	) {
+		throw new Error(missingSignInUrlInDev);
+	}
 
-  return {
-    proxyUrl,
-    isSatellite,
-    domain,
-  };
-};
+	return {
+		proxyUrl,
+		isSatellite,
+		domain
+	};
+}
 
 export const missingDomainAndProxy = `
 Missing domain and proxyUrl. A satellite application needs to specify a domain or a proxyUrl.
