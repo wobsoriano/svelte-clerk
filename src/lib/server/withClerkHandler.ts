@@ -141,8 +141,8 @@ function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: Authenticat
 export const missingDomainAndProxy = `
 Missing domain and proxyUrl. A satellite application needs to specify a domain or a proxyUrl.
 
-1) With middleware
-   e.g. export default withClerkHandler({domain:'YOUR_DOMAIN',isSatellite:true});
+1) With handler
+   e.g. export const handle = withClerkHandler({domain:'YOUR_DOMAIN',isSatellite:true});
 2) With environment variables e.g.
    PUBLIC_CLERK_DOMAIN='YOUR_DOMAIN'
    PUBLIC_CLERK_IS_SATELLITE='true'
