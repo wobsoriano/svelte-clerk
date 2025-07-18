@@ -8,7 +8,6 @@ import {
 	type AuthenticateRequestOptions
 } from '@clerk/backend/internal';
 import { parse, splitCookiesString } from 'set-cookie-parser';
-import { createCurrentUser } from './currentUser.js';
 import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
 import type { PendingSessionOptions } from '@clerk/types';
@@ -86,5 +85,4 @@ function decorateLocals(
 	auth: (options?: PendingSessionOptions) => SessionAuthObject
 ) {
 	event.locals.auth = auth;
-	event.locals.currentUser = createCurrentUser(auth());
 }
