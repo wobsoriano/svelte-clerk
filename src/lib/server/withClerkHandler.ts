@@ -78,7 +78,32 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 		const parsedCookies = parse(splitCookies);
 		parsedCookies.forEach((parsedCookie) => {
 			const { name, value, ...options } = parsedCookie;
-			event.cookies.set(name, value, options as CookieSerializerOptions & { path: string });
+			
+			// For session cookies, we need to preserve the original attributes
+			// and ensure HttpOnly is not added if it wasn't in the original
+			if (name === constants.Cookies.Session) {
+				// Convert parsed cookie options to SvelteKit format
+				const cookieOptions: CookieSerializerOptions & { path: string } = {
+					path: options.path || '/',
+					expires: options.expires,
+					maxAge: options.maxAge,
+					domain: options.domain,
+					secure: options.secure,
+					httpOnly: options.httpOnly, // Use Clerk's original setting
+					sameSite: options.sameSite as 'lax' | 'strict' | 'none' | undefined
+				};
+				
+				// Explicitly override SvelteKit's default httpOnly: true
+				// This allows Clerk's client-side SDK to access the session
+				if (!options.httpOnly) {
+					cookieOptions.httpOnly = false; // Explicitly set to false to override SvelteKit's default
+				}
+				
+				event.cookies.set(name, value, cookieOptions);
+			} else {
+				// For other cookies, use the standard approach
+				event.cookies.set(name, value, options as CookieSerializerOptions & { path: string });
+			}
 		});
 		headers.delete('set-cookie');
 	}
