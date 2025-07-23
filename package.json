@@ -117,6 +117,7 @@
 		"@clerk/backend": "^2.4.3",
 		"@clerk/shared": "^3.12.1",
 		"@clerk/types": "^4.66.0",
-		"set-cookie-parser": "^2.7.1"
+		"set-cookie-parser": "^2.7.1",
+		"snakecase-keys": "^9.0.0"
 	}
 }
