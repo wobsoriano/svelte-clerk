@@ -20,9 +20,6 @@ importers:
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1
-      snakecase-keys:
-        specifier: ^9.0.0
-        version: 9.0.2
     devDependencies:
       '@changesets/cli':
         specifier: ^2.28.1
