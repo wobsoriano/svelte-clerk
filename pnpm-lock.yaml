@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^2.5.0
+        specifier: ^2.5.1
         version: 2.5.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^3.13.0
+        specifier: ^3.14.0
         version: 3.14.0(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.68.0
+        specifier: ^4.69.0
         version: 4.69.0
       set-cookie-parser:
         specifier: ^2.7.1
