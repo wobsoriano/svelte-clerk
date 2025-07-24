@@ -79,9 +79,10 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 		parsedCookies.forEach((parsedCookie) => {
 			const { name, value, ...options } = parsedCookie;
 			
-			// For session cookies, we need to preserve the original attributes
-			// and ensure HttpOnly is not added if it wasn't in the original
-			if (name === constants.Cookies.Session) {
+			// For session cookies (including prefixed ones like __session_{suffix}),
+			// we need to preserve the original attributes and ensure HttpOnly is not added
+			// if it wasn't in the original
+			if (name === constants.Cookies.Session || name.startsWith(constants.Cookies.Session)) {
 				// Convert parsed cookie options to SvelteKit format
 				const cookieOptions: CookieSerializerOptions & { path: string } = {
 					path: options.path || '/',
