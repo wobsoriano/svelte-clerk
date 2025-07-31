@@ -31,7 +31,7 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from 'svelte-clerk/client';
-	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/private';
+	import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public';
 
 	const { children }: { children: Snippet } = $props();
 </script>
