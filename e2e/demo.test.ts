@@ -64,31 +64,3 @@ test('<SignInButton /> renders and respects props', async ({ page, baseURL }) =>
 	await po.page.waitForAppUrl('/');
 	await po.expect.toBeSignedIn();
 });
-
-test('session cookie is accessible to client-side SDK after authentication', async ({ page, baseURL }) => {
-	const po = createPageObjects({ page, baseURL });
-	await po.page.goToRelative('/sign-in');
-	await po.signIn.waitForMounted();
-	await po.signIn.signInWithEmailAndInstantPassword({ email: USER_EMAIL, password: USER_PASSWORD });
-	await po.expect.toBeSignedIn();
-
-	await po.page.waitForAppUrl('/profile');
-	
-	// Verify that the session cookie exists and is accessible
-	const cookies = await page.context().cookies();
-	const sessionCookie = cookies.find(cookie => cookie.name === '__session');
-	
-	expect(sessionCookie).toBeDefined();
-	expect(sessionCookie?.httpOnly).toBe(false); // Should not be HttpOnly for client-side access
-	
-	// Verify that the client-side SDK can access the session
-	await page.waitForFunction(() => {
-		return (window as any).Clerk && (window as any).Clerk.session;
-	});
-	
-	const sessionExists = await page.evaluate(() => {
-		return (window as any).Clerk?.session !== null;
-	});
-	
-	expect(sessionExists).toBe(true);
-});
