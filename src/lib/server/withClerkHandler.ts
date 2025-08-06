@@ -78,7 +78,7 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 		const parsedCookies = parse(splitCookies);
 		parsedCookies.forEach((parsedCookie) => {
 			const { name, value, ...options } = parsedCookie;
-			
+
 			// For session cookies (including prefixed ones like __session_{suffix}),
 			// we need to preserve the original attributes and ensure HttpOnly is not added
 			// if it wasn't in the original
@@ -93,13 +93,13 @@ function decorateHeaders(event: RequestEvent, headers: Headers) {
 					httpOnly: options.httpOnly, // Use Clerk's original setting
 					sameSite: options.sameSite as 'lax' | 'strict' | 'none' | undefined
 				};
-				
+
 				// Explicitly override SvelteKit's default httpOnly: true
 				// This allows Clerk's client-side SDK to access the session
 				if (!options.httpOnly) {
 					cookieOptions.httpOnly = false; // Explicitly set to false to override SvelteKit's default
 				}
-				
+
 				event.cookies.set(name, value, cookieOptions);
 			} else {
 				// For other cookies, use the standard approach
