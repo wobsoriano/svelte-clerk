@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^2.6.3
-        version: 2.6.3(react@18.3.1)
+        specifier: ^2.7.0
+        version: 2.7.0(react@18.3.1)
       '@clerk/shared':
-        specifier: ^3.18.0
-        version: 3.18.0(react@18.3.1)
+        specifier: ^3.18.1
+        version: 3.18.1(react@18.3.1)
       '@clerk/types':
-        specifier: ^4.73.0
-        version: 4.73.0
+        specifier: ^4.74.0
+        version: 4.74.0
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1
@@ -264,12 +264,12 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clerk/backend@2.6.3':
-    resolution: {integrity: sha512-x73eu/zDMc1E2YvvW+KW55B6BOfiUrgFhSJngBsZJ6+W5hWZph+XeCS7oEcZfhvQyUcb9M6tqM2R1w7htNgh1Q==}
+  '@clerk/backend@2.7.0':
+    resolution: {integrity: sha512-YrZwRd1X9Am1HGlIx01LoENZ5S7zDBmvHw0srUI5EhNBNY1HCWAd8iBF678o1qV95/sOB27A7BiKJiDIgnTiZg==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@3.18.0':
-    resolution: {integrity: sha512-QGYbtPfJEp66AgaI0JtiRX04ejoUI8SmqUqqbAm3UXAeUAsKOyXoNbghNal97X7qeq1vPRRiDugK5B9WYN69uA==}
+  '@clerk/shared@3.18.1':
+    resolution: {integrity: sha512-l/8+X1gM9+Se87USn55B0ZKeSrFgy0ZYHzAptUc1Fgmfyved90JX7n5QgY66DuqbdM5OfGbRNFiCsI2khAgmrA==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
@@ -292,8 +292,8 @@ packages:
       cypress:
         optional: true
 
-  '@clerk/types@4.73.0':
-    resolution: {integrity: sha512-SFM29RFVqs0KyTds3F7s7DBYNoqeBDSZiWuso/WCgfQVI4H3j0gI+0BdBEiqwCILXr4jKBG2srDmzP5FVvx8Hg==}
+  '@clerk/types@4.74.0':
+    resolution: {integrity: sha512-9Wt2dWyCtCp2FngRkbHuQXPMttRjvGb77bmyCdGkPmNqQIZp7m4AZRdPtXhcGgxzaAYJkK6psgolbvuKDk+1jA==}
     engines: {node: '>=18.17.0'}
 
   '@docsearch/css@3.8.2':
@@ -2889,10 +2889,10 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@clerk/backend@2.6.3(react@18.3.1)':
+  '@clerk/backend@2.7.0(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 3.18.0(react@18.3.1)
-      '@clerk/types': 4.73.0
+      '@clerk/shared': 3.18.1(react@18.3.1)
+      '@clerk/types': 4.74.0
       cookie: 1.0.2
       standardwebhooks: 1.0.0
       tslib: 2.8.1
@@ -2900,9 +2900,9 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@3.18.0(react@18.3.1)':
+  '@clerk/shared@3.18.1(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.73.0
+      '@clerk/types': 4.74.0
       dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
@@ -2913,9 +2913,9 @@ snapshots:
 
   '@clerk/testing@1.9.1(@playwright/test@1.51.1)(react@18.3.1)':
     dependencies:
-      '@clerk/backend': 2.6.3(react@18.3.1)
-      '@clerk/shared': 3.18.0(react@18.3.1)
-      '@clerk/types': 4.73.0
+      '@clerk/backend': 2.7.0(react@18.3.1)
+      '@clerk/shared': 3.18.1(react@18.3.1)
+      '@clerk/types': 4.74.0
       dotenv: 16.4.7
     optionalDependencies:
       '@playwright/test': 1.51.1
@@ -2923,7 +2923,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/types@4.73.0':
+  '@clerk/types@4.74.0':
     dependencies:
       csstype: 3.1.3
 
