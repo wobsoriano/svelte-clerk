@@ -15,7 +15,13 @@ import { getContext, setContext } from 'svelte';
 const _contextKey = '$$_clerk';
 
 export interface ClerkContext {
+	/**
+	 * See https://clerk.com/docs/references/javascript/clerk
+	 */
 	clerk: HeadlessBrowserClerk | BrowserClerk | null;
+	/**
+	 * Check if the Clerk object is ready for use or not
+	 */
 	isLoaded: boolean;
 	auth: {
 		userId: string | null | undefined;
@@ -29,9 +35,21 @@ export interface ClerkContext {
 		orgPermissions: OrganizationCustomPermissionKey[] | null | undefined;
 		factorVerificationAge: [number, number] | null;
 	};
+	/**
+	 * See https://clerk.com/docs/references/javascript/client
+	 */
 	client: ClientResource | null | undefined;
+	/**
+	 * See https://clerk.com/docs/references/javascript/session
+	 */
 	session: SignedInSessionResource | null | undefined;
+	/**
+	 * See https://clerk.com/docs/references/javascript/user
+	 */
 	user: UserResource | null | undefined;
+	/**
+	 * See https://clerk.com/docs/references/javascript/organization
+	 */
 	organization: OrganizationResource | null | undefined;
 }
 
