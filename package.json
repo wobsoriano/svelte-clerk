@@ -82,6 +82,7 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
+		"@clerk/localizations": "^3.21.3",
 		"@clerk/testing": "^1.9.1",
 		"@dotenvx/dotenvx": "^1.45.1",
 		"@playwright/test": "^1.49.1",

@@ -11,11 +11,12 @@
 		type LoadClerkJsScriptOptions
 	} from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
+	import { watch } from './utils.svelte';
 
 	const {
 		children,
 		initialState,
-		...clerkInitOptions
+		...props
 	}: ClerkProviderProps & {
 		initialState?: InitialState;
 	} = $props();
@@ -41,7 +42,7 @@
 		const opts = {
 			routerPush: (to: string) => goto(to),
 			routerReplace: (to: string) => goto(to, { replaceState: true }),
-			...clerkInitOptions
+			...props
 		};
 
 		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
@@ -66,30 +67,20 @@
 		});
 	});
 
-	$effect(() => {
-		if (!isLoaded) {
-			return;
-		}
-
-		// @ts-expect-error: Internal clerk property that is not exposed
-		clerk?.__unstable__updateProps({
-			appearance: clerkInitOptions.appearance
-		});
-	});
-
-	$effect(() => {
-		if (!isLoaded) {
-			return;
-		}
-
-		// @ts-expect-error: Internal clerk property that is not exposed
-		clerk?.__unstable__updateProps({
-			options: {
-				...clerkInitOptions,
-				localization: clerkInitOptions.localization
+	watch(
+		() => [props.appearance, props.localization],
+		() => {
+			if (clerk) {
+				// @ts-expect-error: Internal unexposed Clerk property
+				clerk.__unstable__updateProps({
+					options: {
+						localization: props.localization
+					},
+					appearance: props.appearance
+				});
 			}
-		});
-	});
+		}
+	);
 
 	setClerkContext({
 		get clerk() {

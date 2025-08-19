@@ -64,3 +64,22 @@ test('<SignInButton /> renders and respects props', async ({ page, baseURL }) =>
 	await po.page.waitForAppUrl('/');
 	await po.expect.toBeSignedIn();
 });
+
+test('Update Clerk options on the fly', async ({ page, baseURL }) => {
+	const po = createPageObjects({ page, baseURL });
+
+	// Navigate and wait for sign-in component to load
+	await po.page.goToRelative('/sign-in');
+	await po.signIn.waitForMounted();
+
+	// Verify initial English state
+	await expect(po.page.getByText('Welcome back! Please sign in to continue')).toBeVisible();
+
+	// Change to French and verify
+	await po.page.locator('select').selectOption({ label: 'fr' });
+	await expect(po.page.getByText('pour continuer vers')).toBeVisible();
+
+	// Revert to English and verify
+	await po.page.locator('select').selectOption({ label: 'en' });
+	await expect(po.page.getByText('Welcome back! Please sign in to continue')).toBeVisible();
+});
