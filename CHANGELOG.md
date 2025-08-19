@@ -1,5 +1,14 @@
 # svelte-clerk
 
+## 0.16.7
+
+### Patch Changes
+
+- ac253cd: Bump @clerk/backend from 2.7.0 to 2.7.1
+- ac253cd: Bump @clerk/shared from 3.18.1 to 3.19.0
+- ac253cd: Bump @clerk/types from 4.74.0 to 4.75.0
+- 43a6b71: Do not update Clerk options on load
+
 ## 0.16.6
 
 ### Patch Changes
