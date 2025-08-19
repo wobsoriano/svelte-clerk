@@ -3,6 +3,11 @@
 	import { useClerkContext } from '$lib';
 	import Icon from './Icon.svelte';
 	const ctx = useClerkContext();
+
+	let {
+		selectedLocale = $bindable(),
+		onLocaleChange
+	}: { selectedLocale: 'en' | 'fr'; onLocaleChange: () => void } = $props();
 </script>
 
 <nav class="flex items-center justify-between px-6 py-4 mb-5 bg-blue-700">
@@ -10,6 +15,14 @@
 		<a href="/" class="text-lg font-bold text-white uppercase"> Clerk App </a>
 	</div>
 	<div class="flex items-center text-white">
+		<select
+			bind:value={selectedLocale}
+			onchange={onLocaleChange}
+			class="bg-blue-600 text-white px-3 py-2 rounded-md mr-4"
+		>
+			<option value="en">en</option>
+			<option value="fr">fr</option>
+		</select>
 		{#if !ctx.auth.userId}
 			<a href="/sign-in" class="text-gray-300 hover:text-white mr-4"> Sign In </a>
 			<a href="/sign-up" class="text-gray-300 hover:text-white mr-4"> Sign Up </a>
