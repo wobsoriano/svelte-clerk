@@ -28,3 +28,7 @@ declare global {
 export type ButtonProps = Pick<HTMLButtonAttributes, 'style' | 'class'> & {
 	asChild?: boolean;
 };
+
+export type ComponentWithFallback<T> = T & {
+	fallback?: Snippet;
+};
