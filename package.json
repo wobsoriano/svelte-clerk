@@ -93,6 +93,7 @@
 		"@sveltejs/vite-plugin-svelte": "^6.1.0",
 		"@types/eslint": "^9.6.1",
 		"@types/set-cookie-parser": "^2.4.10",
+		"@vueuse/core": "^13.8.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.13.0",
 		"eslint-config-prettier": "^10.0.1",
