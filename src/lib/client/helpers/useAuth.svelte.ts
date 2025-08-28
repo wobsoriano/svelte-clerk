@@ -12,7 +12,7 @@ import type {
 	PendingSessionOptions
 } from '@clerk/types';
 
-export type UseSession = () => UseSessionReturn;
+export type UseAuth = (options?: PendingSessionOptions) => UseAuthReturn;
 
 function clerkLoaded(isLoaded: () => boolean, clerk: () => Clerk | null) {
 	return new Promise<Clerk>((resolve) => {
@@ -41,8 +41,6 @@ function createSignOut(isLoaded: () => boolean, clerk: () => Clerk | null) {
 		return loadedClerk.signOut(...args);
 	};
 }
-
-type UseAuth = (options?: PendingSessionOptions) => UseAuthReturn;
 
 /**
  * Returns the current auth state, the user and session ids and the `getToken`

@@ -30,3 +30,11 @@ export { default as SignOutButton } from './unstyled/SignOutButton.svelte';
 
 // Provider
 export { default as ClerkProvider } from './ClerkProvider.svelte';
+
+// Helpers
+export * from './helpers/useAuth.svelte.js';
+export * from './helpers/useSession.svelte.js';
+export * from './helpers/useSessionList.svelte.js';
+export * from './helpers/useUser.svelte.js';
+export * from './helpers/useSignIn.svelte.js';
+export * from './helpers/useSignUp.svelte.js';
