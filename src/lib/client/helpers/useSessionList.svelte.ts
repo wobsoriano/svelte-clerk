@@ -1,7 +1,9 @@
 import { useClerkContext } from '$lib/context';
 import type { UseSessionListReturn } from '@clerk/types';
 
-export type UseSessionList = () => UseSessionListReturn;
+export type UseSessionList = () => {
+  get current(): UseSessionListReturn
+};
 
 /**
  * Returns an array of [`Session`](https://clerk.com/docs/references/javascript/session) objects that have been
@@ -42,5 +44,9 @@ export const useSessionList: UseSessionList = () => {
 		};
 	});
 
-	return result;
+	return {
+    get current() {
+      return result
+    }
+	};
 };

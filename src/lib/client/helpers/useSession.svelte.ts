@@ -1,7 +1,9 @@
 import { useClerkContext } from '$lib/context';
 import type { UseSessionReturn } from '@clerk/types';
 
-export type UseSession = () => UseSessionReturn;
+export type UseSession = () => {
+  get current(): UseSessionReturn
+};
 
 /**
  * Returns the current [`Session`](https://clerk.com/docs/references/javascript/session) object which provides
@@ -43,5 +45,9 @@ export const useSession: UseSession = () => {
 		return { isLoaded: true, isSignedIn: !!ctx.clerk?.isSignedIn, session: ctx.session };
 	});
 
-	return result;
+	return {
+	  get current() {
+			return result
+		}
+	};
 };

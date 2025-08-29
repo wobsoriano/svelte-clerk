@@ -8,11 +8,12 @@ import type {
 	GetToken,
 	JwtPayload,
 	SignOut,
-	UseSessionReturn,
 	PendingSessionOptions
 } from '@clerk/types';
 
-export type UseAuth = (options?: PendingSessionOptions) => UseAuthReturn;
+export type UseAuth = (options?: PendingSessionOptions) => {
+  get current(): UseAuthReturn
+};
 
 function clerkLoaded(isLoaded: () => boolean, clerk: () => Clerk | null) {
 	return new Promise<Clerk>((resolve) => {
@@ -109,5 +110,9 @@ export const useAuth: UseAuth = (options = {}) => {
 		return payload;
 	});
 
-	return result;
+	return {
+    get current() {
+      return result
+    }
+	};
 };

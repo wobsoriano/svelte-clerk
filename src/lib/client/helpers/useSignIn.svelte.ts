@@ -1,7 +1,9 @@
 import { useClerkContext } from '$lib/context';
 import type { UseSignInReturn } from '@clerk/types';
 
-export type UseSignIn = () => UseSignInReturn;
+export type UseSignIn = () => {
+  get current(): UseSignInReturn
+};
 
 /**
  * Returns the current [`SignIn`](https://clerk.com/docs/references/javascript/sign-in) object which provides
@@ -39,5 +41,9 @@ export const useSignIn: UseSignIn = () => {
 		};
 	});
 
-	return result;
+	return {
+    get current() {
+      return result
+    }
+	};
 };

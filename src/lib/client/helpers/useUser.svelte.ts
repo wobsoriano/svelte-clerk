@@ -1,7 +1,9 @@
 import { useClerkContext } from '$lib/context';
 import type { UseUserReturn } from '@clerk/types';
 
-export type UseUser = () => UseUserReturn;
+export type UseUser = () => {
+  get current(): UseUserReturn
+};
 
 /**
  * Returns the current user's [`User`](https://clerk.com/docs/references/javascript/user/user) object along with loading states.
@@ -42,5 +44,9 @@ export const useUser: UseUser = () => {
 		return { isLoaded: true, isSignedIn: true, user: ctx.user };
 	});
 
-	return result;
+	return {
+    get current() {
+      return result
+    }
+	};
 };
