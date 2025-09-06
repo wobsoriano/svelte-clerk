@@ -6,7 +6,7 @@ The Svelte SDK provides a `useClerkContext()` function that gives you access to 
 
 The `useClerkContext()` function returns the following properties:
 
-- `auth` - The [`Auth`](https://clerk.com/docs/references/javascript/auth) object.
+- `auth` - Access to the current user's authentication state and methods to manage the active session.
 - `user` - The `User` object.
 - `organization` - The `Organization` object.
 - `session` - The [`Session`](https://clerk.com/docs/references/javascript/session) object.
@@ -39,6 +39,6 @@ The following example demonstrates how to use the `auth` object to access the cu
 {:else if userId === null}
 	<p>Sign in to view this page</p>
 {:else}
-	<div>...</div>
+	<div>User ID: {userId}</div>
 {/if}
 ```

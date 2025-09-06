@@ -2,11 +2,9 @@
 
 The following [Clerk UI components](https://clerk.com/docs/components/overview) are available in Svelte Clerk:
 
-- `<ClerkLoaded>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loaded))
-- `<ClerkLoading>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loading))
-- `<Protect>` ([clerk docs](https://clerk.com/docs/components/protect))
 - `<SignedIn>` ([clerk docs](https://clerk.com/docs/components/control/signed-in))
 - `<SignedOut>` ([clerk docs](https://clerk.com/docs/components/control/signed-out))
+- `<Protect>` ([clerk docs](https://clerk.com/docs/components/protect))
 - `<SignIn>` ([clerk docs](https://clerk.com/docs/components/authentication/sign-in))
 - `<SignUp>` ([clerk docs](https://clerk.com/docs/components/authentication/sign-up))
 - `<UserButton>` ([clerk docs](https://clerk.com/docs/components/user/user-button))
@@ -17,6 +15,9 @@ The following [Clerk UI components](https://clerk.com/docs/components/overview) 
 - `<CreateOrganization>` ([clerk docs](https://clerk.com/docs/components/organization/create-organization))
 - `<GoogleOneTap>` ([clerk docs](https://clerk.com/docs/components/authentication/google-one-tap))
 - `<Waitlist />` ([clerk docs](https://clerk.com/docs/components/waitlist))
+- `<PricingTable />` ([clerk docs](https://clerk.com/docs/components/pricing-table))
+- `<ClerkLoaded>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loaded))
+- `<ClerkLoading>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loading))
 
 The main difference is that the Svelte components use [`Snippets`](https://svelte.dev/docs/svelte/snippet) to render their content.
 

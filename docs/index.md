@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Quickstart
-      link: /spa/quickstart
+      link: /kit/quickstart
     - theme: alt
       text: View on GitHub
       link: https://github.com/wobsoriano/svelte-clerk

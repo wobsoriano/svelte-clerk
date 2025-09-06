@@ -27,7 +27,7 @@ In the following example, we check if the `userId` if `undefined` to determine i
 
 ## Server-side
 
-The `Auth` object is available at `event.locals.auth()` in your server [loaders and actions](https://svelte.dev/docs/kit/load). This object contains important information like the current user's session ID, user ID, and organization ID. The `userId` can be used to protect your routes.
+The [`Auth`](https://clerk.com/docs/references/backend/types/auth-object) object is available at `event.locals.auth()` in your server [loaders and actions](https://svelte.dev/docs/kit/load). This object contains important information like the current user's session ID, user ID, and organization ID. The `userId` can be used to protect your routes.
 
 In some cases, you may need the full [`Backend User`](https://clerk.com/docs/references/backend/types/backend-user) object of the currently active user. This is helpful if you want to render information, like their first and last name, directly from the server. The `clerkClient()` helper returns an instance of the [JavaScript Backend SDK](https://clerk.com/docs/references/backend/overview), which exposes Clerk's Backend API resources through methods such as the [`getUser()`](https://clerk.com/docs/references/backend/user/get-user) method. This method returns the full `Backend User` object.
 
