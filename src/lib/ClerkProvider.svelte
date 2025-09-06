@@ -3,7 +3,8 @@
 	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { ClerkProviderProps } from '$lib/types.js';
 	import { page } from '$app/state';
-	import type { LoadClerkJsScriptOptions } from '@clerk/shared';
+	import type { LoadClerkJsScriptOptions } from '@clerk/shared/loadClerkJsScript';
+	import { goto } from '$app/navigation';
 
 	const {
 		children,
@@ -14,7 +15,9 @@
 
 	const mergedProps = $derived({
 		...props,
-		...mergeWithPublicEnvVariables(props)
+		...mergeWithPublicEnvVariables(props),
+		routerPush: (to: string) => goto(to),
+		routerReplace: (to: string) => goto(to, { replaceState: true }),
 	} as LoadClerkJsScriptOptions);
 </script>
 
