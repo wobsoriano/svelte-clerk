@@ -54,14 +54,14 @@ export interface ClerkContext {
 }
 
 export const useClerkContext = (): ClerkContext => {
-	const client = getContext(_contextKey);
+	const client = getContext<ClerkContext>(_contextKey);
 	if (!client) {
 		throw new Error(
 			'No Clerk data was found in Svelte context. Did you forget to wrap your component with ClerkProvider?'
 		);
 	}
 
-	return client as ClerkContext;
+	return client;
 };
 
 export const setClerkContext = (context: ClerkContext): void => {

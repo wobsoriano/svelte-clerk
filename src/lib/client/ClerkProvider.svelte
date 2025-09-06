@@ -8,9 +8,7 @@
 	import {
 		loadClerkJsScript,
 		setClerkJsLoadingErrorPackageName,
-		type LoadClerkJsScriptOptions
 	} from '@clerk/shared/loadClerkJsScript';
-	import { goto } from '$app/navigation';
 	import { watch } from './utils.svelte';
 
 	const {
@@ -39,20 +37,14 @@
 	setClerkJsLoadingErrorPackageName('svelte-clerk');
 
 	async function loadClerk() {
-		const opts = {
-			routerPush: (to: string) => goto(to),
-			routerReplace: (to: string) => goto(to, { replaceState: true }),
-			...props
-		};
-
-		await loadClerkJsScript(opts as LoadClerkJsScriptOptions);
+		await loadClerkJsScript(props);
 
 		if (!window.Clerk) {
 			throw new Error('Clerk script failed to load');
 		}
 
 		clerk = window.Clerk;
-		await clerk.load(opts);
+		await clerk.load(props);
 
 		isLoaded = true;
 
