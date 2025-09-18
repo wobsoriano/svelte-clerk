@@ -2,4 +2,8 @@
 	import { SignIn } from '$lib/client';
 </script>
 
-<SignIn />
+<SignIn>
+	{#snippet fallback()}
+		<div>Loading sign in</div>
+	{/snippet}
+</SignIn>
