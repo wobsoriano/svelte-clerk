@@ -61,20 +61,6 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 </ClerkProvider>
 ```
 
-To enable SSR support, pass the initial auth state to the return object of the load function.
-
-```ts
-// src/routes/+layout.server.ts
-import { buildClerkProps } from 'svelte-clerk/server';
-import type { LayoutServerLoad } from './$types';
-
-export const load: LayoutServerLoad = ({ locals }) => {
-	return {
-		...buildClerkProps(locals.auth())
-	};
-};
-```
-
 ### 6. Protect your pages
 
 #### Client-side

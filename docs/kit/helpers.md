@@ -40,17 +40,3 @@ export const load = async ({ locals }) => {
 	};
 };
 ```
-
-## `buildClerkProps()`
-
-The `buildClerkProps()` helper is used to inform the client-side helpers of the authentication state of the user. This function is used for SSR in the root server load function of your SvelteKit application.
-
-```ts
-import { buildClerkProps } from 'svelte-clerk/server';
-
-export const load = async ({ locals }) => {
-	return {
-		...buildClerkProps(locals.auth())
-	};
-};
-```

@@ -2,9 +2,9 @@
 	import ClerkProvider from '$lib/client/ClerkProvider.svelte';
 	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { ClerkProviderProps } from '$lib/types.js';
-	import { page } from '$app/state';
 	import type { LoadClerkJsScriptOptions } from '@clerk/shared/loadClerkJsScript';
 	import { goto } from '$app/navigation';
+	import { getInitialAuthState } from './functions/auth.remote'
 
 	const {
 		children,
@@ -21,6 +21,6 @@
 	} as LoadClerkJsScriptOptions);
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...mergedProps}>
+<ClerkProvider initialState={await getInitialAuthState()} {...mergedProps}>
 	{@render children()}
 </ClerkProvider>
