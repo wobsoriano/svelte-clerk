@@ -1,5 +1,13 @@
 # svelte-clerk
 
+## 0.17.5
+
+### Patch Changes
+
+- 7716fe1: Bump @clerk/backend from 2.16.0 to 2.18.1
+- 7716fe1: Bump @clerk/shared from 3.27.0 to 3.28.0
+- 7716fe1: Bump @clerk/types from 4.89.0 to 4.94.0
+
 ## 0.17.4
 
 ### Patch Changes
@@ -566,7 +574,6 @@
 
 - dc8b894: Use shared unstyled button component type props
 - e928ae7: Bump Clerk dependencies to latest versions:
-
   - `@clerk/backend` from ^1.24.0 to ^1.29.1
   - `@clerk/shared` from ^2.21.0 to ^2.28.1
   - `@clerk/types` from ^4.45.1 to ^4.53.3
