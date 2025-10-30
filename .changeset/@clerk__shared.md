@@ -2,4 +2,4 @@
 "svelte-clerk": patch
 ---
 
-Bump @clerk/shared from 3.28.2 to 3.28.3
+Bump @clerk/shared from 3.28.2 to 3.29.0
