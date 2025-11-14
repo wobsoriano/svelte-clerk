@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.18.0
+
+### Minor Changes
+
+- 95738cc: Mark @sveltejs/kit module as optional
+
 ## 0.17.10
 
 ### Patch Changes
