@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { OrganizationSwitcherProps } from '@clerk/types';
+	import type { OrganizationSwitcherProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
 	const props: OrganizationSwitcherProps = $props();

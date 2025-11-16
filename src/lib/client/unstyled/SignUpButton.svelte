@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
 	import type { ButtonProps, PropsWithChildren } from '$lib/types';
-	import type { SignUpButtonProps } from '@clerk/types';
+	import type { SignUpButtonProps } from '@clerk/shared/types';
 
 	const {
 		mode,

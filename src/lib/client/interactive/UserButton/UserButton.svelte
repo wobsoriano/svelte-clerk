@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { UserButtonProps } from '@clerk/types';
+	import type { UserButtonProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 	import { onDestroy, setContext, type Snippet } from 'svelte';
 	import type { UserButtonContext } from './types';

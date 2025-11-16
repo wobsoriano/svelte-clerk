@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { GoogleOneTapProps } from '@clerk/types';
+	import type { GoogleOneTapProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
 	const props: GoogleOneTapProps = $props();

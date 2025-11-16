@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { PricingTableProps } from '@clerk/types';
+	import type { PricingTableProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
 	const props: PricingTableProps = $props();

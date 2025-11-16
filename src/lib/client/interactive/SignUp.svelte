@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { SignUpProps } from '@clerk/types';
+	import type { SignUpProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 
 	const props: SignUpProps = $props();

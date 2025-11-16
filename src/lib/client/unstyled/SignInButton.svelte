@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
 	import type { ButtonProps, PropsWithChildren } from '$lib/types';
-	import type { SignInButtonProps } from '@clerk/types';
+	import type { SignInButtonProps } from '@clerk/shared/types';
 	import type { Snippet } from 'svelte';
 
 	const {

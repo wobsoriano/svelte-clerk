@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { HandleOAuthCallbackParams } from '@clerk/types';
+	import type { HandleOAuthCallbackParams } from '@clerk/shared/types';
 
 	const props: HandleOAuthCallbackParams = $props();
 

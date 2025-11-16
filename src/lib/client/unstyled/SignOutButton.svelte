@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
 	import type { ButtonProps, PropsWithChildren } from '$lib/types';
-	import type { SignOutOptions } from '@clerk/types';
+	import type { SignOutOptions } from '@clerk/shared/types';
 
 	const {
 		sessionId,

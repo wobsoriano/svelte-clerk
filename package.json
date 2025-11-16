@@ -123,7 +123,6 @@
 	"dependencies": {
 		"@clerk/backend": "^2.22.0",
 		"@clerk/shared": "^3.34.0",
-		"@clerk/types": "^4.100.0",
 		"set-cookie-parser": "^2.7.1"
 	}
 }

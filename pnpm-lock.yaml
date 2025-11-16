@@ -14,9 +14,6 @@ importers:
       '@clerk/shared':
         specifier: ^3.34.0
         version: 3.34.0(react@18.3.1)
-      '@clerk/types':
-        specifier: ^4.100.0
-        version: 4.100.0(react@18.3.1)
       set-cookie-parser:
         specifier: ^2.7.1
         version: 2.7.1

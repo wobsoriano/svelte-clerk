@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { ClientResource, InitialState, Resources } from '@clerk/types';
+	import type { ClientResource, InitialState, Resources } from '@clerk/shared/types';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
 	import type { ClerkProviderProps, HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';

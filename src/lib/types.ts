@@ -1,5 +1,5 @@
 import type { LoadClerkJsScriptOptions } from '@clerk/shared';
-import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/types';
+import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/shared/types';
 import type { Snippet } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
 

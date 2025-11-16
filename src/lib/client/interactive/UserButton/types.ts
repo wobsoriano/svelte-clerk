@@ -1,4 +1,4 @@
-import type { CustomMenuItem, CustomPage } from '@clerk/types';
+import type { CustomMenuItem, CustomPage } from '@clerk/shared/types';
 
 type ReorderItemLabel = 'manageAccount' | 'signOut';
 

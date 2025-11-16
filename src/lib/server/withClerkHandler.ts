@@ -10,7 +10,7 @@ import {
 import { parse, splitCookiesString } from 'set-cookie-parser';
 import type { ClerkRequest } from '@clerk/backend/internal';
 import { handleNetlifyCacheInDevInstance } from '@clerk/shared/netlifyCacheHandler';
-import type { PendingSessionOptions } from '@clerk/types';
+import type { PendingSessionOptions } from '@clerk/shared/types';
 import { handleValueOrFn } from '@clerk/shared/utils';
 import { isHttpOrHttps } from '@clerk/shared/proxy';
 import { isDevelopmentFromSecretKey } from '@clerk/shared/keys';

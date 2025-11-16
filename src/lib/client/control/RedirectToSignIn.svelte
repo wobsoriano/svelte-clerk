@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { useClerkContext } from '$lib/context.js';
-	import type { SignInRedirectOptions } from '@clerk/types';
+	import type { SignInRedirectOptions } from '@clerk/shared/types';
 
 	type RedirectToSignInProps = SignInRedirectOptions;
 	const props: RedirectToSignInProps = $props();

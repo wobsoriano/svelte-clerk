@@ -8,7 +8,7 @@ import type {
 	UserResource,
 	SessionStatusClaim,
 	JwtPayload
-} from '@clerk/types';
+} from '@clerk/shared/types';
 import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 import { getContext, setContext } from 'svelte';
 

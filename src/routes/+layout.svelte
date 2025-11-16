@@ -3,7 +3,7 @@
 	import type { Snippet } from 'svelte';
 	import { ClerkProvider } from '$lib/index.js';
 	import Header from '../components/Header.svelte';
-	import type { LocalizationResource } from '@clerk/types';
+	import type { LocalizationResource } from '@clerk/shared/types';
 
 	let { children }: { children: Snippet } = $props();
 	let selected = $state<'en' | 'fr'>('en');

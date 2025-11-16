@@ -3,7 +3,7 @@
 		CheckAuthorizationWithCustomPermissions,
 		JwtPayload,
 		ProtectProps
-	} from '@clerk/types';
+	} from '@clerk/shared/types';
 	import type { Snippet } from 'svelte';
 	import { createCheckAuthorization } from '@clerk/shared/authorization';
 	import { useClerkContext } from '$lib/context.js';
