@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.18.1
+
+### Patch Changes
+
+- d946340: Refactor `@clerk/types` import to `@clerk/shared/types`
+
 ## 0.18.0
 
 ### Minor Changes
