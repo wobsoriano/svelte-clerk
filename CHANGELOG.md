@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.18.6
+
+### Patch Changes
+
+- 6025dd1: Switch to OIDC for npm publishing
+
 ## 0.18.5
 
 ### Patch Changes
