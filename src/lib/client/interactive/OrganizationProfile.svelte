@@ -2,6 +2,7 @@
 	import { clerkHostRenderer } from '$lib/action.js';
 	import type { OrganizationProfileProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
+	import { fromAction } from 'svelte/attachments';
 
 	const props: OrganizationProfileProps = $props();
 </script>
@@ -9,12 +10,12 @@
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
-			use:clerkHostRenderer={{
+			{@attach fromAction(clerkHostRenderer, () => ({
 				mount: clerk.mountOrganizationProfile,
 				unmount: clerk.unmountOrganizationProfile,
 				updateProps: (clerk as any).__unstable__updateProps,
 				props: $state.snapshot(props)
-			}}
+			}))}
 		></div>
 	{/snippet}
 </ClerkLoaded>

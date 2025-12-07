@@ -7,7 +7,7 @@
 
 	import {
 		loadClerkJsScript,
-		setClerkJsLoadingErrorPackageName,
+		setClerkJsLoadingErrorPackageName
 	} from '@clerk/shared/loadClerkJsScript';
 	import { watch } from './utils.svelte';
 
