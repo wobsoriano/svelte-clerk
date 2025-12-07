@@ -17,7 +17,7 @@
 		...props,
 		...mergeWithPublicEnvVariables(props),
 		routerPush: (to: string) => goto(to),
-		routerReplace: (to: string) => goto(to, { replaceState: true }),
+		routerReplace: (to: string) => goto(to, { replaceState: true })
 	} as LoadClerkJsScriptOptions);
 </script>
 

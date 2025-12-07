@@ -11,11 +11,11 @@
 	{#snippet children(clerk)}
 		<div
 			{@attach fromAction(clerkHostRenderer, () => ({
-               	mount: clerk.mountSignIn,
-               	unmount: clerk.unmountSignIn,
-               	updateProps: (clerk as any).__unstable__updateProps,
-               	props: $state.snapshot(props)
-            }))}
+				mount: clerk.mountSignIn,
+				unmount: clerk.unmountSignIn,
+				updateProps: (clerk as any).__unstable__updateProps,
+				props: $state.snapshot(props)
+			}))}
 		></div>
 	{/snippet}
 </ClerkLoaded>

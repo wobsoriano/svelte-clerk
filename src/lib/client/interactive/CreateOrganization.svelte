@@ -10,7 +10,7 @@
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
-		    {@attach fromAction(clerkHostRenderer, () => ({
+			{@attach fromAction(clerkHostRenderer, () => ({
 				mount: clerk.mountCreateOrganization,
 				unmount: clerk.unmountCreateOrganization,
 				updateProps: (clerk as any).__unstable__updateProps,

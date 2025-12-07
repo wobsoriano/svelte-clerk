@@ -12,13 +12,13 @@ export default defineConfig({
 		],
 
 		sidebar: [
-  		{
-  			text: 'SvelteKit',
-  			items: [
-  				{ text: 'Quickstart', link: '/kit/quickstart' },
-  				{ text: 'Helpers', link: '/kit/helpers' }
-  			]
-  		},
+			{
+				text: 'SvelteKit',
+				items: [
+					{ text: 'Quickstart', link: '/kit/quickstart' },
+					{ text: 'Helpers', link: '/kit/helpers' }
+				]
+			},
 			{
 				text: 'Svelte',
 				items: [
