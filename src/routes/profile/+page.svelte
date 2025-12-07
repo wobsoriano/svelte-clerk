@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SignedIn, useClerkContext, UserProfile } from '$lib/client';
+	import { SignedIn, useClerkContext, UserProfile } from '$lib/index.js';
 	import { mount, onMount, unmount, type Snippet } from 'svelte';
 	import type { CustomPage } from '@clerk/shared/types';
 	import Portal from '$lib/client/Portal.svelte';

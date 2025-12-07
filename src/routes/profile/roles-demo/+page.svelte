@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { OrganizationSwitcher, Protect } from '$lib/client';
+	import { OrganizationSwitcher, Protect } from '$lib/index.js';
 </script>
 
 <OrganizationSwitcher />
