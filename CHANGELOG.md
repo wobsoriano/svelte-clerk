@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.19.0
+
+### Minor Changes
+
+- 7ab79e1: Initial migration to attachments from actions for interactive components
+
 ## 0.18.7
 
 ### Patch Changes
