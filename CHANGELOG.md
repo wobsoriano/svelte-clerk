@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 0.20.0
+
+### Minor Changes
+
+- 2124c7c: Change default routing strategy to path-based
+
 ## 0.19.0
 
 ### Minor Changes
