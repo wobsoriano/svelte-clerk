@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { OrganizationList } from '$lib/client';
+	import { OrganizationList } from '$lib/index.js';
 </script>
 
 <OrganizationList />
