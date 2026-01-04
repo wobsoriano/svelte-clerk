@@ -17,6 +17,7 @@ import { isDevelopmentFromSecretKey } from '@clerk/shared/keys';
 import { getDynamicPublicEnvVariables } from '$lib/utils/getDynamicPublicEnvVariables.js';
 import { isTruthy } from '@clerk/shared/underscore';
 import type { SessionAuthObject } from '@clerk/backend';
+import { patchRequest } from './patchRequest.js';
 
 export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
 
@@ -24,7 +25,7 @@ export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOpt
 	return async ({ event, resolve }) => {
 		const { debug = false, ...options } = middlewareOptions ?? {};
 
-		const clerkWebRequest = createClerkRequest(event.request);
+		const clerkWebRequest = createClerkRequest(patchRequest(event.request));
 		if (debug) {
 			console.log('[svelte-clerk] ' + JSON.stringify(clerkWebRequest.toJSON()));
 		}
