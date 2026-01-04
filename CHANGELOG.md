@@ -1,5 +1,13 @@
 # svelte-clerk
 
+## 0.20.3
+
+### Patch Changes
+
+- 0c34860: Bump @clerk/backend from 2.28.0 to 2.29.0
+- 0c34860: Bump @clerk/shared from 3.41.0 to 3.41.1
+- f09b033: Clone Request before reading body
+
 ## 0.20.2
 
 ### Patch Changes
