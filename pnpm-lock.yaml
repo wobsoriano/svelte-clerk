@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^2.29.7
-        version: 2.29.7(react@18.3.1)
+        specifier: ^2.30.0
+        version: 2.30.0(react@18.3.1)
       '@clerk/shared':
         specifier: ^3.44.0
         version: 3.44.0(react@18.3.1)
@@ -263,8 +263,8 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clerk/backend@2.29.7':
-    resolution: {integrity: sha512-OSfFQ85L0FV2wSzqlr0hRvluIu3Z5ClgLiBE6Qx7XjSGyJoqEvP5OP4fl5Nt5icgGvH0EwA1dljPGyQpaqbQEw==}
+  '@clerk/backend@2.30.0':
+    resolution: {integrity: sha512-4DJBisLmA6pAtvTLJb1EshWCVfQRpuIxSO+pIkhGOC2DvNc85EkMq2G3a/jPOzUFzZPMmIJp99sKo7JF9MoOcg==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/localizations@3.29.1':
@@ -1748,12 +1748,13 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@14.0.0:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
@@ -3059,7 +3060,7 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@clerk/backend@2.29.7(react@18.3.1)':
+  '@clerk/backend@2.30.0(react@18.3.1)':
     dependencies:
       '@clerk/shared': 3.44.0(react@18.3.1)
       '@clerk/types': 4.101.14(react@18.3.1)
@@ -3089,7 +3090,7 @@ snapshots:
 
   '@clerk/testing@1.13.21(@playwright/test@1.57.0)(react@18.3.1)':
     dependencies:
-      '@clerk/backend': 2.29.7(react@18.3.1)
+      '@clerk/backend': 2.30.0(react@18.3.1)
       '@clerk/shared': 3.44.0(react@18.3.1)
       '@clerk/types': 4.101.5(react@18.3.1)
       dotenv: 17.2.2
