@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 0.20.5
+
+### Patch Changes
+
+- 2614a8e: Bump @clerk/backend from 2.29.1 to 2.30.0 in the clerk-dependencies group
+- 2614a8e: Bump @clerk/shared from 3.42.0 to 3.44.0
+
 ## 0.20.4
 
 ### Patch Changes
