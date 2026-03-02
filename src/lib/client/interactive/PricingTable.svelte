@@ -13,7 +13,7 @@
 			{@attach fromAction(clerkHostRenderer, () => ({
 				mount: clerk.mountPricingTable,
 				unmount: clerk.unmountPricingTable,
-				updateProps: (clerk as any).__unstable__updateProps,
+				updateProps: (clerk as any).__internal_updateProps,
 				props: $state.snapshot(props)
 			}))}
 		></div>

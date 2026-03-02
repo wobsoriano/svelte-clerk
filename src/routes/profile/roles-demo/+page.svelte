@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { OrganizationSwitcher, Protect } from '$lib/index.js';
+	import { OrganizationSwitcher, Show } from '$lib/index.js';
 </script>
 
 <OrganizationSwitcher />
-<Protect role="org:admin">
+<Show when={{ role: 'org:admin' }}>
 	<div>You are an admin</div>
 	{#snippet fallback()}
 		You are not an admin
 	{/snippet}
-</Protect>
-<Protect role="org:member">
+</Show>
+<Show when={{ role: 'org:member' }}>
 	<div>You are a member</div>
 	{#snippet fallback()}
 		You are not a member
 	{/snippet}
-</Protect>
+</Show>

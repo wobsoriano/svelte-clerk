@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { clerkHostRenderer } from '$lib/action.js';
-	import type { OrganizationSwitcherProps } from '@clerk/shared/types';
+	import type { UserAvatarProps } from '@clerk/shared/types';
 	import ClerkLoaded from '$lib/client/control/ClerkLoaded.svelte';
 	import { fromAction } from 'svelte/attachments';
 
-	const props: OrganizationSwitcherProps = $props();
+	const props: UserAvatarProps = $props();
 </script>
 
 <ClerkLoaded>
 	{#snippet children(clerk)}
 		<div
 			{@attach fromAction(clerkHostRenderer, () => ({
-				mount: clerk.mountOrganizationSwitcher,
-				unmount: clerk.unmountOrganizationSwitcher,
+				mount: clerk.mountUserAvatar,
+				unmount: clerk.unmountUserAvatar,
 				updateProps: (clerk as any).__internal_updateProps,
 				props: $state.snapshot(props)
 			}))}

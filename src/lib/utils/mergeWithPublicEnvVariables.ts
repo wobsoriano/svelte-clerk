@@ -1,4 +1,4 @@
-import type { LoadClerkJsScriptOptions } from '@clerk/shared';
+import type { IsomorphicClerkOptions } from '@clerk/shared/types';
 import { getDynamicPublicEnvVariables } from './getDynamicPublicEnvVariables.js';
 
 /**
@@ -9,10 +9,10 @@ import { getDynamicPublicEnvVariables } from './getDynamicPublicEnvVariables.js'
  * defined in the Clerk initialization options, it will not be overridden.
  */
 export function mergeWithPublicEnvVariables(
-	clerkInitOptions: Omit<LoadClerkJsScriptOptions, 'publishableKey'> & {
+	clerkInitOptions: Omit<IsomorphicClerkOptions, 'publishableKey'> & {
 		publishableKey?: string;
 	}
-): Partial<LoadClerkJsScriptOptions> {
+): Omit<Partial<IsomorphicClerkOptions>, 'publishableKey'> & { publishableKey: string } {
 	const {
 		publishableKey,
 		signInUrl,
@@ -21,14 +21,14 @@ export function mergeWithPublicEnvVariables(
 		signUpForceRedirectUrl,
 		signInFallbackRedirectUrl,
 		signUpFallbackRedirectUrl,
-		clerkJSUrl,
-		clerkJSVersion,
+		__internal_clerkJSUrl,
+		__internal_clerkJSVersion,
 		proxyUrl,
 		domain,
 		telemetry
 	} = clerkInitOptions;
 	return {
-		publishableKey: publishableKey || getDynamicPublicEnvVariables().publishableKey,
+		publishableKey: publishableKey || getDynamicPublicEnvVariables().publishableKey || '',
 		signInUrl: signInUrl || getDynamicPublicEnvVariables().signInUrl,
 		signUpUrl: signUpUrl || getDynamicPublicEnvVariables().signUpUrl,
 		signInForceRedirectUrl:
@@ -39,8 +39,9 @@ export function mergeWithPublicEnvVariables(
 			signInFallbackRedirectUrl || getDynamicPublicEnvVariables().signInFallbackRedirectUrl,
 		signUpFallbackRedirectUrl:
 			signUpFallbackRedirectUrl || getDynamicPublicEnvVariables().signUpFallbackRedirectUrl,
-		clerkJSUrl: clerkJSUrl || getDynamicPublicEnvVariables().clerkJSUrl,
-		clerkJSVersion: clerkJSVersion || getDynamicPublicEnvVariables().clerkJSVersion,
+		__internal_clerkJSUrl: __internal_clerkJSUrl || getDynamicPublicEnvVariables().clerkJSUrl,
+		__internal_clerkJSVersion:
+			__internal_clerkJSVersion || getDynamicPublicEnvVariables().clerkJSVersion,
 		proxyUrl: proxyUrl || getDynamicPublicEnvVariables().proxyUrl,
 		domain: domain || getDynamicPublicEnvVariables().domain,
 		telemetry: telemetry || {
