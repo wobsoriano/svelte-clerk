@@ -1,4 +1,4 @@
-import type { LoadClerkJsScriptOptions } from '@clerk/shared';
+import type { IsomorphicClerkOptions } from '@clerk/shared/types';
 import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/shared/types';
 import type { Snippet } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
@@ -15,8 +15,8 @@ export interface BrowserClerk extends HeadlessBrowserClerk {
 
 export type PropsWithChildren<T, P> = T & { children?: Snippet<[P]> };
 
-export type ClerkProviderProps = LoadClerkJsScriptOptions & {
-	children: Snippet;
+export type ClerkProviderProps = IsomorphicClerkOptions & {
+	children?: Snippet;
 };
 
 declare global {

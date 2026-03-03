@@ -12,13 +12,13 @@ export { default as GoogleOneTap } from './interactive/GoogleOneTap.svelte';
 export { default as UserButton } from './interactive/UserButton';
 export { default as Waitlist } from './interactive/Waitlist.svelte';
 export { default as PricingTable } from './interactive/PricingTable.svelte';
+export { default as APIKeys } from './interactive/APIKeys.svelte';
+export { default as UserAvatar } from './interactive/UserAvatar.svelte';
 
 // Control components
 export { default as ClerkLoaded } from './control/ClerkLoaded.svelte';
 export { default as ClerkLoading } from './control/ClerkLoading.svelte';
-export { default as Protect } from './control/Protect.svelte';
-export { default as SignedIn } from './control/SignedIn.svelte';
-export { default as SignedOut } from './control/SignedOut.svelte';
+export { default as Show } from './control/Show.svelte';
 export { default as AuthenticateWithRedirectCallback } from './control/AuthenticateWithRedirectCallback.svelte';
 export { default as RedirectToSignIn } from './control/RedirectToSignIn.svelte';
 export { default as RedirectToSignUp } from './control/RedirectToSignUp.svelte';

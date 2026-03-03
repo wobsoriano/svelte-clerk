@@ -12,7 +12,7 @@
 			return;
 		}
 
-		const hasActiveSessions = ctx.client.activeSessions && ctx.client.activeSessions.length > 0;
+		const hasActiveSessions = ctx.client.signedInSessions && ctx.client.signedInSessions.length > 0;
 
 		if (ctx.session === null && hasActiveSessions) {
 			void ctx.clerk.redirectToAfterSignOut();

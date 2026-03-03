@@ -30,7 +30,7 @@
 			<a href="/profile" class="text-gray-300 hover:text-white mr-4"> Profile </a>
 		{/if}
 		<div class="ml-auto">
-			<UserButton afterSignOutUrl="/">
+			<UserButton>
 				<UserButton.MenuItems>
 					<!-- <UserButton.Action label="signOut" onclick={() => {}} /> -->
 					<UserButton.Action label="Help" labelIcon={Icon} open="help" />

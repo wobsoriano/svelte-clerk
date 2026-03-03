@@ -30,7 +30,7 @@
 		if (el && context.clerk) {
 			if (isMounted) {
 				// @ts-expect-error: Internal API
-				context.clerk.__unstable__updateProps({ node: el, props: updatedProps });
+				context.clerk.__internal_updateProps({ node: el, props: updatedProps });
 			} else {
 				context.clerk.mountUserButton(el, props);
 				isMounted = true;

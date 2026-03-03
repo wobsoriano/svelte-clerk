@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import type { ClientResource, InitialState, Resources } from '@clerk/shared/types';
+	import type { LoadClerkJSScriptOptions } from '@clerk/shared/loadClerkJsScript';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
 	import type { ClerkProviderProps, HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
+	import { inBrowser } from '@clerk/shared/browser';
 
 	import {
-		loadClerkJsScript,
-		setClerkJsLoadingErrorPackageName
+		loadClerkJSScript,
+		loadClerkUIScript,
+		setClerkJSLoadingErrorPackageName
 	} from '@clerk/shared/loadClerkJsScript';
 	import { watch } from './utils.svelte';
 
@@ -18,6 +21,17 @@
 	}: ClerkProviderProps & {
 		initialState?: InitialState;
 	} = $props();
+
+	// Extract only the script-loading options for loadClerkJSScript/loadClerkUIScript
+	const scriptOpts = $derived(({
+		publishableKey: props.publishableKey,
+		__internal_clerkJSUrl: props.__internal_clerkJSUrl,
+		__internal_clerkJSVersion: props.__internal_clerkJSVersion,
+		proxyUrl: typeof props.proxyUrl === 'string' ? props.proxyUrl : undefined,
+		domain: typeof props.domain === 'string' ? props.domain : undefined,
+		nonce: props.nonce,
+		sdkMetadata: props.sdkMetadata
+	}) as LoadClerkJSScriptOptions);
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
@@ -34,17 +48,38 @@
 	const user = $derived(auth.user);
 	const organization = $derived(auth.organization);
 
-	setClerkJsLoadingErrorPackageName('svelte-clerk');
+	setClerkJSLoadingErrorPackageName('svelte-clerk');
 
 	async function loadClerk() {
-		await loadClerkJsScript(props);
+		const clerkPromise = loadClerkJSScript(scriptOpts);
+
+		// Load the Clerk UI separately (unless bundled UI is provided or prefetch is disabled)
+		const uiProp = (props as any).ui;
+		const clerkUICtorPromise =
+			uiProp?.ClerkUI
+				? Promise.resolve(uiProp.ClerkUI)
+				: uiProp || (props as any).prefetchUI === false
+					? Promise.resolve(undefined)
+					: (async () => {
+							await loadClerkUIScript(scriptOpts);
+							const ctor = (window as any).__internal_ClerkUICtor;
+							if (!ctor) {
+								throw new Error('Failed to download latest Clerk UI. Contact support@clerk.com.');
+							}
+							return ctor;
+						})();
+
+		await clerkPromise;
 
 		if (!window.Clerk) {
-			throw new Error('Clerk script failed to load');
+			throw new Error('Failed to download latest ClerkJS. Contact support@clerk.com.');
 		}
 
 		clerk = window.Clerk;
-		await clerk.load(props);
+		await clerk.load({
+			...props,
+			ui: { ...uiProp, ClerkUI: clerkUICtorPromise }
+		} as any);
 
 		isLoaded = true;
 
@@ -53,18 +88,20 @@
 		});
 	}
 
-	$effect(() => {
-		untrack(() => {
-			loadClerk();
+	if (inBrowser()) {
+		$effect(() => {
+			untrack(() => {
+				loadClerk();
+			});
 		});
-	});
+	}
 
 	watch(
 		() => [props.appearance, props.localization],
 		() => {
 			if (clerk) {
 				// @ts-expect-error: Internal unexposed Clerk property
-				clerk.__unstable__updateProps({
+				clerk.__internal_updateProps({
 					options: {
 						localization: props.localization
 					},
@@ -99,4 +136,4 @@
 	});
 </script>
 
-{@render children()}
+{@render children?.()}

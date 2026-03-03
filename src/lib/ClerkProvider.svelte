@@ -3,8 +3,7 @@
 	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { ClerkProviderProps } from '$lib/types.js';
 	import { page } from '$app/state';
-	import type { LoadClerkJsScriptOptions } from '@clerk/shared/loadClerkJsScript';
-	import { goto } from '$app/navigation';
+	import { goto, pushState, replaceState } from '$app/navigation';
 
 	const {
 		children,
@@ -13,14 +12,31 @@
 		publishableKey?: string;
 	} = $props();
 
+	type RouterMetadata = { __internal_metadata?: { navigationType?: 'internal' | 'external' | 'window' } };
+
 	const mergedProps = $derived({
 		...props,
 		...mergeWithPublicEnvVariables(props),
-		routerPush: (to: string) => goto(to),
-		routerReplace: (to: string) => goto(to, { replaceState: true })
-	} as LoadClerkJsScriptOptions);
+		routerPush: (to: string, metadata?: RouterMetadata) => {
+			// Internal navigations are tab/step changes within a Clerk component (e.g. /sign-in → /sign-in/factor-one).
+			// Use SvelteKit's shallow pushState so the URL updates without unmounting the page,
+			// while still keeping SvelteKit's router in sync (so hard-refresh at the new URL works).
+			if (metadata?.__internal_metadata?.navigationType === 'internal') {
+				pushState(to, {});
+			} else {
+				goto(to);
+			}
+		},
+		routerReplace: (to: string, metadata?: RouterMetadata) => {
+			if (metadata?.__internal_metadata?.navigationType === 'internal') {
+				replaceState(to, {});
+			} else {
+				goto(to, { replaceState: true });
+			}
+		}
+	} as Omit<ClerkProviderProps, 'children'>);
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...mergedProps}>
-	{@render children()}
+<ClerkProvider initialState={page?.data?.initialState} {...(mergedProps as any)}>
+	{@render children?.()}
 </ClerkProvider>

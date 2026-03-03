@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SignedIn, useClerkContext, UserProfile } from '$lib/index.js';
+	import { Show, useClerkContext, UserProfile } from '$lib/index.js';
 	import { mount, onMount, unmount, type Snippet } from 'svelte';
 	import type { CustomPage } from '@clerk/shared/types';
 	import Portal from '$lib/client/Portal.svelte';
@@ -38,7 +38,7 @@
 	});
 </script>
 
-<SignedIn>
+<Show when="signed-in">
 	<UserProfile {customPages} />
 	<p>User ID: {ctx.user?.emailAddresses[0].emailAddress}</p>
-</SignedIn>
+</Show>

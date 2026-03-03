@@ -6,11 +6,11 @@ export {
 	UserButton,
 	Waitlist,
 	PricingTable,
+	APIKeys,
+	UserAvatar,
 	ClerkLoaded,
 	ClerkLoading,
-	Protect,
-	SignedIn,
-	SignedOut,
+	Show,
 	AuthenticateWithRedirectCallback,
 	RedirectToSignIn,
 	RedirectToSignUp,
@@ -27,3 +27,4 @@ export { default as OrganizationProfile } from './server-components/Organization
 export { default as OrganizationList } from './server-components/OrganizationList.svelte';
 
 export { default as ClerkProvider } from './ClerkProvider.svelte';
+export { getToken } from '@clerk/shared/getToken';
