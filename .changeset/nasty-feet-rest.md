@@ -2,7 +2,7 @@
 'svelte-clerk': major
 ---
 
-This release aligns `svelte-clerk` with Clerk Core 3 and includes breaking API updates.
+This release aligns `svelte-clerk` with [Clerk Core 3](https://clerk.com/changelog/2026-03-03-core-3) and includes breaking API updates.
 
 ### Breaking changes
 
