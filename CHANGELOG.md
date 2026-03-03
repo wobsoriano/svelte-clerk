@@ -1,5 +1,36 @@
 # svelte-clerk
 
+## 1.0.0
+
+### Major Changes
+
+- b8f600b: This release aligns `svelte-clerk` with [Clerk Core 3](https://clerk.com/changelog/2026-03-03-core-3) and includes breaking API updates.
+
+  ### Breaking changes
+  - **Control components have been unified under `<Show>`**:
+    - `<Protect>`, `<SignedIn>`, and `<SignedOut>` are removed.
+    - Use `<Show when="signed-in">`, `<Show when="signed-out">`, or authorization conditions (for example `when={{ role: 'org:admin' }}`).
+  - **Core dependencies were upgraded**:
+    - `@clerk/backend` -> `3.0.0`
+    - `@clerk/shared` -> `4.0.0`
+
+  ### New exports and components
+  - Added new interactive components:
+    - `<APIKeys />`
+    - `<UserAvatar />`
+  - Added `getToken` export from `svelte-clerk`.
+
+  ### Migration notes
+  - Replace old control components with `<Show>`:
+    - `<SignedIn>...</SignedIn>` -> `<Show when="signed-in">...</Show>`
+    - `<SignedOut>...</SignedOut>` -> `<Show when="signed-out">...</Show>`
+    - `<Protect role="org:admin">...</Protect>` -> `<Show when={{ role: 'org:admin' }}>...</Show>`
+
+### Patch Changes
+
+- a2e1856: Bump @clerk/backend from 2.31.0 to 2.33.0
+- a2e1856: Bump @clerk/shared from 3.45.0 to 3.47.2
+
 ## 0.20.6
 
 ### Patch Changes
