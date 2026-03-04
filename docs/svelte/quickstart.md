@@ -43,21 +43,21 @@ All Clerk runes and components must be children of the `<ClerkProvider>` compone
 
 ### 4. Create a header with Clerk components
 
-You can control which content signed-in and signed-out users can see with Clerk's [prebuilt control components](https://clerk.com/docs/components/overview#control-components).
+You can control which content signed-in and signed-out users can see with Clerk's [`<Show>` control component](https://clerk.com/docs/react/reference/components/control/show).
 
 ```svelte
 <script lang="ts">
-	import { SignedIn, SignedOut, SignInButton, UserButton } from 'svelte-clerk/client';
+	import { Show, SignInButton, UserButton } from 'svelte-clerk/client';
 </script>
 
 <template>
 	<header>
-		<SignedOut>
+		<Show when="signed-out">
 			<SignInButton />
-		</SignedOut>
-		<SignedIn>
+		</Show>
+		<Show when="signed-in">
 			<UserButton />
-		</SignedIn>
+		</Show>
 	</header>
 </template>
 ```

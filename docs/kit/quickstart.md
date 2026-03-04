@@ -79,21 +79,21 @@ export const load: LayoutServerLoad = ({ locals }) => {
 
 #### Client-side
 
-To protect your pages on the client-side, you can use Clerk's [prebuilt control components](https://clerk.com/docs/components/overview#control-components) that control the visibility of content based on the user's authentication state.
+To protect your pages on the client-side, you can use Clerk's [`<Show>` control component](https://clerk.com/docs/react/reference/components/control/show) to control visibility based on the user's authentication state.
 
 ```svelte
 <script lang="ts">
-	import { SignedIn, SignedOut, SignInButton, UserButton } from 'svelte-clerk';
+	import { Show, SignInButton, UserButton } from 'svelte-clerk';
 </script>
 
 <template>
 	<header>
-		<SignedOut>
+		<Show when="signed-out">
 			<SignInButton />
-		</SignedOut>
-		<SignedIn>
+		</Show>
+		<Show when="signed-in">
 			<UserButton />
-		</SignedIn>
+		</Show>
 	</header>
 </template>
 ```

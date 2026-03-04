@@ -2,12 +2,11 @@
 
 The following [Clerk UI components](https://clerk.com/docs/components/overview) are available in Svelte Clerk:
 
-- `<SignedIn>` ([clerk docs](https://clerk.com/docs/components/control/signed-in))
-- `<SignedOut>` ([clerk docs](https://clerk.com/docs/components/control/signed-out))
-- `<Protect>` ([clerk docs](https://clerk.com/docs/components/protect))
+- `<Show>` ([clerk docs](https://clerk.com/docs/react/reference/components/control/show))
 - `<SignIn>` ([clerk docs](https://clerk.com/docs/components/authentication/sign-in))
 - `<SignUp>` ([clerk docs](https://clerk.com/docs/components/authentication/sign-up))
 - `<UserButton>` ([clerk docs](https://clerk.com/docs/components/user/user-button))
+- `<UserAvatar>` ([clerk docs](https://clerk.com/docs/components/user/user-avatar))
 - `<UserProfile>` ([clerk docs](https://clerk.com/docs/components/user/user-profile))
 - `<OrganizationList>` ([clerk docs](https://clerk.com/docs/components/organization/organization-list))
 - `<OrganizationProfile>` ([clerk docs](https://clerk.com/docs/components/organization/organization-profile))
@@ -16,24 +15,25 @@ The following [Clerk UI components](https://clerk.com/docs/components/overview) 
 - `<GoogleOneTap>` ([clerk docs](https://clerk.com/docs/components/authentication/google-one-tap))
 - `<Waitlist />` ([clerk docs](https://clerk.com/docs/components/waitlist))
 - `<PricingTable />` ([clerk docs](https://clerk.com/docs/components/pricing-table))
+- `<APIKeys />` ([clerk docs](https://clerk.com/docs/components/organization/api-keys))
 - `<ClerkLoaded>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loaded))
 - `<ClerkLoading>` ([clerk docs](https://clerk.com/docs/components/control/clerk-loading))
 
 The main difference is that the Svelte components use [`Snippets`](https://svelte.dev/docs/svelte/snippet) to render their content.
 
-Here's an example of the [`<Protect>`](https://clerk.com/docs/components/protect) component with a fallback message:
+Here's an example of the [`<Show>`](https://clerk.com/docs/react/reference/components/control/show) component with a fallback message:
 
 ```svelte
 <script lang="ts">
-	import { Protect } from 'svelte-clerk/client';
+	import { Show } from 'svelte-clerk/client';
 </script>
 
 <template>
-	<Protect permission="org:invoices:create">
+	<Show when={{ permission: 'org:invoices:create' }}>
 		{#snippet fallback()}
 			<p>You do not have the permissions to create an invoice.</p>
 		{/snippet}
-	</Protect>
+	</Show>
 </template>
 ```
 

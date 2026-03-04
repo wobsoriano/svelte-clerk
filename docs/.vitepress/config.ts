@@ -31,6 +31,7 @@ export default defineConfig({
 				text: 'Guides',
 				items: [
 					{ text: 'Read session and user data', link: '/guides/read-session-data' },
+					{ text: 'Custom sign-in-or-up page', link: '/guides/custom-sign-in-or-up-page' },
 					{ text: 'Protect pages', link: '/guides/protect-pages' }
 				]
 			}
