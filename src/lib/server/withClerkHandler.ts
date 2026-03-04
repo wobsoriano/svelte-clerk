@@ -144,6 +144,7 @@ function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: Authenticat
 		getDynamicPublicEnvVariables().domain
 	);
 	const signInUrl = opts?.signInUrl || getDynamicPublicEnvVariables().signInUrl;
+	const signUpUrl = opts?.signUpUrl || getDynamicPublicEnvVariables().signUpUrl;
 
 	if (isSatellite && !proxyUrl && !domain) {
 		throw new Error(missingDomainAndProxy);
@@ -161,7 +162,9 @@ function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: Authenticat
 	return {
 		proxyUrl,
 		isSatellite,
-		domain
+		domain,
+		signInUrl,
+		signUpUrl
 	};
 }
 
