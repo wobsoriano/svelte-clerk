@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: 3.0.0
-        version: 3.0.0(react@18.3.1)
+        specifier: 3.0.1
+        version: 3.0.1(react@18.3.1)
       '@clerk/shared':
         specifier: 4.0.0
         version: 4.0.0(react@18.3.1)
@@ -267,8 +267,8 @@ packages:
     resolution: {integrity: sha512-sVR214TlJ5vsRprDE9EiZpqeNq/YVhCQLtAZ19ugjNf1C9xMX28JoMyodI/dU5FLBelmgSyjBAjodPULjIeF+w==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/backend@3.0.0':
-    resolution: {integrity: sha512-y7P7mbc0vam0TjAzhrGUVaL95INp9ljgblxEjC+wXOfTI34dPKuWbIGv/S9bt3nIhbFSO+JM0rh9Qc8FvoZu2A==}
+  '@clerk/backend@3.0.1':
+    resolution: {integrity: sha512-U5E+KpNlFlaJRdpOoOltIV8o1YjTWw5affsugEb/kIvGceSP6SzvNEBr/TnCY+2yu87Vq22ShEycpQBlse2Bkw==}
     engines: {node: '>=20.9.0'}
 
   '@clerk/localizations@3.29.1':
@@ -2974,7 +2974,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/backend@3.0.0(react@18.3.1)':
+  '@clerk/backend@3.0.1(react@18.3.1)':
     dependencies:
       '@clerk/shared': 4.0.0(react@18.3.1)
       standardwebhooks: 1.0.0
