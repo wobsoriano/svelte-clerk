@@ -1,4 +1,5 @@
 import type { IsomorphicClerkOptions } from '@clerk/shared/types';
+import { isTruthy } from '@clerk/shared/underscore';
 import { getDynamicPublicEnvVariables } from './getDynamicPublicEnvVariables.js';
 
 /**
@@ -11,8 +12,13 @@ import { getDynamicPublicEnvVariables } from './getDynamicPublicEnvVariables.js'
 export function mergeWithPublicEnvVariables(
 	clerkInitOptions: Omit<IsomorphicClerkOptions, 'publishableKey'> & {
 		publishableKey?: string;
+		// isSatellite/domain/proxyUrl are omitted from IsomorphicClerkOptions (they're part of
+		// the MultiDomainAndOrProxy discriminated union in ClerkOptions) so we add them back flat
+		isSatellite?: boolean | ((url: URL) => boolean);
+		proxyUrl?: string | ((url: URL) => string);
+		domain?: string | ((url: URL) => string);
 	}
-): Omit<Partial<IsomorphicClerkOptions>, 'publishableKey'> & { publishableKey: string } {
+) {
 	const {
 		publishableKey,
 		signInUrl,
@@ -25,6 +31,7 @@ export function mergeWithPublicEnvVariables(
 		__internal_clerkJSVersion,
 		proxyUrl,
 		domain,
+		isSatellite,
 		telemetry
 	} = clerkInitOptions;
 	return {
@@ -44,6 +51,7 @@ export function mergeWithPublicEnvVariables(
 			__internal_clerkJSVersion || getDynamicPublicEnvVariables().clerkJSVersion,
 		proxyUrl: proxyUrl || getDynamicPublicEnvVariables().proxyUrl,
 		domain: domain || getDynamicPublicEnvVariables().domain,
+		isSatellite: clerkInitOptions.isSatellite ?? isTruthy(getDynamicPublicEnvVariables().isSatellite),
 		telemetry: telemetry || {
 			debug: getDynamicPublicEnvVariables().telemetryDebug,
 			disabled: getDynamicPublicEnvVariables().telemetryDisabled
