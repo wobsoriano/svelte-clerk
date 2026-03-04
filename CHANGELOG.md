@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 1.0.1
+
+### Patch Changes
+
+- 584bf27: Fixed multi-domain support
+
 ## 1.0.0
 
 ### Major Changes
