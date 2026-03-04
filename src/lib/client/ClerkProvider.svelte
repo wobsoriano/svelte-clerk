@@ -23,7 +23,7 @@
 	} = $props();
 
 	// Extract only the script-loading options for loadClerkJSScript/loadClerkUIScript
-	const scriptOpts = $derived(({
+	const scriptOpts = $derived({
 		publishableKey: props.publishableKey,
 		__internal_clerkJSUrl: props.__internal_clerkJSUrl,
 		__internal_clerkJSVersion: props.__internal_clerkJSVersion,
@@ -31,7 +31,7 @@
 		domain: typeof props.domain === 'string' ? props.domain : undefined,
 		nonce: props.nonce,
 		sdkMetadata: props.sdkMetadata
-	}) as LoadClerkJSScriptOptions);
+	} as LoadClerkJSScriptOptions);
 
 	let clerk = $state<HeadlessBrowserClerk | BrowserClerk | null>(null);
 	let isLoaded = $state(false);
@@ -55,19 +55,18 @@
 
 		// Load the Clerk UI separately (unless bundled UI is provided or prefetch is disabled)
 		const uiProp = (props as any).ui;
-		const clerkUICtorPromise =
-			uiProp?.ClerkUI
-				? Promise.resolve(uiProp.ClerkUI)
-				: uiProp || (props as any).prefetchUI === false
-					? Promise.resolve(undefined)
-					: (async () => {
-							await loadClerkUIScript(scriptOpts);
-							const ctor = (window as any).__internal_ClerkUICtor;
-							if (!ctor) {
-								throw new Error('Failed to download latest Clerk UI. Contact support@clerk.com.');
-							}
-							return ctor;
-						})();
+		const clerkUICtorPromise = uiProp?.ClerkUI
+			? Promise.resolve(uiProp.ClerkUI)
+			: uiProp || (props as any).prefetchUI === false
+				? Promise.resolve(undefined)
+				: (async () => {
+						await loadClerkUIScript(scriptOpts);
+						const ctor = (window as any).__internal_ClerkUICtor;
+						if (!ctor) {
+							throw new Error('Failed to download latest Clerk UI. Contact support@clerk.com.');
+						}
+						return ctor;
+					})();
 
 		await clerkPromise;
 

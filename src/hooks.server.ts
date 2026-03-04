@@ -5,17 +5,17 @@ import { Security } from './utils/security';
 import { dev } from '$app/environment';
 
 export const handle: Handle = sequence(
-  ({ event, resolve }) => {
-    if (dev && event.url.pathname === '/.well-known/appspecific/com.chrome.devtools.json') {
-  		return new Response(undefined, { status: 404 });
-  	}
+	({ event, resolve }) => {
+		if (dev && event.url.pathname === '/.well-known/appspecific/com.chrome.devtools.json') {
+			return new Response(undefined, { status: 404 });
+		}
 
-    return resolve(event);
-  },
-  withClerkHandler(),
-  ({ event, resolve }) => {
-	event.locals.security = new Security(event);
+		return resolve(event);
+	},
+	withClerkHandler(),
+	({ event, resolve }) => {
+		event.locals.security = new Security(event);
 
-    return resolve(event);
-  }
+		return resolve(event);
+	}
 );

@@ -12,7 +12,9 @@
 		publishableKey?: string;
 	} = $props();
 
-	type RouterMetadata = { __internal_metadata?: { navigationType?: 'internal' | 'external' | 'window' } };
+	type RouterMetadata = {
+		__internal_metadata?: { navigationType?: 'internal' | 'external' | 'window' };
+	};
 
 	const mergedProps = $derived({
 		...props,
@@ -37,6 +39,6 @@
 	} as Omit<ClerkProviderProps, 'children'>);
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...(mergedProps as any)}>
+<ClerkProvider initialState={page?.data?.initialState} {...mergedProps as any}>
 	{@render children?.()}
 </ClerkProvider>
