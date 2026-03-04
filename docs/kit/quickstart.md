@@ -25,11 +25,25 @@ CLERK_SECRET_KEY=sk_test_xxxxxxx
 
 This handler will authenticate requests and gives you access to the [`Auth`](https://clerk.com/docs/references/nextjs/auth-object#auth-object) object via `event.locals.auth()` inside your server loaders and actions.
 
+In **Node.js environments**, the SDK automatically reads configuration from `process.env` — no arguments needed:
+
 ```ts
 // hooks.server.ts
 import { withClerkHandler } from 'svelte-clerk/server';
 
 export const handle = withClerkHandler();
+```
+
+For **Cloudflare Workers, static adapters, or other non-Node environments**, pass the options explicitly:
+
+```ts
+// hooks.server.ts
+import { withClerkHandler } from 'svelte-clerk/server';
+
+export const handle = withClerkHandler({
+  secretKey: MY_SECRET_KEY,        // from platform.env or similar
+  publishableKey: MY_PUBLISHABLE_KEY,
+});
 ```
 
 ### 4. Add locals types
@@ -70,7 +84,7 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
 	return {
-		...buildClerkProps(locals.auth())
+		...buildClerkProps(locals)
 	};
 };
 ```

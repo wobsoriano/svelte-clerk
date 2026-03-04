@@ -1,11 +1,11 @@
 import { type Handle, type RequestEvent } from '@sveltejs/kit';
 import { clerkClient } from './clerkClient.js';
-import * as constants from './constants.js';
 import {
 	AuthStatus,
 	createClerkRequest,
 	TokenType,
-	type AuthenticateRequestOptions
+	type AuthenticateRequestOptions,
+	constants
 } from '@clerk/backend/internal';
 import { parse, splitCookiesString } from 'set-cookie-parser';
 import type { ClerkRequest } from '@clerk/backend/internal';
@@ -14,26 +14,65 @@ import type { PendingSessionOptions } from '@clerk/shared/types';
 import { handleValueOrFn } from '@clerk/shared/utils';
 import { isHttpOrHttps } from '@clerk/shared/proxy';
 import { isDevelopmentFromSecretKey } from '@clerk/shared/keys';
-import { getDynamicPublicEnvVariables } from '$lib/utils/getDynamicPublicEnvVariables.js';
-import { isTruthy } from '@clerk/shared/underscore';
 import type { SessionAuthObject } from '@clerk/backend';
 import { patchRequest } from './patchRequest.js';
 
-export type ClerkSvelteKitMiddlewareOptions = AuthenticateRequestOptions & { debug?: boolean };
+import type { ClerkSvelteKitMiddlewareOptions } from './types.js';
+
+export type { ClerkSvelteKitMiddlewareOptions };
+
+const loadEnv = () => {
+	const env: Record<string, string | undefined> = {};
+	if (typeof process !== 'undefined' && process.env) {
+		env.CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY;
+		env.PUBLIC_CLERK_PUBLISHABLE_KEY = process.env.PUBLIC_CLERK_PUBLISHABLE_KEY;
+		env.PUBLIC_CLERK_SIGN_IN_URL = process.env.PUBLIC_CLERK_SIGN_IN_URL;
+		env.PUBLIC_CLERK_SIGN_UP_URL = process.env.PUBLIC_CLERK_SIGN_UP_URL;
+		env.PUBLIC_CLERK_PROXY_URL = process.env.PUBLIC_CLERK_PROXY_URL;
+		env.PUBLIC_CLERK_DOMAIN = process.env.PUBLIC_CLERK_DOMAIN;
+		env.PUBLIC_CLERK_IS_SATELLITE = process.env.PUBLIC_CLERK_IS_SATELLITE;
+		env.PUBLIC_CLERK_TELEMETRY_DISABLED = process.env.PUBLIC_CLERK_TELEMETRY_DISABLED;
+		env.PUBLIC_CLERK_TELEMETRY_DEBUG = process.env.PUBLIC_CLERK_TELEMETRY_DEBUG;
+	}
+	return env;
+};
 
 export function withClerkHandler(middlewareOptions?: ClerkSvelteKitMiddlewareOptions): Handle {
 	return async ({ event, resolve }) => {
-		const { debug = false, ...options } = middlewareOptions ?? {};
+		const env = loadEnv();
+		const {
+			debug = false,
+			telemetry,
+			...options
+		} = {
+			secretKey: env.CLERK_SECRET_KEY,
+			publishableKey: env.PUBLIC_CLERK_PUBLISHABLE_KEY,
+			signInUrl: env.PUBLIC_CLERK_SIGN_IN_URL,
+			signUpUrl: env.PUBLIC_CLERK_SIGN_UP_URL,
+			proxyUrl: env.PUBLIC_CLERK_PROXY_URL,
+			domain: env.PUBLIC_CLERK_DOMAIN,
+			isSatellite: env.PUBLIC_CLERK_IS_SATELLITE === 'true',
+			telemetry: {
+				disabled: env.PUBLIC_CLERK_TELEMETRY_DISABLED === 'true',
+				debug: env.PUBLIC_CLERK_TELEMETRY_DEBUG === 'true'
+			},
+			...middlewareOptions
+		};
+
+		// Store config in locals for clerkClient() to use
+		event.locals.__internal_clerk_config = {
+			...options,
+			debug,
+			telemetry
+		};
 
 		const clerkWebRequest = createClerkRequest(patchRequest(event.request));
 		if (debug) {
 			console.log('[svelte-clerk] ' + JSON.stringify(clerkWebRequest.toJSON()));
 		}
 
-		const requestState = await clerkClient.authenticateRequest(clerkWebRequest, {
+		const requestState = await clerkClient(event).authenticateRequest(clerkWebRequest, {
 			...options,
-			secretKey: options?.secretKey ?? constants.SECRET_KEY,
-			publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
 			...handleMultiDomainAndProxy(clerkWebRequest, options),
 			acceptsToken: TokenType.SessionToken
 		});
@@ -122,8 +161,7 @@ function decorateLocals(
 function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: AuthenticateRequestOptions) {
 	const relativeOrAbsoluteProxyUrl = handleValueOrFn(
 		opts?.proxyUrl,
-		clerkRequest.clerkUrl,
-		getDynamicPublicEnvVariables().proxyUrl
+		clerkRequest.clerkUrl
 	);
 
 	let proxyUrl;
@@ -136,14 +174,13 @@ function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: Authenticat
 	const isSatellite = handleValueOrFn(
 		opts.isSatellite,
 		new URL(clerkRequest.url),
-		isTruthy(getDynamicPublicEnvVariables().isSatellite) || false
+		false
 	);
 	const domain = handleValueOrFn(
 		opts.domain,
-		new URL(clerkRequest.url),
-		getDynamicPublicEnvVariables().domain
+		new URL(clerkRequest.url)
 	);
-	const signInUrl = opts?.signInUrl || getDynamicPublicEnvVariables().signInUrl;
+	const signInUrl = opts?.signInUrl;
 
 	if (isSatellite && !proxyUrl && !domain) {
 		throw new Error(missingDomainAndProxy);
@@ -153,7 +190,7 @@ function handleMultiDomainAndProxy(clerkRequest: ClerkRequest, opts: Authenticat
 		isSatellite &&
 		!isHttpOrHttps(signInUrl) &&
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		isDevelopmentFromSecretKey(opts.secretKey || constants.SECRET_KEY!)
+		isDevelopmentFromSecretKey(opts.secretKey!)
 	) {
 		throw new Error(missingSignInUrlInDev);
 	}

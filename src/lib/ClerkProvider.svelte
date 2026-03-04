@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ClerkProvider from '$lib/client/ClerkProvider.svelte';
-	import { mergeWithPublicEnvVariables } from '$lib/utils/mergeWithPublicEnvVariables.js';
 	import type { ClerkProviderProps } from '$lib/types.js';
 	import { page } from '$app/state';
 	import { goto, pushState, replaceState } from '$app/navigation';
@@ -8,35 +7,41 @@
 	const {
 		children,
 		...props
-	}: Omit<ClerkProviderProps, 'publishableKey'> & {
+	}: Omit<ClerkProviderProps, 'routerPush' | 'routerReplace' | 'publishableKey'> & {
 		publishableKey?: string;
 	} = $props();
 
+	const merged = $derived({
+		...(page?.data?.__clerk ?? {}),
+		...props
+	});
+
 	type RouterMetadata = { __internal_metadata?: { navigationType?: 'internal' | 'external' | 'window' } };
 
-	const mergedProps = $derived({
-		...props,
-		...mergeWithPublicEnvVariables(props),
-		routerPush: (to: string, metadata?: RouterMetadata) => {
-			// Internal navigations are tab/step changes within a Clerk component (e.g. /sign-in → /sign-in/factor-one).
-			// Use SvelteKit's shallow pushState so the URL updates without unmounting the page,
-			// while still keeping SvelteKit's router in sync (so hard-refresh at the new URL works).
-			if (metadata?.__internal_metadata?.navigationType === 'internal') {
-				pushState(to, {});
-			} else {
-				goto(to);
-			}
-		},
-		routerReplace: (to: string, metadata?: RouterMetadata) => {
-			if (metadata?.__internal_metadata?.navigationType === 'internal') {
-				replaceState(to, {});
-			} else {
-				goto(to, { replaceState: true });
-			}
+	const routerPush = (to: string, metadata?: RouterMetadata) => {
+		// Internal navigations are tab/step changes within a Clerk component (e.g. /sign-in → /sign-in/factor-one).
+		// Use SvelteKit's shallow pushState so the URL updates without unmounting the page,
+		// while still keeping SvelteKit's router in sync (so hard-refresh at the new URL works).
+		if (metadata?.__internal_metadata?.navigationType === 'internal') {
+			pushState(to, {});
+		} else {
+			goto(to);
 		}
-	} as Omit<ClerkProviderProps, 'children'>);
+	};
+
+	const routerReplace = (to: string, metadata?: RouterMetadata) => {
+		if (metadata?.__internal_metadata?.navigationType === 'internal') {
+			replaceState(to, {});
+		} else {
+			goto(to, { replaceState: true });
+		}
+	};
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...(mergedProps as any)}>
+<ClerkProvider
+	{...(merged as any)}
+	{routerPush}
+	{routerReplace}
+>
 	{@render children?.()}
 </ClerkProvider>

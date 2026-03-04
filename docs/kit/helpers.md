@@ -4,12 +4,27 @@
 
 The `withClerkHandler()` helper integrates Clerk authentication and authorization into your SvelteKit application through hooks.
 
-It accepts an optional [options object](https://clerk.com/docs/references/backend/authenticate-request#authenticate-request-options), though it is recommended to pass these options as [environment variables](https://clerk.com/docs/deployments/clerk-environment-variables#api-and-sdk-configuration).
+It accepts an optional [options object](https://clerk.com/docs/references/backend/authenticate-request#authenticate-request-options).
+
+In **Node.js environments**, the SDK automatically reads `CLERK_SECRET_KEY` and `PUBLIC_CLERK_*` variables from `process.env` — no arguments needed:
 
 ```ts
+// hooks.server.ts
 import { withClerkHandler } from 'svelte-clerk/server';
 
 export const handle = withClerkHandler();
+```
+
+For **Cloudflare Workers, static adapters, or other non-Node environments**, pass the options explicitly:
+
+```ts
+// hooks.server.ts
+import { withClerkHandler } from 'svelte-clerk/server';
+
+export const handle = withClerkHandler({
+	secretKey: MY_SECRET_KEY,       // from platform.env or similar
+	publishableKey: MY_PUBLISHABLE_KEY,
+});
 ```
 
 ## `clerkClient`
@@ -22,7 +37,9 @@ The following example demonstrates how you can use the `auth()` local to get the
 import { redirect } from '@sveltejs/kit';
 import { clerkClient } from 'svelte-clerk/server';
 
-export const load = async ({ locals }) => {
+export const load = async (event) => {
+	const { locals } = event;
+
 	// Use `auth()` local to get the user's ID
 	const { userId } = locals.auth();
 
@@ -32,7 +49,7 @@ export const load = async ({ locals }) => {
 	}
 
 	// Use the Backend SDK's `getUser()` method to get the Backend User object
-	const user = await clerkClient.users.getUser(userId);
+	const user = await clerkClient(event).users.getUser(userId);
 
 	// Return the Backend User object
 	return {
@@ -45,12 +62,14 @@ export const load = async ({ locals }) => {
 
 The `buildClerkProps()` helper is used to inform the client-side helpers of the authentication state of the user. This function is used for SSR in the root server load function of your SvelteKit application.
 
+It accepts `locals` (or `event`), which allows it to automatically pass the Clerk configuration (like `publishableKey`) to the client.
+
 ```ts
 import { buildClerkProps } from 'svelte-clerk/server';
 
 export const load = async ({ locals }) => {
 	return {
-		...buildClerkProps(locals.auth())
+		...buildClerkProps(locals)
 	};
 };
 ```

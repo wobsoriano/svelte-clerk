@@ -7,6 +7,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			security: Security;
+			__internal_clerk_config: any;
 		}
 		// interface PageData {}
 		// interface PageState {}

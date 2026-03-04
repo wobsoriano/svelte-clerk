@@ -87,11 +87,12 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.29.8",
-		"@clerk/localizations": "^3.29.1",
-		"@clerk/testing": "^1.13.21",
+		"@clerk/localizations": "^4.0.0",
+		"@clerk/testing": "^2.0.1",
 		"@dotenvx/dotenvx": "^1.51.1",
 		"@playwright/test": "^1.57.0",
 		"@sveltejs/adapter-auto": "^6.1.1",
+		"@sveltejs/adapter-node": "^5.5.4",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.49.1",
 		"@sveltejs/package": "^2.5.7",
@@ -121,7 +122,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@clerk/backend": "3.0.0",
+		"@clerk/backend": "3.0.1",
 		"@clerk/shared": "4.0.0",
 		"set-cookie-parser": "^3.0.1"
 	}

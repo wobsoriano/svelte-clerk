@@ -1,21 +1,25 @@
 import { createClerkClient } from '@clerk/backend';
+import type { RequestEvent } from '@sveltejs/kit';
 
-import {
-	API_URL,
-	API_VERSION,
-	JWT_KEY,
-	SECRET_KEY,
-	TELEMETRY_DEBUG,
-	TELEMETRY_DISABLED
-} from './constants.js';
-
-export const clerkClient = createClerkClient({
-	secretKey: SECRET_KEY,
-	apiUrl: API_URL,
-	apiVersion: API_VERSION,
-	jwtKey: JWT_KEY,
-	telemetry: {
-		disabled: TELEMETRY_DISABLED,
-		debug: TELEMETRY_DEBUG
+export const clerkClient = (eventOrLocals: RequestEvent | App.Locals) => {
+	const config = ('locals' in eventOrLocals ? eventOrLocals.locals : eventOrLocals).__internal_clerk_config;
+	if (!config) {
+		throw new Error(
+			'Clerk is not configured. Ensure withClerkHandler is used in hooks.server.ts.'
+		);
 	}
-});
+	return createClerkClient({
+		secretKey: config.secretKey,
+		publishableKey: config.publishableKey,
+		apiUrl: config.apiUrl,
+		apiVersion: config.apiVersion,
+		jwtKey: config.jwtKey,
+		proxyUrl: config.proxyUrl,
+		domain: config.domain,
+		isSatellite: config.isSatellite,
+		telemetry: {
+			disabled: config.telemetry?.disabled,
+			debug: config.telemetry?.debug
+		}
+	});
+};

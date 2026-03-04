@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { ClientResource, InitialState, Resources } from '@clerk/shared/types';
+	import type { ClientResource, ClerkOptions, InitialState, IsomorphicClerkOptions, Resources } from '@clerk/shared/types';
 	import type { LoadClerkJSScriptOptions } from '@clerk/shared/loadClerkJsScript';
 	import { setClerkContext } from '$lib/context.js';
 	import { deriveState } from '@clerk/shared/deriveState';
-	import type { ClerkProviderProps, HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
+	import type { HeadlessBrowserClerk, BrowserClerk } from '$lib/types.js';
 	import { inBrowser } from '@clerk/shared/browser';
 
 	import {
@@ -18,7 +18,8 @@
 		children,
 		initialState,
 		...props
-	}: ClerkProviderProps & {
+	}: IsomorphicClerkOptions & {
+		children?: import('svelte').Snippet;
 		initialState?: InitialState;
 	} = $props();
 
@@ -54,15 +55,15 @@
 		const clerkPromise = loadClerkJSScript(scriptOpts);
 
 		// Load the Clerk UI separately (unless bundled UI is provided or prefetch is disabled)
-		const uiProp = (props as any).ui;
+		const uiProp = props.ui;
 		const clerkUICtorPromise =
 			uiProp?.ClerkUI
 				? Promise.resolve(uiProp.ClerkUI)
-				: uiProp || (props as any).prefetchUI === false
+				: uiProp || props.prefetchUI === false
 					? Promise.resolve(undefined)
 					: (async () => {
 							await loadClerkUIScript(scriptOpts);
-							const ctor = (window as any).__internal_ClerkUICtor;
+							const ctor = window.__internal_ClerkUICtor;
 							if (!ctor) {
 								throw new Error('Failed to download latest Clerk UI. Contact support@clerk.com.');
 							}
@@ -79,7 +80,7 @@
 		await clerk.load({
 			...props,
 			ui: { ...uiProp, ClerkUI: clerkUICtorPromise }
-		} as any);
+		} as unknown as ClerkOptions);
 
 		isLoaded = true;
 

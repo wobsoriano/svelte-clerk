@@ -4,6 +4,7 @@
 	import { ClerkProvider } from '$lib/index.js';
 	import Header from '../components/Header.svelte';
 	import type { LocalizationResource } from '@clerk/shared/types';
+	import { PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL } from '$env/static/public';
 
 	let { children }: { children: Snippet } = $props();
 	let selected = $state<'en' | 'fr'>('en');
@@ -15,7 +16,7 @@
 	};
 </script>
 
-<ClerkProvider {localization}>
+<ClerkProvider {localization} signInForceRedirectUrl={PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL}>
 	<Header bind:selectedLocale={selected} {onLocaleChange} />
 	<main class="container mx-auto">
 		<div class="flex items-start justify-center min-h-screen">

@@ -9,7 +9,7 @@
 
 	const routingProps = useRoutingProps(
 		'OrganizationList',
-		() => props,
+		() => props as any,
 		() => ({ path: pathnameWithoutSplatRouteParams.current })
 	);
 </script>
