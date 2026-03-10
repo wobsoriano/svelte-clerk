@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 1.0.2
+
+### Patch Changes
+
+- c2b3388: Bump @clerk/backend from 3.0.0 to 3.0.2
+- c2b3388: Bump @clerk/shared from 4.0.0 to 4.1.0
+
 ## 1.0.1
 
 ### Patch Changes
