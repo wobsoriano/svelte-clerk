@@ -4,7 +4,11 @@ import { useClerkContext } from '$lib/context.js';
 export function useSignIn() {
 	const ctx = useClerkContext();
 
-	let value = $state<NullableSignInSignal | null>(null);
+	let value = $state<NullableSignInSignal>({
+		signIn: null,
+		errors: { fields: { identifier: null, password: null, code: null }, raw: null, global: null },
+		fetchStatus: 'idle'
+	});
 
 	$effect(() => {
 		const clerk = ctx.clerk;
@@ -18,14 +22,8 @@ export function useSignIn() {
 	});
 
 	return {
-		get signIn() {
-			return value?.signIn ?? null;
-		},
-		get errors() {
-			return value?.errors ?? null;
-		},
-		get fetchStatus() {
-			return value?.fetchStatus ?? 'idle';
+		get current() {
+			return value;
 		}
 	};
 }
