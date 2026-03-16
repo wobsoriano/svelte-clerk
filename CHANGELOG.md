@@ -1,5 +1,29 @@
 # svelte-clerk
 
+## 1.1.0
+
+### Minor Changes
+
+- 39d84b5: Added `useSignIn()` and `useSignUp()` hooks for building custom authentication flows.
+
+  ```svelte
+  <script lang="ts">
+  	import { useSignIn } from 'svelte-clerk/client';
+
+  	const signInState = useSignIn();
+  	// signInState.signIn, signInState.errors, signInState.fetchStatus
+  </script>
+  ```
+
+  ```svelte
+  <script lang="ts">
+  	import { useSignUp } from 'svelte-clerk/client';
+
+  	const signUpState = useSignUp();
+  	// signUpState.signUp, signUpState.errors, signUpState.fetchStatus
+  </script>
+  ```
+
 ## 1.0.3
 
 ### Patch Changes
