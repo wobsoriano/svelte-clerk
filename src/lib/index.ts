@@ -16,7 +16,9 @@ export {
 	RedirectToSignUp,
 	SignInButton,
 	SignUpButton,
-	SignOutButton
+	SignOutButton,
+	useSignIn,
+	useSignUp
 } from './client/index.js';
 
 // Path-based routing components

@@ -28,5 +28,8 @@ export { default as SignInButton } from './unstyled/SignInButton.svelte';
 export { default as SignUpButton } from './unstyled/SignUpButton.svelte';
 export { default as SignOutButton } from './unstyled/SignOutButton.svelte';
 
+// Hooks
+export { useSignIn, useSignUp } from './hooks/index.js';
+
 // Provider
 export { default as ClerkProvider } from './ClerkProvider.svelte';
