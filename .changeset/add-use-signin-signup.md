@@ -8,7 +8,8 @@ Added `useSignIn()` and `useSignUp()` hooks for building custom authentication f
 <script lang="ts">
   import { useSignIn } from 'svelte-clerk/client';
 
-  const { signIn, errors, fetchStatus } = useSignIn();
+  const signInState = useSignIn();
+  // signInState.signIn, signInState.errors, signInState.fetchStatus
 </script>
 ```
 
@@ -16,6 +17,7 @@ Added `useSignIn()` and `useSignUp()` hooks for building custom authentication f
 <script lang="ts">
   import { useSignUp } from 'svelte-clerk/client';
 
-  const { signUp, errors, fetchStatus } = useSignUp();
+  const signUpState = useSignUp();
+  // signUpState.signUp, signUpState.errors, signUpState.fetchStatus
 </script>
 ```

@@ -58,11 +58,12 @@ Returns:
 <script lang="ts">
 	import { useSignIn } from 'svelte-clerk/client';
 
-	const { signIn, errors, fetchStatus } = useSignIn();
+	// Do not destructure to avoid losing reactivity
+	const signInState = useSignIn();
 </script>
 
-{#if signIn}
-	<p>Current sign-in status: {signIn.status}</p>
+{#if signInState.signIn}
+	<p>Current sign-in status: {signInState.signIn.status}</p>
 {/if}
 ```
 
@@ -79,10 +80,11 @@ Returns:
 <script lang="ts">
 	import { useSignUp } from 'svelte-clerk/client';
 
-	const { signUp, errors, fetchStatus } = useSignUp();
+	// Do not destructure to avoid losing reactivity
+	const signUpState = useSignUp();
 </script>
 
-{#if signUp}
-	<p>Current sign-up status: {signUp.status}</p>
+{#if signUpState.signUp}
+	<p>Current sign-up status: {signUpState.signUp.status}</p>
 {/if}
 ```

@@ -1,14 +1,11 @@
 import type { NullableSignInSignal } from '@clerk/shared/types';
 import { useClerkContext } from '$lib/context.js';
+import { defaultSignInSignal } from './signalDefaults.js';
 
 export function useSignIn() {
 	const ctx = useClerkContext();
 
-	let value = $state<NullableSignInSignal>({
-		signIn: null,
-		errors: { fields: { identifier: null, password: null, code: null }, raw: null, global: null },
-		fetchStatus: 'idle'
-	});
+	let value = $state<NullableSignInSignal>(defaultSignInSignal());
 
 	$effect(() => {
 		const clerk = ctx.clerk;
@@ -22,8 +19,14 @@ export function useSignIn() {
 	});
 
 	return {
-		get current() {
-			return value;
+		get signIn() {
+			return value.signIn;
+		},
+		get errors() {
+			return value.errors;
+		},
+		get fetchStatus() {
+			return value.fetchStatus;
 		}
 	};
 }

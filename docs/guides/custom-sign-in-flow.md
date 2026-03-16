@@ -14,7 +14,8 @@ This guide demonstrates email + password sign-in. For other strategies (OTP, OAu
 <script lang="ts">
 	import { useSignIn } from 'svelte-clerk/client';
 
-	const { signIn, errors } = useSignIn();
+	// Do not destructure to avoid losing reactivity
+	const signInState = useSignIn();
 
 	let email = $state('');
 	let password = $state('');
@@ -22,18 +23,18 @@ This guide demonstrates email + password sign-in. For other strategies (OTP, OAu
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
-		if (!signIn) return;
+		if (!signInState.signIn) return;
 
 		pending = true;
 		try {
-			await signIn.create({
+			await signInState.signIn.create({
 				identifier: email,
 				password
 			});
 
 			// If sign-in is complete, finalize to set the active session
-			if (signIn.status === 'complete') {
-				await signIn.finalize({
+			if (signInState.signIn.status === 'complete') {
+				await signInState.signIn.finalize({
 					navigate: ({ session, decorateUrl }) => {
 						if (session?.currentTask) {
 							// Handle pending session tasks
@@ -54,21 +55,21 @@ This guide demonstrates email + password sign-in. For other strategies (OTP, OAu
 	<div>
 		<label for="email">Email</label>
 		<input id="email" type="email" bind:value={email} />
-		{#if errors.fields.identifier}
-			<p class="error">{errors.fields.identifier.message}</p>
+		{#if signInState.errors.fields.identifier}
+			<p class="error">{signInState.errors.fields.identifier.message}</p>
 		{/if}
 	</div>
 
 	<div>
 		<label for="password">Password</label>
 		<input id="password" type="password" bind:value={password} />
-		{#if errors.fields.password}
-			<p class="error">{errors.fields.password.message}</p>
+		{#if signInState.errors.fields.password}
+			<p class="error">{signInState.errors.fields.password.message}</p>
 		{/if}
 	</div>
 
-	{#if errors.global}
-		{#each errors.global as err}
+	{#if signInState.errors.global}
+		{#each signInState.errors.global as err}
 			<p class="error">{err.message}</p>
 		{/each}
 	{/if}

@@ -14,7 +14,8 @@ This guide demonstrates email + password sign-up with email verification. For ot
 <script lang="ts">
 	import { useSignUp } from 'svelte-clerk/client';
 
-	const { signUp, errors } = useSignUp();
+	// Do not destructure to avoid losing reactivity
+	const signUpState = useSignUp();
 
 	let email = $state('');
 	let password = $state('');
@@ -24,17 +25,17 @@ This guide demonstrates email + password sign-up with email verification. For ot
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
-		if (!signUp) return;
+		if (!signUpState.signUp) return;
 
 		pending = true;
 		try {
-			await signUp.create({
+			await signUpState.signUp.create({
 				emailAddress: email,
 				password
 			});
 
 			// Send email verification code
-			await signUp.prepareEmailAddressVerification({
+			await signUpState.signUp.prepareEmailAddressVerification({
 				strategy: 'email_code'
 			});
 
@@ -46,14 +47,14 @@ This guide demonstrates email + password sign-up with email verification. For ot
 
 	async function handleVerify(e: SubmitEvent) {
 		e.preventDefault();
-		if (!signUp) return;
+		if (!signUpState.signUp) return;
 
 		pending = true;
 		try {
-			await signUp.attemptEmailAddressVerification({ code });
+			await signUpState.signUp.attemptEmailAddressVerification({ code });
 
-			if (signUp.status === 'complete') {
-				await signUp.finalize({
+			if (signUpState.signUp.status === 'complete') {
+				await signUpState.signUp.finalize({
 					navigate: ({ session, decorateUrl }) => {
 						if (session?.currentTask) {
 							console.log(session.currentTask);
@@ -74,13 +75,13 @@ This guide demonstrates email + password sign-up with email verification. For ot
 		<div>
 			<label for="code">Verification code</label>
 			<input id="code" type="text" bind:value={code} />
-			{#if errors.fields.code}
-				<p class="error">{errors.fields.code.message}</p>
+			{#if signUpState.errors.fields.code}
+				<p class="error">{signUpState.errors.fields.code.message}</p>
 			{/if}
 		</div>
 
-		{#if errors.global}
-			{#each errors.global as err}
+		{#if signUpState.errors.global}
+			{#each signUpState.errors.global as err}
 				<p class="error">{err.message}</p>
 			{/each}
 		{/if}
@@ -94,21 +95,21 @@ This guide demonstrates email + password sign-up with email verification. For ot
 		<div>
 			<label for="email">Email</label>
 			<input id="email" type="email" bind:value={email} />
-			{#if errors.fields.emailAddress}
-				<p class="error">{errors.fields.emailAddress.message}</p>
+			{#if signUpState.errors.fields.emailAddress}
+				<p class="error">{signUpState.errors.fields.emailAddress.message}</p>
 			{/if}
 		</div>
 
 		<div>
 			<label for="password">Password</label>
 			<input id="password" type="password" bind:value={password} />
-			{#if errors.fields.password}
-				<p class="error">{errors.fields.password.message}</p>
+			{#if signUpState.errors.fields.password}
+				<p class="error">{signUpState.errors.fields.password.message}</p>
 			{/if}
 		</div>
 
-		{#if errors.global}
-			{#each errors.global as err}
+		{#if signUpState.errors.global}
+			{#each signUpState.errors.global as err}
 				<p class="error">{err.message}</p>
 			{/each}
 		{/if}
