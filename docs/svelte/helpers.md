@@ -50,6 +50,7 @@ The following example demonstrates how to use the `auth` object to access the cu
 The `useSignIn()` hook gives you access to the [`SignIn`](https://clerk.com/docs/reference/javascript/sign-in) object for managing sign-in flows. You can use this to create a [custom sign-in flow](/guides/custom-sign-in-flow).
 
 Returns:
+
 - `signIn` - The `SignIn` object for the current sign-in attempt.
 - `errors` - Structured errors from the last sign-in operation, with per-field errors (`identifier`, `password`, `code`) and global errors.
 - `fetchStatus` - `'idle'` or `'fetching'`, indicating whether a request is in flight.
@@ -72,6 +73,7 @@ Returns:
 The `useSignUp()` hook gives you access to the [`SignUp`](https://clerk.com/docs/reference/javascript/sign-up) object for managing sign-up flows. You can use this to create a [custom sign-up flow](/guides/custom-sign-up-flow).
 
 Returns:
+
 - `signUp` - The `SignUp` object for the current sign-up attempt.
 - `errors` - Structured errors from the last sign-up operation, with per-field errors (`firstName`, `lastName`, `emailAddress`, `phoneNumber`, `password`, `username`, `code`, `captcha`, `legalAccepted`) and global errors.
 - `fetchStatus` - `'idle'` or `'fetching'`, indicating whether a request is in flight.

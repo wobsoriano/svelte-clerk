@@ -51,7 +51,8 @@ export function mergeWithPublicEnvVariables(
 			__internal_clerkJSVersion || getDynamicPublicEnvVariables().clerkJSVersion,
 		proxyUrl: proxyUrl || getDynamicPublicEnvVariables().proxyUrl,
 		domain: domain || getDynamicPublicEnvVariables().domain,
-		isSatellite: clerkInitOptions.isSatellite ?? isTruthy(getDynamicPublicEnvVariables().isSatellite),
+		isSatellite:
+			clerkInitOptions.isSatellite ?? isTruthy(getDynamicPublicEnvVariables().isSatellite),
 		telemetry: telemetry || {
 			debug: getDynamicPublicEnvVariables().telemetryDebug,
 			disabled: getDynamicPublicEnvVariables().telemetryDisabled
