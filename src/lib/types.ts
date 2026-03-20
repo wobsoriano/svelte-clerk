@@ -1,4 +1,8 @@
-import type { ClerkUIConstructor, IsomorphicClerkOptions, MultiDomainAndOrProxy } from '@clerk/shared/types';
+import type {
+	ClerkUIConstructor,
+	IsomorphicClerkOptions,
+	MultiDomainAndOrProxy
+} from '@clerk/shared/types';
 import type { Clerk, ClerkOptions, ClientResource, Without } from '@clerk/shared/types';
 import type { Snippet } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
@@ -25,7 +29,7 @@ export type ClerkProviderProps = Without<IsomorphicClerkOptions, 'domain' | 'pro
 declare global {
 	interface Window {
 		Clerk: HeadlessBrowserClerk | BrowserClerk;
-		__internal_ClerkUICtor: ClerkUIConstructor
+		__internal_ClerkUICtor: ClerkUIConstructor;
 	}
 }
 

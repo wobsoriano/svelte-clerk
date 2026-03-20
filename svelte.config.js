@@ -10,6 +10,10 @@ const config = {
 			remoteFunctions: true
 		}
 	},
+	vitePlugin: {
+		dynamicCompileOptions: ({ filename }) =>
+			filename.includes('node_modules') ? undefined : { runes: true }
+	},
 	preprocess: vitePreprocess(),
 	compilerOptions: {
 		experimental: {

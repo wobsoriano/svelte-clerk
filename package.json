@@ -1,41 +1,47 @@
 {
 	"name": "svelte-clerk",
 	"version": "1.1.1",
-	"license": "MIT",
-	"packageManager": "pnpm@10.30.3",
-	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
 	"keywords": [
-		"clerk",
-		"typescript",
-		"svelte",
 		"auth",
 		"authentication",
+		"clerk",
+		"jwt",
 		"passwordless",
 		"session",
-		"jwt"
+		"svelte",
+		"typescript"
 	],
+	"homepage": "https://github.com/wobsoriano/svelte-clerk#readme",
+	"bugs": "https://github.com/wobsoriano/svelte-clerk/issues",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/wobsoriano/svelte-clerk.git"
 	},
-	"bugs": "https://github.com/wobsoriano/svelte-clerk/issues",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build && npm run package",
-		"preview": "vite preview",
-		"lint": "prettier --check . && eslint .",
-		"release": "pnpm build && changeset publish",
-		"format": "prettier --write .",
-		"package": "svelte-kit sync && svelte-package && publint",
-		"prepublishOnly": "npm run package",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"docs:dev": "vitepress dev docs",
-		"docs:build": "vitepress build docs",
-		"docs:preview": "vitepress preview docs",
-		"test:e2e": "playwright test",
-		"test": "npm run test:e2e"
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"typesVersions": {
+		">4.0": {
+			"index.d.ts": [
+				"./dist/index.d.ts"
+			],
+			"client": [
+				"./dist/client/index.d.ts"
+			],
+			"server": [
+				"./dist/server/index.d.ts"
+			],
+			"env.d.ts": [
+				"./dist/env.d.ts"
+			]
+		}
 	},
+	"svelte": "./dist/index.js",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -55,11 +61,57 @@
 		},
 		"./env": "./dist/env.d.ts"
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
+	"scripts": {
+		"dev": "vp dev",
+		"build": "vp build && npm run prepack",
+		"preview": "vp preview",
+		"prepare": "vp config && svelte-kit sync || echo ''",
+		"prepack": "svelte-kit sync && svelte-package && publint",
+		"lint": "vp fmt --check . && vp lint .",
+		"release": "pnpm build && changeset publish",
+		"format": "vp fmt .",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"docs:dev": "vitepress dev docs",
+		"docs:build": "vitepress build docs",
+		"docs:preview": "vitepress preview docs",
+		"test:e2e": "playwright test",
+		"test": "npm run test:e2e"
+	},
+	"dependencies": {
+		"@clerk/backend": "3.2.1",
+		"@clerk/shared": "4.3.1",
+		"set-cookie-parser": "^3.0.1"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.30.0",
+		"@clerk/localizations": "^4.0.0",
+		"@clerk/testing": "^2.0.1",
+		"@dotenvx/dotenvx": "^1.52.0",
+		"@playwright/test": "^1.58.2",
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/kit": "^2.55.0",
+		"@sveltejs/package": "^2.5.7",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
+		"@types/set-cookie-parser": "^2.4.10",
+		"@vueuse/core": "^13.9.0",
+		"autoprefixer": "^10.4.27",
+		"eslint-plugin-svelte": "^3.15.2",
+		"globals": "^15.15.0",
+		"postcss": "^8.5.8",
+		"publint": "^0.2.12",
+		"svelte": "^5.53.7",
+		"svelte-check": "^4.4.4",
+		"tailwindcss": "^3.4.19",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3",
+		"vite": "npm:@voidzero-dev/vite-plus-core@latest",
+		"vite-plus": "latest",
+		"vitepress": "^1.6.4"
+	},
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.20.0",
 		"svelte": "^5.29.0"
@@ -69,60 +121,11 @@
 			"optional": true
 		}
 	},
-	"typesVersions": {
-		">4.0": {
-			"index.d.ts": [
-				"./dist/index.d.ts"
-			],
-			"client": [
-				"./dist/client/index.d.ts"
-			],
-			"server": [
-				"./dist/server/index.d.ts"
-			],
-			"env.d.ts": [
-				"./dist/env.d.ts"
-			]
+	"packageManager": "pnpm@10.30.3",
+	"pnpm": {
+		"overrides": {
+			"vite": "npm:@voidzero-dev/vite-plus-core@latest",
+			"vitest": "npm:@voidzero-dev/vite-plus-test@latest"
 		}
-	},
-	"devDependencies": {
-		"@changesets/cli": "^2.30.0",
-		"@clerk/localizations": "^4.0.0",
-		"@clerk/testing": "^2.0.1",
-		"@dotenvx/dotenvx": "^1.52.0",
-		"@playwright/test": "^1.58.2",
-		"@sveltejs/adapter-auto": "^6.1.1",
-		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.53.4",
-		"@sveltejs/package": "^2.5.7",
-		"@sveltejs/vite-plugin-svelte": "^6.2.4",
-		"@types/eslint": "^9.6.1",
-		"@types/set-cookie-parser": "^2.4.10",
-		"@vueuse/core": "^13.9.0",
-		"autoprefixer": "^10.4.27",
-		"eslint": "^9.39.3",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.15.0",
-		"globals": "^15.15.0",
-		"postcss": "^8.5.8",
-		"prettier": "^3.8.1",
-		"prettier-plugin-svelte": "^3.5.1",
-		"publint": "^0.2.12",
-		"svelte": "^5.53.7",
-		"svelte-check": "^4.4.4",
-		"tailwindcss": "^3.4.19",
-		"tslib": "^2.8.1",
-		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.56.1",
-		"vite": "^7.3.1",
-		"vitepress": "^1.6.4"
-	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"type": "module",
-	"dependencies": {
-		"@clerk/backend": "3.2.1",
-		"@clerk/shared": "4.3.1",
-		"set-cookie-parser": "^3.0.1"
 	}
 }
