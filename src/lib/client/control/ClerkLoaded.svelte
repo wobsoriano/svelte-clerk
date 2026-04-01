@@ -6,8 +6,12 @@
 	const { children }: { children: Snippet<[LoadedClerk]> } = $props();
 
 	const ctx = useClerkContext();
+
+	function getLoadedClerk(): LoadedClerk {
+		return ctx.clerk as LoadedClerk;
+	}
 </script>
 
 {#if ctx.isLoaded}
-	{@render children(ctx.clerk as LoadedClerk)}
+	{@render children(getLoadedClerk())}
 {/if}
