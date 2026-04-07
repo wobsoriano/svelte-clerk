@@ -1,5 +1,11 @@
 # svelte-clerk
 
+## 1.1.2
+
+### Patch Changes
+
+- b580cfc: Bump @clerk/backend from 3.2.1 to 3.2.3
+
 ## 1.1.1
 
 ### Patch Changes
