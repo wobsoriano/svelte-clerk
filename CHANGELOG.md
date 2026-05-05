@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 1.1.6
+
+### Patch Changes
+
+- ca5ed99: Bump @clerk/backend from 3.3.0 to 3.4.1
+- ca5ed99: Bump @clerk/shared from 4.8.3 to 4.8.5
+
 ## 1.1.5
 
 ### Patch Changes
