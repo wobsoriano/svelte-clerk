@@ -36,9 +36,9 @@
 				goto(to, { replaceState: true });
 			}
 		}
-	} as Omit<ClerkProviderProps, 'children'>);
+	});
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...mergedProps as any}>
+<ClerkProvider initialState={page?.data?.initialState} {...mergedProps}>
 	{@render children?.()}
 </ClerkProvider>
