@@ -1,5 +1,12 @@
 # svelte-clerk
 
+## 1.1.10
+
+### Patch Changes
+
+- 63b59ca: Improve compatibility with newer Svelte/Vite toolchains
+- 3da7325: Bump `@clerk/backend` to `3.8.3` and `@clerk/shared` to `4.21.0`
+
 ## 1.1.9
 
 ### Patch Changes
