@@ -5,6 +5,11 @@
 	import { fromAction } from 'svelte/attachments';
 
 	const props: UserProfileProps = $props();
+
+	// Access internal Clerk API not exposed in LoadedClerk type
+	function getUpdateProps(clerk: { __internal_updateProps?: unknown }) {
+		return clerk.__internal_updateProps;
+	}
 </script>
 
 <ClerkLoaded>
@@ -13,7 +18,7 @@
 			{@attach fromAction(clerkHostRenderer, () => ({
 				mount: clerk.mountUserProfile,
 				unmount: clerk.unmountUserProfile,
-				updateProps: (clerk as any).__internal_updateProps,
+				updateProps: getUpdateProps(clerk),
 				props: $state.snapshot(props)
 			}))}
 		></div>
