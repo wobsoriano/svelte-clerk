@@ -4,6 +4,7 @@
 	import type { ClerkProviderProps } from '$lib/types.js';
 	import { page } from '$app/state';
 	import { goto, pushState, replaceState } from '$app/navigation';
+	import type { ComponentProps } from 'svelte';
 
 	const {
 		children,
@@ -16,9 +17,10 @@
 		__internal_metadata?: { navigationType?: 'internal' | 'external' | 'window' };
 	};
 
-	const mergedProps = $derived({
+	const providerProps = $derived({
 		...props,
 		...mergeWithPublicEnvVariables(props),
+		initialState: page?.data?.initialState,
 		routerPush: (to: string, metadata?: RouterMetadata) => {
 			// Internal navigations are tab/step changes within a Clerk component (e.g. /sign-in → /sign-in/factor-one).
 			// Use SvelteKit's shallow pushState so the URL updates without unmounting the page,
@@ -36,9 +38,9 @@
 				goto(to, { replaceState: true });
 			}
 		}
-	});
+	} as ComponentProps<typeof ClerkProvider>);
 </script>
 
-<ClerkProvider initialState={page?.data?.initialState} {...mergedProps}>
+<ClerkProvider {...providerProps}>
 	{@render children?.()}
 </ClerkProvider>

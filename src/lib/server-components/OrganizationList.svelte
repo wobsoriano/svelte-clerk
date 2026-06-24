@@ -1,6 +1,6 @@
 <script lang="ts">
 	import OrganizationListClient from '$lib/client/interactive/OrganizationList.svelte';
-	import type { OrganizationListProps } from '@clerk/shared/types';
+	import type { OrganizationListProps, RoutingOptions } from '@clerk/shared/types';
 	import { useRoutingProps } from '$lib/client/utils.svelte';
 	import { usePathnameWithoutSplatRouteParams } from './usePathnameWithoutSplatRouteParams.svelte';
 
@@ -9,7 +9,7 @@
 
 	const routingProps = useRoutingProps(
 		'OrganizationList',
-		() => props,
+		() => props as OrganizationListProps & RoutingOptions,
 		() => ({ path: pathnameWithoutSplatRouteParams.current })
 	);
 </script>

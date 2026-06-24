@@ -2,6 +2,14 @@ import type { Action } from 'svelte/action';
 
 type AnyObject = any;
 
+type ClerkWithUpdateProps = {
+	__internal_updateProps: (props: AnyObject) => void;
+};
+
+export const getUpdateProps = (clerk: unknown) => {
+	return (clerk as ClerkWithUpdateProps).__internal_updateProps;
+};
+
 interface MountProps {
 	mount: (node: HTMLDivElement, props: AnyObject) => void;
 	unmount: (node: HTMLDivElement) => void;
