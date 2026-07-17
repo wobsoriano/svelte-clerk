@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^3.11.3
-        version: 3.11.3(react@18.3.1)
+        specifier: ^3.11.7
+        version: 3.11.7(react@18.3.1)
       '@clerk/shared':
-        specifier: ^4.25.2
-        version: 4.25.2(react@18.3.1)
+        specifier: ^4.25.5
+        version: 4.25.5(react@18.3.1)
       set-cookie-parser:
         specifier: ^3.0.1
         version: 3.0.1
@@ -263,16 +263,16 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clerk/backend@3.11.3':
-    resolution: {integrity: sha512-takrEE0nliUz39e8Ct1YG471eBcuU2I1ZStRIU9U0UAIuiNAxNTNuaVZSXaZeK4QTuJtdQhoGy8rvzxr/10Btw==}
+  '@clerk/backend@3.11.7':
+    resolution: {integrity: sha512-il2wyzS2I10Gv8v+ECEKQqDfaW7gCD2BWUZp37LOMFBn6/DJ7FhHfe4XwgQLUDBkHyk2LxyTt3Lbg5GnpNJPUQ==}
     engines: {node: '>=20.9.0'}
 
   '@clerk/localizations@4.0.0':
     resolution: {integrity: sha512-lGCJ36GKk+s8tJdsn7Rol9IyZQ62WVra85JxmeDyRlKgnSYuwXHAleTpNvJZDYjWzeNJalMj8I2aquveZSRTIQ==}
     engines: {node: '>=20.9.0'}
 
-  '@clerk/shared@4.25.2':
-    resolution: {integrity: sha512-v7zgDh0eVLl3KzRHbKYTsPQ+4Xcx8A2oiU5iZ9WhME024WudwkjjPJRK12RycY0VA1Sj8i4Pi5zEpecqB/gp1Q==}
+  '@clerk/shared@4.25.5':
+    resolution: {integrity: sha512-pb+pA+88OACHSuE0JhsnV7Qzl1j9UhI9KrXivS831x1BJOtNYORnDqRg3xss2SPFcC46clE9S5QqkRQqv1lSsg==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
@@ -3055,9 +3055,9 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@clerk/backend@3.11.3(react@18.3.1)':
+  '@clerk/backend@3.11.7(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 4.25.2(react@18.3.1)
+      '@clerk/shared': 4.25.5(react@18.3.1)
       standardwebhooks: 1.0.0
       tslib: 2.8.1
     transitivePeerDependencies:
@@ -3066,12 +3066,12 @@ snapshots:
 
   '@clerk/localizations@4.0.0(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 4.25.2(react@18.3.1)
+      '@clerk/shared': 4.25.5(react@18.3.1)
     transitivePeerDependencies:
       - react
       - react-dom
 
-  '@clerk/shared@4.25.2(react@18.3.1)':
+  '@clerk/shared@4.25.5(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.101.2
       dequal: 2.0.3
@@ -3082,8 +3082,8 @@ snapshots:
 
   '@clerk/testing@2.0.1(@playwright/test@1.58.2)(react@18.3.1)':
     dependencies:
-      '@clerk/backend': 3.11.3(react@18.3.1)
-      '@clerk/shared': 4.25.2(react@18.3.1)
+      '@clerk/backend': 3.11.7(react@18.3.1)
+      '@clerk/shared': 4.25.5(react@18.3.1)
       dotenv: 17.2.2
     optionalDependencies:
       '@playwright/test': 1.58.2
